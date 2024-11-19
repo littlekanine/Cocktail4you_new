@@ -1,0 +1,60 @@
+// Colors
+
+$yellow: #f6e27f;
+$caramel: #be7c4d;
+$brown: #3a1820;
+
+// Font
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Karantina:wght@300;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Karantina:wght@300;400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+h1,
+h2,
+h3,
+p,
+a {
+	font-family: Karantina;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+	background-color: $caramel;
+}
+
+// class
+
+.flex {
+	display: flex;
+}
+
+.center {
+	justify-content: center;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.spacee-between {
+	justify-content: space-between;
+}
+
+.pointNone {
+	list-style-type: none;
+}
+
+.column {
+	flex-direction: column;
+}
+
+.height100vh {
+	height: 100vh;
+}

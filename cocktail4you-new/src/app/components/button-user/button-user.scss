@@ -1,0 +1,9 @@
+@use '../../../vendors/variables.scss' as *;
+
+.button-user-svg {
+	width: 20px;
+	height: 20px;
+	background-color: $caramel;
+	border: none;
+	fill: $yellow;
+}

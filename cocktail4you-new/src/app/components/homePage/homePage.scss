@@ -1,0 +1,67 @@
+@use '../../../vendors/variables.scss' as *;
+
+.title {
+	font-size: 48px;
+	font-weight: 400;
+	color: $yellow;
+	padding-bottom: 20px;
+	transform: opacity(1);
+}
+
+.fade-up {
+	opacity: 0;
+	transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.fade-up.visible {
+	opacity: 1;
+}
+
+.fade-down {
+	opacity: 1;
+	transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fade-down.hidden {
+	opacity: 0;
+}
+
+.number {
+	color: $brown;
+}
+
+input[type='search'] {
+	width: 343px;
+	padding: 10px;
+	font-size: 16px;
+	border: 0px solid #ccc;
+	border-radius: 10px;
+	outline: none;
+	margin-bottom: 10px;
+	font-family: 'Roboto', sans-serif;
+	color: $caramel;
+	transform: translateY(0);
+}
+
+.slide-up {
+	transition: transform 0.7s ease-out;
+	transform: translateY(-40vh);
+}
+
+.slide-down {
+	transition: transform 0.7s ease-out;
+	transform: translateY(-0vh);
+}
+
+.logo {
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	color: $yellow;
+}
+
+.button-user {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}

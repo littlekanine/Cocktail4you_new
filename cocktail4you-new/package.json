@@ -1,0 +1,22 @@
+{
+	"name": "cocktail4you-new",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@babel/runtime": "^7.26.0",
+		"next": "^15.0.3",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"eslint": "^8.57.1",
+		"eslint-config-next": "^15.0.3",
+		"sass": "^1.81.0"
+	}
+}

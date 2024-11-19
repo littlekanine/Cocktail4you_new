@@ -1,0 +1,8 @@
+@use '../../../vendors/variables.scss' as *;
+
+.card-info {
+	display: flex;
+	height: 94px;
+	background-color: $brown;
+	border-radius: 10px;
+}

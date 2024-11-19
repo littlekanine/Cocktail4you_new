@@ -2,6 +2,7 @@
 
 import './homePage.scss';
 import Button from '../buttons/Button';
+import Cocktails from '../cocktails/Cocktails';
 import { useState, useEffect } from 'react';
 import ButtonUser from '../button-user/Button-user';
 
@@ -47,6 +48,7 @@ const HomePage = () => {
 			<div className="button-user">
 				<ButtonUser />
 			</div>
+			<Cocktails />
 		</div>
 	);
 };

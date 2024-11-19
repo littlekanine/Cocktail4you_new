@@ -1,0 +1,1009 @@
+[
+	{
+		"name": "Margarita",
+		"ingredients": [
+			{ "name": "Tequila", "quantity": 50, "unit": "ml" },
+			{ "name": "Cointreau", "quantity": 20, "unit": "ml" },
+			{ "name": "Lime juice", "quantity": 15, "unit": "ml" }
+		],
+		"instructions": "Shake all ingredients with ice. Strain into a chilled glass.",
+		"category": "Cocktail",
+		"tags": ["Citrus", "Strong"],
+		"glass_type": "Cocktail glass"
+	},
+	{
+		"name": "Amaretto Sour",
+		"ingredients": [
+			{ "name": "Amaretto", "quantity": 50, "unit": "ml" },
+			{ "name": "Lemon juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Sugar", "quantity": 1, "unit": "Barspoon" },
+			{ "name": "egg white", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Dry skahe if egg-white. Shake all ingredients with ice. Strain into a chilled glass.",
+		"category": "Short Drink",
+		"tags": ["Sweet", "Nutty"],
+		"glass_type": "Old Fashioned glass"
+	},
+	{
+		"name": "B-52",
+		"ingredients": [
+			{ "name": "Kahlua", "quantity": 20, "unit": "ml" },
+			{ "name": "Baileys", "quantity": 20, "unit": "ml" },
+			{ "name": "Grand Marnier", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Pour the ingredients directly into a shooter glass using a bar spoon to layer them in the order listed, creating a layered effect. Serve with a straw.",
+		"category": "After Dinner",
+		"tags": ["Classic", "Layered", "Shooter"],
+		"glass_type": "Shooter glass",
+		"notes": "A 'B-52' can be served flaming. It’s recommended to adjust ingredient quantities based on glass size.",
+		"history": "The 'B-52' is named after an American bomber aircraft."
+	},
+	{
+		"name": "Bacardi Cocktail",
+		"ingredients": [
+			{ "name": "Grenadine Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lime Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Bacardi Rum", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Shaken"],
+		"glass_type": "Cocktail glass",
+		"notes": "A classic shaken cocktail served in a cocktail glass.",
+		"history": "A variation of the Daiquiri, the 'Bacardi Cocktail' first appeared in New York, USA, around 1910. A ruling by the United States Supreme Court later established that only Bacardi Rum can be used to make this cocktail."
+	},
+	{
+		"name": "Black Russian",
+		"ingredients": [
+			{ "name": "Coffee Liqueur", "quantity": 20, "unit": "ml" },
+			{ "name": "Vodka", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour the ingredients directly into an Old Fashioned glass filled with ice cubes. Stir with a bar spoon.",
+		"category": "After Dinner",
+		"tags": ["Classic", "On the Rocks"],
+		"glass_type": "Old Fashioned glass",
+		"notes": "Serve on the rocks in an Old Fashioned glass. Variants: 'White Russian' (add a float of 30 ml lightly whipped cream) and 'Brave Bull' (replace vodka with tequila).",
+		"history": "The Black Russian was created in 1950 by Gustave Tops, a bartender at the Metropole Hotel in Brussels, for the U.S. Ambassador to Luxembourg."
+	},
+	{
+		"name": "Bourbon Old Fashioned",
+		"ingredients": [
+			{ "name": "Sugar Cube", "quantity": 0.25, "unit": "cube" },
+			{ "name": "Angostura Bitters", "quantity": "a few drops" },
+			{ "name": "Soda Water", "quantity": "a dash", "optional": true },
+			{ "name": "Bourbon", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Place the sugar cube in an Old Fashioned glass and soak it with Angostura bitters. Muddle the sugar with a dash of soda water if desired. Half-fill the glass with ice and add 20 ml of bourbon. Stir with a bar spoon. Add more ice, pour the remaining bourbon, and stir again. Express a lemon zest over the drink, then garnish with another lemon zest, a half-slice of orange, and a brandied cherry.",
+		"category": "Short Drink",
+		"tags": ["Classic", "On the Rocks", "Stirred"],
+		"glass_type": "Old Fashioned glass",
+		"decoration": [
+			{ "name": "Lemon Zest", "quantity": 2 },
+			{ "name": "Orange Half Slice", "quantity": 1 },
+			{ "name": "Brandied Cherry", "quantity": 1 }
+		],
+		"notes": "Any aged spirits can be used in an Old Fashioned. Angostura bitters may be substituted with aromatic bitters.",
+		"history": "The first 'Old Fashioned' appeared in a publication in 1888."
+	},
+	{
+		"name": "Bramble",
+		"ingredients": [
+			{ "name": "Cane Sugar Syrup", "quantity": 5, "unit": "ml" },
+			{ "name": "Lemon Juice", "quantity": 15, "unit": "ml" },
+			{ "name": "Gin", "quantity": 40, "unit": "ml" },
+			{ "name": "Blackberry Liqueur", "quantity": 10, "unit": "ml" }
+		],
+		"instructions": "Fill an Old Fashioned glass with crushed ice. Pour the ingredients (except for the blackberry liqueur) in the order listed into the glass. Stir with a bar spoon. Float the blackberry liqueur on top without stirring. Garnish with a half slice of lemon and one or two blackberries if in season. Add a short straw and a stir stick.",
+		"category": "Short Drink",
+		"tags": ["Contemporary", "On Crushed Ice", "Layered"],
+		"glass_type": "Old Fashioned glass",
+		"decoration": [
+			{ "name": "Half Lemon Slice", "quantity": 1 },
+			{ "name": "Blackberries", "quantity": "1 or 2 (if in season)" }
+		],
+		"notes": "Serve on crushed ice with a short straw and stir stick.",
+		"history": "Created in the 1980s by Dick Bradsell in Soho, London."
+	},
+	{
+		"name": "Brandy Alexander",
+		"ingredients": [
+			{ "name": "Fresh Cream", "quantity": 20, "unit": "ml" },
+			{ "name": "Brown Crème de Cacao", "quantity": 20, "unit": "ml" },
+			{ "name": "Cognac", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well and strain into a double cocktail glass or sour coupe. Grate nutmeg on top as garnish.",
+		"category": "After Dinner",
+		"tags": ["Classic", "Shaken"],
+		"glass_type": "Double Cocktail Glass or Sour Coupe",
+		"decoration": [{ "name": "Grated Nutmeg", "quantity": "to taste" }],
+		"notes": "Do not confuse with the 'Alexander,' which uses gin as the base. 20 ml of fresh cream is equivalent to one heaping dessert spoon.",
+		"history": "The Brandy Alexander is a European adaptation of the American 'Alexander' (made with gin) from the 1920s, using Cognac instead. It was served at the wedding of Princess Victoria Alexandra Alice Mary, and thus also known as the 'Alexandra,' though the names are still sometimes confused."
+	},
+	{
+		"name": "Bronx",
+		"ingredients": [
+			{ "name": "Orange Juice", "quantity": 5, "unit": "ml" },
+			{ "name": "Italian Vermouth", "quantity": 15, "unit": "ml" },
+			{ "name": "Noilly Prat", "quantity": 15, "unit": "ml" },
+			{ "name": "Gin", "quantity": 35, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Shaken"],
+		"glass_type": "Cocktail glass",
+		"notes": "Noilly Prat can be substituted with a dry French-style vermouth.",
+		"history": "A classic among classics, the Bronx was reportedly created in just one minute by Johnnie Solon, head bartender at the Waldorf Astoria, in 1908. 'Bronx' is also the name of a famous zoo in New York City."
+	},
+	{
+		"name": "Caïpirinha",
+		"ingredients": [
+			{ "name": "Powdered Sugar", "quantity": 1, "unit": "barspoon" },
+			{ "name": "Lime", "quantity": 0.5, "unit": "cut into pieces" },
+			{ "name": "Cachaça", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Place the lime pieces and powdered sugar in an Old Fashioned glass. Muddle together. Fill the glass with crushed ice, add the cachaça, and stir. Add a straw.",
+		"category": "Short Drink",
+		"tags": ["Classic", "On Crushed Ice", "Muddled"],
+		"glass_type": "Old Fashioned glass",
+		"notes": "Variations include the 'Caïpirovksa' (substitute cachaça with vodka) and the 'Caïpirissima' (substitute cachaça with Cuban or Puerto Rican rum).",
+		"history": "The Caïpirinha is Brazil's national cocktail, though its origins are unclear. Its popularity under the name 'Caïpirinha' dates back to the 1950s."
+	},
+	{
+		"name": "Corpse Reviver No. 2",
+		"ingredients": [
+			{ "name": "Absinthe", "quantity": "a dash" },
+			{ "name": "Lemon Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Lillet Blanc", "quantity": 20, "unit": "ml" },
+			{ "name": "Cointreau", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Rinse a cocktail glass with a dash of absinthe, swirling to coat the inside, then discard any excess. Pour all other ingredients into a shaker filled with ice. Shake well, then strain into the prepared glass. Express a lemon zest over the drink and garnish with an additional lemon zest.",
+		"category": "Short Drink",
+		"tags": ["Contemporary", "Shaken", "Absinthe Rinse"],
+		"glass_type": "Cocktail glass or sour coupe",
+		"decoration": [{ "name": "Lemon Zest", "quantity": 2 }],
+		"history": "Famed for 'waking the dead,' this recipe was published in Harry Craddock's 'Savoy Cocktail Book' in 1930. The No. 2 is the best-known variation."
+	},
+	{
+		"name": "Cosmopolitan",
+		"ingredients": [
+			{ "name": "Lime Juice", "quantity": 5, "unit": "ml" },
+			{ "name": "Cranberry Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Cointreau", "quantity": 15, "unit": "ml" },
+			{ "name": "Vodka", "quantity": 30, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass. Express a lime zest over the drink and garnish with another lime zest.",
+		"category": "Short Drink",
+		"tags": ["Contemporary", "Shaken"],
+		"glass_type": "Cocktail glass",
+		"decoration": [{ "name": "Lime Zest", "quantity": 2 }],
+		"history": "In 1985/86, Absolut launched its Citrus version in the U.S., and Cheryl Cook modified the 'Kamikaze' cocktail to appeal to a female audience, creating the Cosmopolitan."
+	},
+	{
+		"name": "Daiquiri",
+		"ingredients": [
+			{ "name": "Cane Sugar Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lime Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Cuban Rum", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Shaken"],
+		"glass_type": "Cocktail glass",
+		"notes": "A teaspoon of powdered sugar can replace the cane sugar syrup.",
+		"history": "In 1898, Jennings S. Cox, a mining engineer from Cuba, named this cocktail after the Cuban town of 'Daiquiri.' While Cubans were already drinking a similar concoction, Cox's version became iconic."
+	},
+	{
+		"name": "Dry Martini",
+		"ingredients": [
+			{ "name": "Dry Vermouth", "quantity": 15, "unit": "ml" },
+			{ "name": "Gin", "quantity": 55, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a mixing glass filled with ice. Stir well, then strain into a cocktail glass. Garnish with either a green olive or a lemon zest (expressed).",
+		"category": "Short Drink",
+		"tags": ["Classic", "Stirred"],
+		"glass_type": "Cocktail glass",
+		"decoration": [
+			{ "name": "Green Olive", "quantity": 1 },
+			{ "name": "Lemon Zest", "quantity": 2 }
+		],
+		"variations": [
+			{ "name": "Vodkatini", "description": "Vodka replaces gin" },
+			{ "name": "Tequini", "description": "Tequila replaces gin" },
+			{ "name": "Gibson", "description": "Garnished with a pickled onion instead of olive or lemon zest" },
+			{ "name": "Perfect Martini", "description": "Equal parts dry vermouth and Italian vermouth, garnished with orange zest" },
+			{ "name": "Dirty Martini", "description": "5 ml of dry vermouth replaced with olive brine" },
+			{ "name": "Vesper", "description": "A mix of gin, vodka, and Kina Lillet (no longer available), as seen in Casino Royale" }
+		],
+		"notes": "Never hesitate to ask customers for their preferences when ordering, as the Dry Martini is one of the cocktails with the fewest ingredients but requires the most customization, including the choice of spirit, vermouth/gin ratio, preparation method, and garnish.",
+		"history": "The Dry Martini is an evolution of the 'Martinez/Martini,' which appeared in the U.S. in 1884. The dry vermouth replaced the sweet vermouth. The first recipe was published in 1904 in Paris, in Frank Newman's book 'American Bar.' The bitters originally included disappeared from the recipe in the 1950s. Since then, it has been a favorite among cocktail enthusiasts who seek the 'perfect cocktail.'"
+	},
+	{
+		"name": "Espresso Martini",
+		"ingredients": [
+			{ "name": "Sugar Syrup", "quantity": 5, "unit": "ml" },
+			{ "name": "Espresso Coffee", "quantity": 25, "unit": "ml" },
+			{ "name": "Coffee Liqueur", "quantity": 10, "unit": "ml" },
+			{ "name": "Vodka", "quantity": 30, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass or sour coupe glass. Garnish with 3 coffee beans placed on top of the foam.",
+		"category": "After Dinner",
+		"tags": ["Contemporary", "Shaken"],
+		"glass_type": "Cocktail glass or Coupe",
+		"decoration": [{ "name": "Coffee Beans", "quantity": 3 }],
+		"variations": [{ "name": "Vodka Espresso", "description": "Served on the rocks in a rocks glass instead of a cocktail glass." }],
+		"history": "Invented by Dick Bradsell in 1998 at Pharmacy in London, this cocktail was initially called the 'Pharmaceutical Stimulant.'"
+	},
+	{
+		"name": "French Connection",
+		"ingredients": [
+			{ "name": "Amaretto Liqueur", "quantity": 20, "unit": "ml" },
+			{ "name": "Cognac VSOP", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour the ingredients in the order of the recipe into an Old Fashioned glass filled with ice cubes. Stir with a mixing spoon.",
+		"category": "After Dinner",
+		"tags": ["Classic", "Stirred"],
+		"glass_type": "Old Fashioned glass",
+		"variations": [
+			{ "name": "Godmother", "description": "2 cl Amaretto liqueur, 5 cl Vodka" },
+			{ "name": "Godfather", "description": "2 cl Amaretto liqueur, 5 cl Scotch whisky" }
+		],
+		"notes": "The IBA recipe uses equal parts (50/50) of Amaretto and Cognac.",
+		"history": "A variation of the 'Godfather' cocktail created by Donato Antone, also known as 'Duke,' double world champion of mixology and dean of the 'Bartending School of Mixology Inc.'"
+	},
+	{
+		"name": "Hemingway Special (Papa Doble)",
+		"ingredients": [
+			{ "name": "Sugar Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lime Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Grapefruit Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Maraschino Liqueur", "quantity": 10, "unit": "ml" },
+			{ "name": "Cuban Rum", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass or sour coupe glass.",
+		"category": "Short Drink",
+		"tags": ["Contemporary", "Shaken"],
+		"glass_type": "Cocktail glass or Coupe",
+		"history": "Created by Constantino Ribalaigua and his nephew at the 'El Floridita' bar in Havana for Ernest Hemingway. Hemingway was known for doubling the rum doses (and reducing the sugar due to his diabetes), which is why the cocktail is also called 'Papa Doble.'"
+	},
+	{
+		"name": "Last Word",
+		"ingredients": [
+			{ "name": "Lime Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Maraschino Liqueur", "quantity": 20, "unit": "ml" },
+			{ "name": "Green Chartreuse", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass or sour coupe glass.",
+		"category": "Short Drink",
+		"tags": ["Contemporary", "Shaken"],
+		"glass_type": "Cocktail glass or Coupe",
+		"history": "Created in the 1920s at the 'Detroit Athletic Club' during Prohibition and revived in 2004 in Seattle by Murray Stenson. The cocktail's success was immediate."
+	},
+	{
+		"name": "Mai Tai",
+		"ingredients": [
+			{ "name": "Lime Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Orgeat Syrup", "quantity": 15, "unit": "ml" },
+			{ "name": "Grand Marnier", "quantity": 15, "unit": "ml" },
+			{ "name": "Aged Rum", "quantity": 20, "unit": "ml" },
+			{ "name": "White Agricole Rum", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a glass (old fashioned or tiki) filled with crushed ice. Express a lime zest, then garnish with another zest, a wedge of pineapple, and a sprig of fresh mint. Add a straw.",
+		"category": "Short Drink",
+		"tags": ["Contemporary", "Shaken", "Tiki"],
+		"glass_type": "Old Fashioned glass or Tiki glass",
+		"history": "Created in 1944 by Victor Bergeron, known as 'Trader Vic', who helped popularize Tiki culture. There are various recipes for this globally famous cocktail, but the constant is its strong alcoholic profile."
+	},
+	{
+		"name": "Manhattan",
+		"ingredients": [
+			{ "name": "Angostura Bitters", "quantity": "Few drops", "unit": "" },
+			{ "name": "Italian Vermouth", "quantity": 20, "unit": "ml" },
+			{ "name": "Rye Whiskey", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a mixing glass filled with ice. Stir with a mixing spoon, then strain into a cocktail glass. Garnish with 1 brandied cherry.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Stirred", "Whiskey"],
+		"glass_type": "Cocktail Glass",
+		"decoration": "1 Brandied Cherry",
+		"variations": [
+			{ "name": "Perfect Manhattan", "description": "Replace 1 cl of Italian vermouth with 1 cl of dry vermouth." },
+			{ "name": "Rob Roy", "description": "Angostura bitters, 1.5 cl of Italian vermouth, 5.5 cl of Scotch whisky, 1 brandied cherry." }
+		],
+		"history": "Created in 1874 at the Manhattan Club in New York during a party thrown by Winston Churchill's mother for the election of Governor William J. Tilden."
+	},
+	{
+		"name": "Margarita",
+		"ingredients": [
+			{ "name": "Lime Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Cointreau", "quantity": 20, "unit": "ml" },
+			{ "name": "Tequila", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a chilled cocktail glass or Margarita glass with a salted rim (or serve frozen if preferred).",
+		"category": "Short Drink",
+		"tags": ["Classic", "Shaken", "Tequila"],
+		"glass_type": "Cocktail Glass or Margarita Glass",
+		"decoration": "Salted Rim",
+		"variations": [
+			{ "name": "Tommy’s Margarita", "description": "Replace Cointreau with agave syrup. Created by Julio Bermejo in the 1980s at Tommy’s Mexican Restaurant in San Francisco." }
+		],
+		"history": "The Margarita has several potential creators, but it is often attributed to Mexican Margarita Sames, who, along with her husband, hosted international guests at their home in Acapulco in 1948."
+	},
+	{
+		"name": "Martinez",
+		"ingredients": [
+			{ "name": "Italian Vermouth", "quantity": 20, "unit": "ml" },
+			{ "name": "Maraschino Liqueur", "quantity": 10, "unit": "ml" },
+			{ "name": "Gin", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a mixing glass filled with ice. Stir well, then strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Stirred", "Gin"],
+		"glass_type": "Cocktail Glass",
+		"decoration": "1 Zest of Lemon (x2)",
+		"variations": [],
+		"history": "Created in the 1880s, likely for a gold miner from Martinez, California, this cocktail is said to have served as the base for the creation of the Dry Martini."
+	},
+	{
+		"name": "Maverick Martini (or Pornstar Martini)",
+		"ingredients": [
+			{ "name": "Vanilla Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Passion Fruit Purée or Nectar", "quantity": 30, "unit": "ml" },
+			{ "name": "Passion Fruit Liqueur", "quantity": 20, "unit": "ml" },
+			{ "name": "Vodka", "quantity": 30, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well, then strain into a double cocktail glass or coupe glass.",
+		"category": "Short Drink",
+		"tags": ["Contemporary", "Shaken", "Passion Fruit"],
+		"glass_type": "Double Cocktail Glass or Coupe",
+		"decoration": "Half Passion Fruit (optional), serve with a shooter of Champagne.",
+		"variations": [],
+		"history": "Created by Douglas Ankra in the 1990s and named 'Pornstar Martini,' this cocktail gained immediate popularity. The original idea was to eat the passion fruit, rinse the palate with Champagne, and then enjoy the cocktail."
+	},
+	{
+		"name": "Mint Julep",
+		"ingredients": [
+			{ "name": "Fresh Mint Leaves", "quantity": "few", "unit": "" },
+			{ "name": "Sugar", "quantity": 1, "unit": "Barspoon" },
+			{ "name": "Bourbon", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "In an Old Fashioned glass or Julep cup, lightly muddle the mint leaves with sugar. Fill the glass with crushed ice, pour in the bourbon, and mix well.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Direct", "On the Rocks", "Mint"],
+		"glass_type": "Old Fashioned Glass or Julep Cup",
+		"decoration": "Fresh mint sprig, served with a short straw.",
+		"variations": [
+			{ "name": "Cognac Julep", "description": "Substitute bourbon with Cognac." },
+			{ "name": "Georgia Mint Julep", "description": "Substitute bourbon with 40 ml Cognac and 20 ml peach liqueur." }
+		],
+		"history": "The Mint Julep is one of the oldest cocktails, first appearing in the United States in 1793."
+	},
+	{
+		"name": "Negroni",
+		"ingredients": [
+			{ "name": "Italian Vermouth", "quantity": 30, "unit": "ml" },
+			{ "name": "Campari Bitter", "quantity": 30, "unit": "ml" },
+			{ "name": "Gin", "quantity": 30, "unit": "ml" }
+		],
+		"instructions": "Pour the ingredients into an Old Fashioned glass over ice cubes. Stir gently with a mixing spoon.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Direct", "On the Rocks", "Bitter"],
+		"glass_type": "Old Fashioned Glass",
+		"decoration": "½ Orange Slice",
+		"variations": [
+			{ "name": "Negroni Sbagliato", "description": "Replace gin with Prosecco." },
+			{ "name": "Boulevardier", "description": "Replace gin with bourbon." },
+			{ "name": "Mezcal Negroni", "description": "Replace gin with Mezcal." },
+			{ "name": "Cardinale", "description": "Replace red vermouth with dry vermouth." },
+			{ "name": "White Negroni", "description": "Use Lillet Blanc, Suze, and gin in equal proportions." }
+		],
+		"history": "A variation of the Americano, the Negroni was invented in Florence, Italy, in 1919-1920. Count Camillo Negroni asked bartender Fosco Scarelli to strengthen his Americano by replacing the soda water with gin, which he had discovered during his travels in London. The cocktail became a hit at Café Casoni, and the bartender named it after the Count to shorten the long name 'Americano with Gin'."
+	},
+	{
+		"name": "Paradise",
+		"ingredients": [
+			{ "name": "Orange Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Apricot Brandy", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well and strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Shaken", "Fruity"],
+		"glass_type": "Cocktail Glass",
+		"history": "The Paradise cocktail is believed to have been invented by Harry Craddock in the 1920s at the Savoy Hotel in London."
+	},
+	{
+		"name": "Pink Lady",
+		"ingredients": [
+			{ "name": "Grenadine Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lemon Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well and strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Shaken", "Fruity", "Pink"],
+		"glass_type": "Cocktail Glass",
+		"history": "The Pink Lady was created in the 1930s for women who frequented the same bars as their husbands. The cocktail's pink color encouraged these new female drinkers to order it."
+	},
+	{
+		"name": "Porto Flip",
+		"ingredients": [
+			{ "name": "Powdered Sugar", "quantity": 1, "unit": "tsp" },
+			{ "name": "Egg Yolk", "quantity": 1, "unit": "whole" },
+			{ "name": "Porto Red Wine", "quantity": 40, "unit": "ml" },
+			{ "name": "Cognac", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Place all ingredients in a shaker filled with ice. Shake well and strain into a double cocktail glass or coupette. Grate nutmeg on top for garnish.",
+		"category": "After Dinner",
+		"tags": ["Classic", "Shaken", "Creamy", "Rich"],
+		"glass_type": "Double Cocktail Glass or Coupette",
+		"decoration": "Grated Nutmeg",
+		"history": "The Porto Flip was first mentioned by Jerry Thomas in his 1862 book. It's a variation of the 'flip' cocktail, a family of drinks typically made with a spirit, sugar, and a whole egg."
+	},
+	{
+		"name": "Presidente",
+		"ingredients": [
+			{ "name": "Grenadine Syrup", "quantity": 1, "unit": "dash" },
+			{ "name": "Vermouth Bianco", "quantity": 20, "unit": "ml" },
+			{ "name": "Cuban Rum", "quantity": 40, "unit": "ml" },
+			{ "name": "Grand Marnier", "quantity": 10, "unit": "ml" }
+		],
+		"instructions": "Place all ingredients in a mixing glass filled with ice. Stir with a spoon and strain into a cocktail glass. Express an orange zest over the drink and garnish with another zest.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Stirred", "Citrusy", "Rum"],
+		"glass_type": "Cocktail Glass",
+		"decoration": "2 Orange Zests",
+		"history": "Created in the 1910s in Havana, Cuba."
+	},
+	{
+		"name": "Red Lion",
+		"ingredients": [
+			{ "name": "Lemon Juice", "quantity": 15, "unit": "ml" },
+			{ "name": "Orange Juice", "quantity": 15, "unit": "ml" },
+			{ "name": "Grand Marnier", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Place all ingredients in a shaker filled with ice. Shake well and strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Citrus", "Gin", "Cocktail Competition", "Classic"],
+		"glass_type": "Cocktail Glass",
+		"history": "The Red Lion was the winning recipe of the 'British Empire Cocktail Competition' held by Booth's Gin in London in 1933, created by Arthur A. Tarling. The name 'Red Lion' was inspired by the oldest distillery (brewery) owned by the brand."
+	},
+	{
+		"name": "Roselin",
+		"ingredients": [
+			{ "name": "Crème de Cassis", "quantity": 10, "unit": "ml" },
+			{ "name": "Noilly Prat (Dry Vermouth)", "quantity": 30, "unit": "ml" },
+			{ "name": "Maraschino Liqueur", "quantity": 10, "unit": "ml" },
+			{ "name": "Kirsch", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "Place all ingredients in a mixing glass filled with ice. Stir well and strain into a cocktail glass. Garnish with a brandy cherry.",
+		"category": "Short Drink",
+		"tags": ["Herbal", "Berry", "Classic", "Vermouth", "Cherry"],
+		"glass_type": "Cocktail Glass",
+		"history": "The Roselin is a contemporary variation of the classic cocktail 'Rose'."
+	},
+	{
+		"name": "Sazerac",
+		"ingredients": [
+			{ "name": "Absinthe", "quantity": "1 dash" },
+			{ "name": "Sugar Cube", "quantity": 1, "unit": "cube" },
+			{ "name": "Peychaud's Bitters", "quantity": "1 dash" },
+			{ "name": "Rye Whiskey (or Cognac VSOP)", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "In an Old Fashioned glass, add a dash of absinthe and swirl to coat and chill the glass. Discard excess absinthe. In a mixing glass, muddle the sugar cube soaked with Peychaud's Bitters. Add ice and pour in the rye whiskey (or Cognac). Stir for about 20 seconds and strain into the prepared Old Fashioned glass. Express an orange zest over the drink and garnish with another zest.",
+		"category": "Short Drink",
+		"tags": ["Classic", "Herbal", "Whiskey", "Bitters", "Citrus"],
+		"glass_type": "Old Fashioned Glass",
+		"history": "The Sazerac is one of the oldest known cocktails, dating back to 1859. It was created in New Orleans by John Schiller."
+	},
+	{
+		"name": "Scotch Sour",
+		"ingredients": [
+			{ "name": "Sugar", "quantity": "1 barspoon", "unit": "powder" },
+			{ "name": "Lemon Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Scotch Whisky", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Add all ingredients into a shaker filled with ice. Shake well, then strain into a cocktail glass. Garnish with two maraschino cherries.",
+		"category": "Short Drink",
+		"tags": ["Whisky", "Sour", "Citrus", "Classic"],
+		"glass_type": "Cocktail Glass",
+		"decoration": "2 Maraschino Cherries",
+		"history": "The Scotch Sour is a variation of the classic Whiskey Sour, which was first introduced in the 1862 edition of 'The Bartender's Guide.' The name 'Sour' refers to the tangy, citrus-based flavor of the cocktail."
+	},
+	{
+		"name": "Sidecar",
+		"ingredients": [
+			{ "name": "Lemon Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Cointreau", "quantity": 20, "unit": "ml" },
+			{ "name": "Cognac", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Add all ingredients to a shaker filled with ice. Shake well, then strain into a cocktail glass.",
+		"category": "Short Drink",
+		"tags": ["Citrus", "Classic", "Spirit-based"],
+		"glass_type": "Cocktail Glass",
+		"variation": {
+			"name": "White Lady",
+			"ingredients": [
+				{ "name": "Lemon Juice", "quantity": 10, "unit": "ml" },
+				{ "name": "Cointreau", "quantity": 20, "unit": "ml" },
+				{ "name": "Gin", "quantity": 40, "unit": "ml" }
+			],
+			"creator": "Harry MacElhone"
+		},
+		"history": "The exact origin of the Sidecar is debated, with some attributing it to Pat MacGarry of Buck's Club in London in 1922, while others credit Frank Meier at the Ritz in Paris in 1923. The name 'Sidecar' is said to refer to a military officer who arrived at the bar in a sidecar."
+	},
+	{
+		"name": "Summit",
+		"ingredients": [
+			{ "name": "Fresh Ginger", "quantity": 4, "unit": "slices" },
+			{ "name": "Lime Zest", "quantity": 1, "unit": "strip" },
+			{ "name": "Cognac VSOP", "quantity": 40, "unit": "ml" },
+			{ "name": "Lemonade (Artisanal)", "quantity": 60, "unit": "ml" }
+		],
+		"instructions": "Place the ginger slices and lime zest in an old fashioned glass (or Summit BNIC glass). Add 2 cl of Cognac and lightly muddle. Fill the glass with ice and stir. Add 2 cl of Cognac, then the lemonade, and stir again. Garnish with a cucumber peel and serve with a short straw.",
+		"category": "Short Drink",
+		"tags": ["Citrus", "Cognac", "Refreshing"],
+		"glass_type": "Old Fashioned Glass",
+		"decoration": "Cucumber Peel",
+		"history": "Created in 2008 by a collective of bartenders from around the world during the International Cognac Summit organized by the BNIC."
+	},
+	{
+		"name": "Americano",
+		"ingredients": [
+			{ "name": "Vermouth Italien", "quantity": 20, "unit": "ml" },
+			{ "name": "Bitter Campari", "quantity": 50, "unit": "ml" },
+			{ "name": "Soda", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "In a tumbler filled with ice, pour the ingredients in the order of the recipe. Stir well. Garnish with ½ slice of orange and ½ slice of lemon.",
+		"category": "Long Drink",
+		"tags": ["Aperitif", "Classic", "Citrus", "Bitter"],
+		"glass_type": "Tumbler",
+		"decoration": "½ slice of orange, ½ slice of lemon",
+		"history": "Created in 1860 in Milan at Gaspare Campari's bar, frequented by figures like Verdi, Edward VII, and Hemingway. Originally called 'Milano-Torino' after the cities of origin of its two main ingredients. The addition of soda was requested by American customers, leading to the drink's eventual renaming in honor of American patrons, especially during Prohibition when Campari was legally sold in pharmacies."
+	},
+	{
+		"name": "Bloody Mary",
+		"ingredients": [
+			{ "name": "Celery Salt", "quantity": "to taste", "unit": "" },
+			{ "name": "Tabasco", "quantity": "few drops", "unit": "" },
+			{ "name": "Worcestershire Sauce", "quantity": "1 dash", "unit": "" },
+			{ "name": "Lemon Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Tomato Juice", "quantity": 70, "unit": "ml" },
+			{ "name": "Vodka", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "In a tumbler filled with ice, sprinkle celery salt and add a few drops of Tabasco and a dash of Worcestershire sauce. Pour in the remaining ingredients in the order of the recipe. Stir well. Garnish with a lemon slice and optionally a celery stalk.",
+		"category": "Long Drink",
+		"tags": ["Spicy", "Aperitif", "Savory", "Vodka"],
+		"glass_type": "Tumbler",
+		"decoration": "1 slice of lemon, 1 celery stalk (optional)",
+		"history": "The 'Bloody Mary' is believed to have been created in 1921 at the New York Bar in Paris (later known as Harry's Bar in 1923)."
+	},
+	{
+		"name": "Bonnevine",
+		"ingredients": [
+			{ "name": "Fresh Raspberries", "quantity": "4 to 5 pcs", "unit": "" },
+			{ "name": "Blackberry Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Cranberry Juice", "quantity": 70, "unit": "ml" },
+			{ "name": "Pastis de Marseille", "quantity": 30, "unit": "ml" }
+		],
+		"instructions": "Muddle fresh raspberries with blackberry syrup in a shaker, then add the remaining ingredients in the order of the recipe. Shake well, then double strain into a tumbler filled with ice. Garnish with a skewer of two blackberries and a raspberry (if in season).",
+		"category": "Long Drink",
+		"tags": ["Fruity", "Berry", "Pastis", "Contemporary"],
+		"glass_type": "Tumbler",
+		"decoration": "2 blackberries, 1 raspberry (if in season)",
+		"history": "This recipe was created by M. Henri Di Nola, President of the Association of Bar Professors and one of the Best French Bartenders (Class B)."
+	},
+	{
+		"name": "Clin d’Œil",
+		"ingredients": [
+			{ "name": "Cinnamon Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Cranberry Juice", "quantity": 40, "unit": "ml" },
+			{ "name": "Grand Marnier", "quantity": 30, "unit": "ml" },
+			{ "name": "White Beer", "quantity": 60, "unit": "ml" }
+		],
+		"instructions": "In a shaker filled with ice, add all ingredients except for the beer. Shake well, then strain into a tumbler filled with ice. Top with 60ml of white beer. Stir gently using a mixing spoon. Express a zest of orange and garnish with another zest.",
+		"category": "Long Drink",
+		"tags": ["Citrus", "Spiced", "Beer-based", "Contemporary"],
+		"glass_type": "Tumbler",
+		"decoration": "2 orange zests",
+		"history": "This recipe was created by M. Henri Di Nola, President of the Association of Bar Professors and one of the Best French Bartenders (Class B)."
+	},
+	{
+		"name": "Dark & Stormy",
+		"ingredients": [
+			{ "name": "Lime", "quantity": 0.5, "unit": "cut into 4 pieces" },
+			{ "name": "Sugar Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Ginger Beer", "quantity": 100, "unit": "ml" },
+			{ "name": "Dark Rum", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Muddle the 1/2 lime (cut into 4 pieces) in a tumbler. Fill the glass with ice, add the sugar syrup, ginger beer, and stir. Top with dark rum without stirring to create the 'dark stormy' effect. Garnish with a wedge of lime.",
+		"category": "Long Drink",
+		"tags": ["Citrus", "Spiced", "Rum", "Ginger-based"],
+		"glass_type": "Tumbler",
+		"decoration": "1 lime wedge",
+		"history": "The Dark and Stormy is the national cocktail of Bermuda. Created after World War I, it was originally made without muddled lime or sugar syrup. The cocktail is trademarked by Gosling’s Black Seal Rum, and its name was coined by a sailor who likened the drink to a stormy cloud over the sea. It's still widely served in Bermuda today."
+	},
+	{
+		"name": "Garibaldi",
+		"ingredients": [
+			{ "name": "Orange Juice", "quantity": 80, "unit": "ml" },
+			{ "name": "Campari", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Fill a tumbler with ice. Add the ingredients in the order of the recipe. Do not stir to create a color gradient. Garnish with half an orange slice.",
+		"category": "Long Drink",
+		"tags": ["Citrus", "Bitters", "Classic"],
+		"glass_type": "Tumbler",
+		"decoration": "1/2 Orange Slice",
+		"history": "Named after the Italian revolutionary general Giuseppe Garibaldi, who died in the same year as Gaspare Campari. The recipe first appeared in the I.B.A. listing in 1987 and was removed in 1993."
+	},
+	{
+		"name": "Gin Fizz",
+		"ingredients": [
+			{ "name": "Sugar Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lemon Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 40, "unit": "ml" },
+			{ "name": "Soda", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients, except soda, into a shaker filled with ice. Shake vigorously and for a long time, then strain into a tumbler without ice. Top with soda and stir gently. Garnish with a lemon slice.",
+		"category": "Long Drink",
+		"tags": ["Citrus", "Fizz", "Classic"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Lemon Slice",
+		"history": "One of the oldest cocktails. British sailors are said to have invented it as a way to make the 'gin and tonic' more drinkable."
+	},
+	{
+		"name": "Horse’s Neck",
+		"ingredients": [
+			{ "name": "Angostura Bitters", "quantity": "2-3 dashes", "unit": "" },
+			{ "name": "Cognac", "quantity": 40, "unit": "ml" },
+			{ "name": "Ginger Ale", "quantity": 100, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a tumbler filled with ice. Stir well. Garnish with a long lemon zest extending out of the glass.",
+		"category": "Long Drink",
+		"tags": ["Citrus", "Classic", "Spirit-based"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Long Lemon Zest",
+		"history": "This cocktail became popular around 1895. Originally made with just ginger ale, Angostura bitters, and lemon zest, it later gained a 'kick' with the addition of bourbon or cognac."
+	},
+	{
+		"name": "John Collins",
+		"ingredients": [
+			{ "name": "Sirop de Sucre de Canne", "quantity": 10, "unit": "ml" },
+			{ "name": "Jus de Citron", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 40, "unit": "ml" },
+			{ "name": "Soda", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Add all ingredients to a tumbler filled with ice. Stir gently. Garnish with a slice of lemon and a maraschino cherry.",
+		"category": "Long Drink",
+		"tags": ["Citrus", "Classic", "Gin-based"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Slice of Lemon, 1 Maraschino Cherry",
+		"history": "The John Collins is a variation of the 'Tom Collins.' There are three main theories on its origin: 1) It may have originated with the use of Old Tom Gin, which gave the drink its name. 2) It could have been created by Jerry Thomas as a tribute to the famous fictional character 'Tom Collins.' 3) It might have been created at the Limmer's Coffee House in London by 'John Collins' in the 1820s."
+	},
+	{
+		"name": "Mojidos",
+		"ingredients": [
+			{ "name": "Menthe fraîche", "quantity": 10, "unit": "feuilles" },
+			{ "name": "Citron Vert", "quantity": 1, "unit": "1/2, coupé en 4" },
+			{ "name": "Sirop de Sucre de Canne", "quantity": 10, "unit": "ml" },
+			{ "name": "Cassonade", "quantity": 1, "unit": "barspoon" },
+			{ "name": "Calvados", "quantity": 40, "unit": "ml" },
+			{ "name": "Ginger Ale", "quantity": 70, "unit": "ml" }
+		],
+		"instructions": "Place the mint leaves, lime wedges, sugar syrup, and brown sugar in a tumbler. Muddle them together. Fill the tumbler with ice, add the Calvados, and top up with ginger ale. Stir gently. Finish with a spray of Calvados and garnish with a mint sprig.",
+		"category": "Long Drink",
+		"tags": ["Mint", "Citrus", "Apple Brandy", "Refreshing"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Mint Sprig, 1 Spray of Calvados",
+		"history": "The Mojidos was created by Marc Jean, the Head Bartender at Hotel Normandy Barrière, for the Calvados Domaine Dupont and was named by comedian Laurent Gerra."
+	},
+	{
+		"name": "Mojito",
+		"ingredients": [
+			{ "name": "Menthe fraîche", "quantity": "Quelques", "unit": "feuilles" },
+			{ "name": "Sucre en Poudre", "quantity": 1, "unit": "barspoon" },
+			{ "name": "Jus de Citron Vert", "quantity": 20, "unit": "ml" },
+			{ "name": "Ron Cubain", "quantity": 50, "unit": "ml" },
+			{ "name": "Soda", "quantity": 50, "unit": "ml" },
+			{ "name": "Angostura Bitters", "quantity": "Quelques gouttes", "unit": "" }
+		],
+		"instructions": "Muddle the mint leaves and sugar together in a tumbler using a muddler. Fill the tumbler with ice. Add the lime juice, Cuban rum, and soda. Stir well. Optionally, add a few drops of Angostura bitters to taste. Garnish with a mint sprig and a lime wedge.",
+		"category": "Long Drink",
+		"tags": ["Mint", "Citrus", "Rum", "Refreshing"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Mint Sprig, 1 Lime Wedge",
+		"history": "The name 'Mojito' means 'little juice' in Spanish. It is the quintessential Cuban cocktail, with the first known recipe published in 1929. During the Prohibition era, Americans flocked to Havana to escape the ban on alcohol in the U.S."
+	},
+	{
+		"name": "Moscow Mule",
+		"ingredients": [
+			{ "name": "Jus de Citron Vert", "quantity": 10, "unit": "ml" },
+			{ "name": "Vodka", "quantity": 40, "unit": "ml" },
+			{ "name": "Ginger Beer", "quantity": 70, "unit": "ml" },
+			{ "name": "Angostura Bitters", "quantity": "Quelques gouttes", "unit": "" }
+		],
+		"instructions": "Pour all the ingredients into a tumbler or mule mug filled with ice. Stir gently. Optionally, add a few drops of Angostura bitters to taste. Garnish with a lime wedge.",
+		"category": "Long Drink",
+		"tags": ["Vodka", "Ginger", "Citrus", "Spicy", "Classic"],
+		"glass_type": "Tumbler or Mule Mug",
+		"decoration": "1 Lime Wedge",
+		"variation": [
+			{
+				"name": "French Mule",
+				"ingredients": [
+					{ "name": "Cognac", "quantity": 40, "unit": "ml" },
+					{ "name": "Ginger Beer", "quantity": 70, "unit": "ml" },
+					{ "name": "Jus de Citron Vert", "quantity": 10, "unit": "ml" }
+				]
+			},
+			{
+				"name": "Mexican Mule",
+				"ingredients": [
+					{ "name": "Tequila", "quantity": 40, "unit": "ml" },
+					{ "name": "Ginger Beer", "quantity": 70, "unit": "ml" },
+					{ "name": "Jus de Citron Vert", "quantity": 10, "unit": "ml" }
+				]
+			},
+			{
+				"name": "Chilcano de Pisco",
+				"ingredients": [
+					{ "name": "Pisco", "quantity": 40, "unit": "ml" },
+					{ "name": "Ginger Beer", "quantity": 70, "unit": "ml" },
+					{ "name": "Jus de Citron Vert", "quantity": 10, "unit": "ml" },
+					{ "name": "Amargo Chuncho", "quantity": "Quelques gouttes", "unit": "" }
+				]
+			},
+			{
+				"name": "Gin-Gin Mule",
+				"ingredients": [
+					{ "name": "Gin", "quantity": 40, "unit": "ml" },
+					{ "name": "Ginger Beer", "quantity": 70, "unit": "ml" },
+					{ "name": "Menthe fraîche", "quantity": "Quelques", "unit": "feuilles" }
+				]
+			}
+		],
+		"history": "Created in 1947 by the owner of the Smirnoff brand, who sought to promote the brand in the United States. The cocktail's name was inspired by the combination of vodka and the 'kick' from the ginger beer, making it a refreshing and spicy drink."
+	},
+	{
+		"name": "Piña Colada",
+		"ingredients": [
+			{ "name": "Coconut Cream", "quantity": 20, "unit": "ml" },
+			{ "name": "Pineapple Juice", "quantity": 60, "unit": "ml" },
+			{ "name": "White Rum (Traditional or Agricultural)", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all the ingredients into a shaker filled with ice. Shake vigorously and then strain into a tumbler filled with ice. Garnish with a pineapple wedge and two maraschino cherries.",
+		"category": "Long Drink",
+		"tags": ["Tropical", "Sweet", "Fruity", "Coconut", "Rum"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Pineapple Wedge, 2 Maraschino Cherries",
+		"variation": [
+			{
+				"name": "Chichi",
+				"ingredients": [
+					{ "name": "Vodka", "quantity": 40, "unit": "ml" },
+					{ "name": "Coconut Cream", "quantity": 20, "unit": "ml" },
+					{ "name": "Pineapple Juice", "quantity": 60, "unit": "ml" }
+				]
+			}
+		],
+		"history": "Created by Ramon Marrero Perez at the Hilton Hotel in San Juan, Puerto Rico, in 1954. The Piña Colada became Puerto Rico's official drink in 1978."
+	},
+	{
+		"name": "Planter's Punch",
+		"ingredients": [
+			{ "name": "Jus d'Orange", "quantity": 40, "unit": "ml" },
+			{ "name": "Jus d'Ananas", "quantity": 40, "unit": "ml" },
+			{ "name": "Rhum Blanc Agricole", "quantity": 40, "unit": "ml" },
+			{ "name": "Rhum Agricole Ambré", "quantity": "1 trait", "unit": "" }
+		],
+		"instructions": "Verser tous les ingrédients dans un tumbler rempli de glace. Remuer. Ajouter un trait de rhum ambré. Décorer d'un quartier d'ananas et de deux cerises à l'eau-de-vie.",
+		"category": "Long Drink",
+		"tags": ["Tropical", "Fruity", "Rum", "Citrus", "Punch"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Quartier d'Ananas, 2 Cerises à l'Eau-de-Vie",
+		"variation": [
+			{
+				"name": "Angostura Bitters",
+				"ingredients": [{ "name": "Angostura Bitters", "quantity": "Quelques gouttes", "unit": "" }]
+			}
+		],
+		"history": "Originating from the islands (likely Jamaica), this cocktail was brought back to England by employees of the East India Company."
+	},
+	{
+		"name": "Sunset Boulevard (Sex On The Beach)",
+		"ingredients": [
+			{ "name": "Orange Juice", "quantity": 40, "unit": "ml" },
+			{ "name": "Cranberry Juice", "quantity": 40, "unit": "ml" },
+			{ "name": "Peach Liqueur", "quantity": 10, "unit": "ml" },
+			{ "name": "Blackberry Liqueur", "quantity": 10, "unit": "ml" },
+			{ "name": "Vodka", "quantity": 40, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake well and strain into a tumbler filled with ice. Garnish with a slice of orange.",
+		"category": "Long Drink",
+		"tags": ["Fruity", "Tropical", "Vodka", "Peach", "Berry"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Slice of Orange",
+		"history": "In the 1980s, the 'Sex On The Beach' cocktail gained huge popularity, inspiring many variations, including Sunset Boulevard."
+	},
+	{
+		"name": "Tampico",
+		"ingredients": [
+			{ "name": "Lemon Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Bitter Campari", "quantity": 30, "unit": "ml" },
+			{ "name": "Cointreau", "quantity": 20, "unit": "ml" },
+			{ "name": "Tonic", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a tumbler filled with ice. Stir. Garnish with half a slice of orange.",
+		"category": "Long Drink",
+		"tags": ["Classic", "Bitter", "Citrus", "Tonic", "Apéritif"],
+		"glass_type": "Tumbler",
+		"decoration": "½ Slice of Orange",
+		"history": "Created by Rudolf Slavik, former president of ABF, who was decorated with the Legion of Honor for acts of resistance during World War II. He was also the Head Bartender at the Hôtel George V."
+	},
+	{
+		"name": "Ti'Punch",
+		"ingredients": [
+			{ "name": "Brown Sugar", "quantity": 1, "unit": "Barspoon" },
+			{ "name": "Soda", "quantity": 10, "unit": "ml" },
+			{ "name": "Lime Juice", "quantity": 30, "unit": "ml" },
+			{ "name": "Sugar Cane Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Clément White Rum", "quantity": 60, "unit": "ml" }
+		],
+		"instructions": "In a large old fashioned glass, pour the brown sugar, soda, and lime juice. Stir to dissolve the sugar. Fill the glass halfway with ice, then add the sugar cane syrup and half of the Clément White Rum. Stir with a mixing spoon. Add more ice, pour in the remaining rum, and stir again. Garnish with 2 wedges of lime.",
+		"category": "Long Drink",
+		"tags": ["Contemporary", "Direct", "Old Fashioned", "Agricultural Rum", "Citrus", "Soda", "Tropical"],
+		"glass_type": "Old Fashioned",
+		"decoration": "2 Lime Wedges",
+		"history": "Ti'Punch was popularized by Clément Rum, who asked two renowned bartenders, Marc J. and another industry figure, to create this iconic cocktail that highlights Clément’s distinctive Martinique white rum."
+	},
+	{
+		"name": "Tequila Sunrise",
+		"ingredients": [
+			{ "name": "Orange Juice", "quantity": 80, "unit": "ml" },
+			{ "name": "Tequila", "quantity": 40, "unit": "ml" },
+			{ "name": "Grenadine Syrup", "quantity": "1 splash", "unit": "" }
+		],
+		"instructions": "Pour the orange juice and tequila into a tumbler filled with ice. Stir. Add a splash of grenadine syrup to create the gradient effect. Garnish with a slice of orange and a maraschino cherry.",
+		"category": "Long Drink",
+		"tags": ["Classic", "Direct", "Tequila", "Fruity", "Tropical", "Citrus"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Slice of Orange, 1 Maraschino Cherry",
+		"history": "Created in the 1930s at the Arizona Biltmore Hotel by Gene Sulit. The original recipe included tequila, lime juice, crème de cassis, and soda. Today, Tequila Sunrise is a popular cocktail known for its visual effect of a sunrise created by the grenadine."
+	},
+	{
+		"name": "Barbotage",
+		"ingredients": [
+			{ "name": "Grenadine Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lemon Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Orange Juice", "quantity": 40, "unit": "ml" },
+			{ "name": "Champagne", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "In a shaker filled with ice, pour all the ingredients in the order of the recipe (except for the Champagne). Shake and strain into a Champagne flute. Top with 50 ml of Champagne. Stir gently with a bar spoon.",
+		"category": "Sparkling",
+		"tags": ["Fruity", "Champagne", "Citrus", "Sweet"],
+		"glass_type": "Champagne Flute",
+		"decoration": "None",
+		"history": "This cocktail appeared in France in the 1930s and is believed to be an adaptation of the 'Pussyfoot' with Champagne."
+	},
+	{
+		"name": "Bellini",
+		"ingredients": [
+			{ "name": "Peach Nectar (or Coulis)", "quantity": 40, "unit": "ml" },
+			{ "name": "Champagne", "quantity": 80, "unit": "ml" }
+		],
+		"instructions": "In a Champagne flute, pour the ingredients in the order of the recipe. Stir gently with a bar spoon.",
+		"category": "Sparkling",
+		"tags": ["Fruity", "Champagne", "Peach", "Classic"],
+		"glass_type": "Champagne Flute",
+		"decoration": "None",
+		"variation": [
+			{
+				"name": "Rossini",
+				"ingredients": [
+					{ "name": "Strawberry Nectar (or Coulis)", "quantity": 40, "unit": "ml" },
+					{ "name": "Champagne", "quantity": 80, "unit": "ml" }
+				]
+			},
+			{
+				"name": "Fellini",
+				"ingredients": [
+					{ "name": "Raspberry Nectar (or Coulis)", "quantity": 40, "unit": "ml" },
+					{ "name": "Champagne", "quantity": 80, "unit": "ml" }
+				]
+			}
+		],
+		"history": "The Bellini cocktail was created at Harry's Bar in Venice in 1948."
+	},
+	{
+		"name": "Champagne Cocktail",
+		"ingredients": [
+			{ "name": "Sugar Cube", "quantity": 1, "unit": "piece" },
+			{ "name": "Angostura Bitters", "quantity": "few drops", "unit": "" },
+			{ "name": "Cognac", "quantity": 10, "unit": "ml" },
+			{ "name": "Champagne", "quantity": 110, "unit": "ml" }
+		],
+		"instructions": "Place the sugar cube soaked with Angostura bitters in a Champagne flute. Pour in the Cognac and top up with Champagne. Express an orange zest over the glass and garnish with another piece of zest.",
+		"category": "Sparkling",
+		"tags": ["Classic", "Champagne", "Cognac", "Bitters", "Citrus"],
+		"glass_type": "Champagne Flute",
+		"decoration": "2 Orange Zests",
+		"variation": [],
+		"history": "This classic Champagne Cocktail has been a symbol of elegance and celebration, known for its simple but refined combination of Cognac, Champagne, and bitters."
+	},
+	{
+		"name": "French 75",
+		"ingredients": [
+			{ "name": "Sugar Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lemon Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Gin", "quantity": 40, "unit": "ml" },
+			{ "name": "Champagne", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "In a shaker filled with ice, pour all the ingredients in the order of the recipe (except the Champagne). Shake well and strain into a Champagne flute. Top with 5 cl of Champagne. Stir lightly with a bar spoon. Express a lemon zest and garnish with another zest.",
+		"category": "Sparkling",
+		"tags": ["Classic", "Gin", "Champagne", "Citrus", "Fizz"],
+		"glass_type": "Champagne Flute",
+		"decoration": "2 Lemon Zests",
+		"history": "The name ‘French 75’ comes from the French 75mm field gun used in World War I, and was named after it due to the cocktail's strong kick. It was created in England and gained popularity during Prohibition. The French 75 is a variation of the Gin Fizz, but with Champagne added, sometimes called the ‘Diamond Fizz.’"
+	},
+	{
+		"name": "Spritz Veneziano",
+		"ingredients": [
+			{ "name": "Aperol", "quantity": 40, "unit": "ml" },
+			{ "name": "Sparkling Wine (Brut)", "quantity": 60, "unit": "ml" },
+			{ "name": "Soda", "quantity": 20, "unit": "ml" }
+		],
+		"instructions": "In a tumbler filled with ice (or a ‘piscine’ glass), pour the ingredients in the order of the recipe. Stir lightly with a bar spoon. Garnish with ½ slice of orange.",
+		"category": "Sparkling",
+		"tags": ["Classic", "Aperitif", "Bitter", "Citrus", "Sparkling"],
+		"glass_type": "Tumbler or Piscine Glass",
+		"decoration": "½ Slice of Orange",
+		"history": "The Spritz Veneziano is a very popular cocktail in Padua and Venice, with daily consumption estimated at 300,000 in the Venice area. It is traditionally made with Prosecco as the sparkling wine base."
+	},
+	{
+		"name": "Corsica",
+		"ingredients": [
+			{ "name": "Chestnut Syrup", "quantity": 20, "unit": "ml" },
+			{ "name": "Orange Juice", "quantity": 70, "unit": "ml" },
+			{ "name": "Peach Nectar", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour all ingredients into a shaker filled with ice. Shake and strain into a tumbler filled with ice. Garnish with a slice of orange.",
+		"category": "Non-Alcoholic",
+		"tags": ["Fruity", "Sweet", "Citrus", "Peach", "Chestnut"],
+		"glass_type": "Tumbler",
+		"decoration": "1 Slice of Orange",
+		"history": "This contemporary mocktail features chestnut syrup, a nod to Corsican flavors, and is a refreshing mix of orange juice and peach nectar."
+	},
+	{
+		"name": "Pâtissez!",
+		"ingredients": [
+			{ "name": "Caramel Syrup", "quantity": 10, "unit": "ml" },
+			{ "name": "Lemon Juice", "quantity": 10, "unit": "ml" },
+			{ "name": "Pineapple Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Pear Nectar", "quantity": 50, "unit": "ml" },
+			{ "name": "Apple Juice", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour all the ingredients into a shaker filled with ice. Shake and strain into a tumbler filled with ice. Garnish with a fan of pear or apple, depending on the season (optional).",
+		"category": "Non-Alcoholic",
+		"tags": ["Fruity", "Sweet", "Citrus", "Apple", "Pear", "Caramel"],
+		"glass_type": "Tumbler",
+		"decoration": "Fan of Pear or Apple (optional, depending on the season)",
+		"history": "A contemporary mocktail, ideal for fruit lovers, combining sweet caramel and fruit juices with an optional seasonal garnish of pear or apple."
+	},
+	{
+		"name": "Prohibition",
+		"ingredients": [
+			{ "name": "Raspberry Syrup", "quantity": 20, "unit": "ml" },
+			{ "name": "Lime Juice", "quantity": 20, "unit": "ml" },
+			{ "name": "Orange Juice", "quantity": 50, "unit": "ml" },
+			{ "name": "Pineapple Juice", "quantity": 50, "unit": "ml" }
+		],
+		"instructions": "Pour all the ingredients into a shaker filled with ice. Shake and strain into a tumbler filled with crushed ice. Garnish with a ½ slice of orange, a wedge of pineapple, and a raspberry (in season).",
+		"category": "Non-Alcoholic",
+		"tags": ["Fruity", "Tropical", "Citrus", "Sweet", "Raspberry", "Pineapple"],
+		"glass_type": "Tumbler (with crushed ice)",
+		"decoration": "½ Slice of Orange, 1 Pineapple Wedge, 1 Raspberry (in season)",
+		"history": "A contemporary mocktail designed to capture the fruity, tangy flavors of the Prohibition era, with a refreshing tropical twist."
+	}
+]

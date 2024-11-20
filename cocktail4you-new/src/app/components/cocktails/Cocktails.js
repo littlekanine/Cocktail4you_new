@@ -1,17 +1,19 @@
-import cocktails from '../../../assets/cocktails-test-MongoDb.json';
+// import cocktailsData from '../../../assets/cocktails-test-MongoDb.json';
 import './cocktails.scss';
 
-const Cocktails = () => {
+const Cocktails = ({ cocktails }) => {
 	return (
-		<div className="card-cocktail flex center align-center row">
-			<img></img>
-			<div className="card-info">
-				<h1>
-					{cocktails.map((cocktail) => (
-						<h3>{cocktail.ingredients.name}</h3>
-					))}
-				</h1>
-			</div>
+		<div className="flex column gap20 ">
+			{cocktails.map((cocktail) => (
+				<div className=" flex center gap20" key={cocktail.id}>
+					<img src={cocktail.img} alt={cocktail.name} />
+					<div className=" card-info flex column center design-card">
+						<h1>{cocktail.name}</h1>
+						<h2>{cocktail.category}</h2>
+						<h3>{cocktail.tags}</h3>
+					</div>
+				</div>
+			))}
 		</div>
 	);
 };

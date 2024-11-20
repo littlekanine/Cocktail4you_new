@@ -1,17 +1,5 @@
 [
 	{
-		"name": "Margarita",
-		"ingredients": [
-			{ "name": "Tequila", "quantity": 50, "unit": "ml" },
-			{ "name": "Cointreau", "quantity": 20, "unit": "ml" },
-			{ "name": "Lime juice", "quantity": 15, "unit": "ml" }
-		],
-		"instructions": "Shake all ingredients with ice. Strain into a chilled glass.",
-		"category": "Cocktail",
-		"tags": ["Citrus", "Strong"],
-		"glass_type": "Cocktail glass"
-	},
-	{
 		"name": "Amaretto Sour",
 		"ingredients": [
 			{ "name": "Amaretto", "quantity": 50, "unit": "ml" },
@@ -22,7 +10,8 @@
 		"instructions": "Dry skahe if egg-white. Shake all ingredients with ice. Strain into a chilled glass.",
 		"category": "Short Drink",
 		"tags": ["Sweet", "Nutty"],
-		"glass_type": "Old Fashioned glass"
+		"glass_type": "Old Fashioned glass",
+		"img": "/img/AmarettoSour.jpg"
 	},
 	{
 		"name": "B-52",

@@ -41,6 +41,8 @@ input[type='search'] {
 	font-family: 'Roboto', sans-serif;
 	color: $caramel;
 	transform: translateY(0);
+	filter: drop-shadow(0px 5px 7px #3a1820);
+	z-index: 10;
 }
 
 .slide-up {
@@ -64,4 +66,15 @@ input[type='search'] {
 	position: absolute;
 	top: 5px;
 	right: 10px;
+}
+
+.cocktails-container {
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	max-height: 90vh;
+	overflow-y: auto;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	box-sizing: border-box;
 }

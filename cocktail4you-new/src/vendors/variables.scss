@@ -2,7 +2,7 @@
 
 $yellow: #f6e27f;
 $caramel: #be7c4d;
-$brown: #3a1820;
+$brown: rgba(58, 24, 32, 0.8);
 
 // Font
 
@@ -39,6 +39,10 @@ body,
 	align-items: center;
 }
 
+.space-between {
+	justify-content: space-between;
+}
+
 .row {
 	flex-direction: row;
 }
@@ -57,6 +61,18 @@ body,
 
 .height100vh {
 	height: 100vh;
+}
+
+.widthFull {
+	width: 100%;
+}
+
+.width80 {
+	width: 80%;
+}
+
+.gap5 {
+	gap: 5px;
 }
 
 .gap10 {

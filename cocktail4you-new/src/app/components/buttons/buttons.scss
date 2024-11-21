@@ -11,3 +11,21 @@
 	font-size: 24px;
 	filter: drop-shadow(0px 5px 7px #3a1820);
 }
+
+.button-user-svg {
+	width: 20px;
+	height: 20px;
+	background-color: $caramel;
+	border: none;
+	fill: $yellow;
+	filter: none;
+}
+
+.button-star-svg {
+	width: 20px;
+	height: 20px;
+	background-color: $brown;
+	border: none;
+	fill: $yellow;
+	filter: none;
+}

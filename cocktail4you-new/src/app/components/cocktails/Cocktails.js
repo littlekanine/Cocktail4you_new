@@ -2,18 +2,18 @@
 
 import './cocktails.scss';
 import Button from '../buttons/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Cocktails = ({ cocktails }) => {
 	const [clickedStates, setClickedStates] = useState(Array(cocktails.length).fill(false));
 	const [activeCard, setActiveCard] = useState(null);
 	const [isAnimating, setIsAnimating] = useState(false);
+	const [isVisible, setIsVisible] = useState(false);
 
 	const handleClick = (index) => {
 		if (activeCard === index) {
 			setIsAnimating(false);
 			setActiveCard(null);
-			setShowInfo(false);
 			return;
 		}
 
@@ -25,6 +25,13 @@ const Cocktails = ({ cocktails }) => {
 			return newStates;
 		});
 	};
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsVisible(true); // Rendre l'élément visible après 1 seconde
+		}, 3000);
+		return () => clearTimeout(timer); // Nettoyer le timer
+	}, []);
 
 	return (
 		<div className="flex column gap20">
@@ -44,9 +51,8 @@ const Cocktails = ({ cocktails }) => {
 							</div>
 						) : (
 							<div className="flex column center design-card-expanded ">
-								{/* {showInfo && ( */}
-								<div className="flex column gap10">
-									<h1>{cocktail.name}</h1>
+								<div className={`flex column gap10 scroll ${activeCard === index ? 'visible' : 'cache'}`}>
+									<h1 className="flex center">{cocktail.name}</h1>
 									<div className="flex row  ">
 										<div>
 											{cocktail.ingredients.map((ingredient, index) => (
@@ -61,7 +67,6 @@ const Cocktails = ({ cocktails }) => {
 									<p>Decoration : {cocktail.decoration}</p>
 									<p>{cocktail.history}</p>
 								</div>
-								{/* )} */}
 							</div>
 						)}
 						<div className={`flex  ${activeCard === index ? 'end' : 'center align-center'}`}>

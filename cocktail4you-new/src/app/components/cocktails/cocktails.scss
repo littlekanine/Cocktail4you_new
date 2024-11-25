@@ -64,11 +64,9 @@
 	transition: opacity 2s ease;
 	font-size: 28px;
 	font-weight: 300;
+	overflow: auto;
 
 	h1 {
-		position: absolute;
-		top: 5%;
-		left: 35%;
 	}
 
 	// p {

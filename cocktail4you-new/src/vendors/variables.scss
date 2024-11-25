@@ -126,3 +126,15 @@ body,
 .padding-bottom10 {
 	padding-bottom: 10xp;
 }
+
+.cache {
+	opacity: 0;
+	transform: translateY(10px);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.visible {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}

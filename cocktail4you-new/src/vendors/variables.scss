@@ -39,6 +39,10 @@ body,
 	align-items: center;
 }
 
+.left {
+	justify-content: left;
+}
+
 .space-between {
 	justify-content: space-between;
 }
@@ -97,4 +101,28 @@ body,
 
 .overflow-none {
 	overflow: hidden;
+}
+
+.relative {
+	position: relative;
+}
+
+.start {
+	justify-content: start;
+}
+
+.end {
+	justify-content: end;
+}
+
+.align-start {
+	align-items: start;
+}
+
+.align-end {
+	align-items: end;
+}
+
+.padding-bottom10 {
+	padding-bottom: 10xp;
 }

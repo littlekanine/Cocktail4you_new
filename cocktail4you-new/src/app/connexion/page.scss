@@ -1,20 +1,23 @@
 @use '../../vendors/variables.scss' as *;
 
 .connexion {
+	margin-top: 20px;
 	width: 343px;
-	height: 343px;
+	height: 60%;
 	background-color: $brown;
 	border-radius: 25px;
 }
 
 .title-connexion {
-	font-size: 24px;
+	font-size: 28px;
 	color: $yellow;
 	font-weight: 300;
 	padding-top: 10px;
 }
 
 p {
+	font-size: 20px;
+	padding-bottom: 5px;
 	color: $yellow;
 	font-weight: 300;
 }

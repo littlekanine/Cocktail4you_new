@@ -15,8 +15,8 @@ const page = () => {
 						</h1>
 					</div>
 				</Link>
+				<h1 className="flex center widthFull  title-connexion">Acceder à votre espace personnel</h1>
 				<div className="flex connexion column">
-					<h1 className="flex center widthFull  title-connexion">Acceder à votre espace personnel</h1>
 					<div className="flex height100vh column center align-center gap20">
 						<div className="nomUtilisateur flex column center width80 ">
 							<p>Nom d'utilisateur</p>

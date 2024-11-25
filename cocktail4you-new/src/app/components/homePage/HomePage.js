@@ -48,7 +48,7 @@ const HomePage = () => {
 						Cocktails<span className="number">4</span>You
 					</h1>
 				)}
-				<div className={`flex column ${inputValue !== '' ? 'slide-up margin0' : 'slide-down'}`}>
+				<div className={`flex column padding-bottom10 ${inputValue !== '' ? 'slide-up margin0' : 'slide-down'}`}>
 					<label htmlFor="site-search"></label>
 					<input
 						type="search"

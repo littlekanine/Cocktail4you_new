@@ -71,6 +71,10 @@ body,
 	width: 100%;
 }
 
+.heightFull {
+	height: 100%;
+}
+
 .width80 {
 	width: 80%;
 }
@@ -129,7 +133,6 @@ body,
 
 .cache {
 	opacity: 0;
-	transform: translateY(10px);
 	transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -137,4 +140,11 @@ body,
 	opacity: 1;
 	transform: translateY(0);
 	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.cocktail-info-visible {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+	scrollbar-width: none;
 }

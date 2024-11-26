@@ -7,18 +7,16 @@ import { useState, useEffect } from 'react';
 const Cocktails = ({ cocktails }) => {
 	const [clickedStates, setClickedStates] = useState(Array(cocktails.length).fill(false));
 	const [activeCard, setActiveCard] = useState(null);
-	const [isAnimating, setIsAnimating] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
 
-	const handleClick = (index) => {
-		if (activeCard === index) {
-			setIsAnimating(false);
-			setActiveCard(null);
-			return;
-		}
+	// Gère l'ouverture/fermeture de la carte
+	const handleCardClick = (index) => {
+		setActiveCard((prevState) => (prevState === index ? null : index));
+	};
 
-		setIsAnimating(true);
-		setActiveCard(index);
+	// Gère le clic sur le bouton pour changer son état
+	const handleButtonClick = (event, index) => {
+		event.stopPropagation(); // Empêche la propagation du clic vers la carte
 		setClickedStates((prevState) => {
 			const newStates = [...prevState];
 			newStates[index] = !newStates[index];
@@ -26,23 +24,30 @@ const Cocktails = ({ cocktails }) => {
 		});
 	};
 
+	// Timer pour rendre l'info de la carte visible après un délai
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsVisible(true); // Rendre l'élément visible après 1 seconde
-		}, 3000);
-		return () => clearTimeout(timer); // Nettoyer le timer
-	}, []);
+		if (activeCard !== null) {
+			const timer = setTimeout(() => {
+				setIsVisible(true);
+			}, 500);
+
+			return () => clearTimeout(timer);
+		}
+	}, [activeCard]);
+
+	// Cache les infos quand la carte est fermée
+	useEffect(() => {
+		if (activeCard === null) {
+			setIsVisible(false);
+		}
+	}, [activeCard]);
 
 	return (
 		<div className="flex column gap20">
 			{cocktails.map((cocktail, index) => (
-				<div
-					key={index}
-					className={`flex gap20 relative align-start start ${activeCard === index ? 'column align-center left' : activeCard !== null ? 'hidden' : 'row'}`}
-					onClick={() => handleClick(index)}
-				>
-					<img src={cocktail.img} alt={cocktail.name} className={`card-image relative ${activeCard === index ? 'expanded' : 'collapsed'}`} />
-					<div className={`flex row card-info space-between relative ${activeCard === index ? 'expanded' : 'collapsed'}`}>
+				<div key={index} className={`flex gap20 relative ${activeCard === index ? 'column align-center' : 'row'}`} onClick={() => handleCardClick(index)}>
+					<img src={cocktail.img} alt={cocktail.name} className={`card-image ${activeCard === index ? 'expanded' : 'collapsed'}`} />
+					<div className={`flex row card-info space-between ${activeCard === index ? 'expanded' : 'collapsed'}`}>
 						{activeCard !== index ? (
 							<div className="flex column center design-card">
 								<h1>{cocktail.name}</h1>
@@ -50,28 +55,28 @@ const Cocktails = ({ cocktails }) => {
 								<h3>{cocktail.tags}</h3>
 							</div>
 						) : (
-							<div className="flex column center design-card-expanded ">
-								<div className={`flex column gap10 scroll ${activeCard === index ? 'visible' : 'cache'}`}>
+							<div className="flex column center design-card-expanded heightFull">
+								<div className={`flex column gap10 scroll cache heightFull ${activeCard === index && isVisible ? 'cocktail-info-visible' : ''}`}>
 									<h1 className="flex center">{cocktail.name}</h1>
-									<div className="flex row  ">
+									<div className="flex row start align-center">
 										<div>
-											{cocktail.ingredients.map((ingredient, index) => (
-												<p key={index}>
+											{cocktail.ingredients.map((ingredient, idx) => (
+												<p key={idx}>
 													{ingredient.name} - {ingredient.quantity} {ingredient.unit}
 												</p>
 											))}
 										</div>
 									</div>
 									<p>Recette: {cocktail.instructions}</p>
-									<p>le verre : {cocktail.glass_type}</p>
-									<p>Decoration : {cocktail.decoration}</p>
+									<p>Le verre : {cocktail.glass_type}</p>
+									<p>Décoration : {cocktail.decoration}</p>
 									<p>{cocktail.history}</p>
 								</div>
 							</div>
 						)}
-						<div className={`flex  ${activeCard === index ? 'end' : 'center align-center'}`}>
+						<div className="flex heightFull">
 							<Button
-								onClick={() => handleClick(index)}
+								onClick={(event) => handleButtonClick(event, index)}
 								icon={
 									clickedStates[index] ? (
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">

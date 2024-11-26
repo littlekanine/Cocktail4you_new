@@ -10,6 +10,7 @@ import Link from 'next/link';
 const HomePage = () => {
 	const [inputValue, setInputValue] = useState('');
 	const [isVisible, setIsVisible] = useState(true);
+	const [activeCard, setActiveCard] = useState(null);
 
 	const handleInputChange = (e) => {
 		setInputValue(e.target.value);
@@ -19,14 +20,26 @@ const HomePage = () => {
 	useEffect(() => {
 		if (inputValue === '') {
 			setIsVisible(true);
+			setActiveCard(null);
 		} else {
 			setIsVisible(false);
 		}
 	}, [inputValue]);
+
+	useEffect(() => {
+		if (isVisible !== null) {
+			const timer = setTimeout(() => {
+				setIsVisible(true);
+			}, 1000);
+
+			return () => clearTimeout(timer);
+		}
+	}, []);
+
 	return (
 		<div className=" flex center align-center height100vh overflow-none ">
 			<div className="logo">
-				<h2 className={`${isVisible ? 'fade-down hidden' : 'fade-up visible'}`}>
+				<h2 className={`${isVisible ? 'fade-down hidden' : 'fade-up cocktail-info-visible'}`}>
 					C<span className="number">4</span>Y
 				</h2>
 			</div>

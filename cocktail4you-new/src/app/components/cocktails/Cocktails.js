@@ -3,20 +3,19 @@
 import './cocktails.scss';
 import Button from '../buttons/Button';
 import { useState, useEffect } from 'react';
+import { useCocktails } from '@/app/context/CocktailContext';
 
 const Cocktails = ({ cocktails }) => {
 	const [clickedStates, setClickedStates] = useState(Array(cocktails.length).fill(false));
 	const [activeCard, setActiveCard] = useState(null);
 	const [isVisible, setIsVisible] = useState(false);
 
-	// Gère l'ouverture/fermeture de la carte
 	const handleCardClick = (index) => {
 		setActiveCard((prevState) => (prevState === index ? null : index));
 	};
 
-	// Gère le clic sur le bouton pour changer son état
 	const handleButtonClick = (event, index) => {
-		event.stopPropagation(); // Empêche la propagation du clic vers la carte
+		event.stopPropagation();
 		setClickedStates((prevState) => {
 			const newStates = [...prevState];
 			newStates[index] = !newStates[index];
@@ -24,7 +23,6 @@ const Cocktails = ({ cocktails }) => {
 		});
 	};
 
-	// Timer pour rendre l'info de la carte visible après un délai
 	useEffect(() => {
 		if (activeCard !== null) {
 			const timer = setTimeout(() => {
@@ -35,7 +33,6 @@ const Cocktails = ({ cocktails }) => {
 		}
 	}, [activeCard]);
 
-	// Cache les infos quand la carte est fermée
 	useEffect(() => {
 		if (activeCard === null) {
 			setIsVisible(false);
@@ -45,14 +42,18 @@ const Cocktails = ({ cocktails }) => {
 	return (
 		<div className="flex column gap20">
 			{cocktails.map((cocktail, index) => (
-				<div key={index} className={`flex gap20 relative ${activeCard === index ? 'column align-center' : 'row'}`} onClick={() => handleCardClick(index)}>
+				<div
+					key={index}
+					className={`flex gap20 relative ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}
+					onClick={() => handleCardClick(index)}
+				>
 					<img src={cocktail.img} alt={cocktail.name} className={`card-image ${activeCard === index ? 'expanded' : 'collapsed'}`} />
 					<div className={`flex row card-info space-between ${activeCard === index ? 'expanded' : 'collapsed'}`}>
 						{activeCard !== index ? (
 							<div className="flex column center design-card">
 								<h1>{cocktail.name}</h1>
 								<h2>{cocktail.category}</h2>
-								<h3>{cocktail.tags}</h3>
+								<h3>{cocktail.tags.join(' ')}</h3>
 							</div>
 						) : (
 							<div className="flex column center design-card-expanded heightFull">

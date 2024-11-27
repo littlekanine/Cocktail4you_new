@@ -25,7 +25,8 @@
 		"tags": ["Classic", "Layered", "Shooter"],
 		"glass_type": "Shooter glass",
 		"notes": "A 'B-52' can be served flaming. It’s recommended to adjust ingredient quantities based on glass size.",
-		"history": "The 'B-52' is named after an American bomber aircraft."
+		"history": "The 'B-52' is named after an American bomber aircraft.",
+		"img": "/img/AmarettoSour.jpg"
 	},
 	{
 		"name": "Bacardi Cocktail",

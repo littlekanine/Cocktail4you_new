@@ -8,17 +8,20 @@ const IngredientSchema = new mongoose.Schema({
 });
 
 // Schéma principal du cocktail
-const CocktailSchema = new mongoose.Schema({
-	name: { type: String, required: true }, // Nom du cocktail
-	ingredients: [IngredientSchema], // Liste des ingrédients
-	instructions: { type: String, required: true }, // Instructions pour préparer le cocktail
-	category: { type: String, required: true }, // Catégorie du cocktail (par exemple "Short Drink")
-	tags: [{ type: String }], // Liste des tags (par exemple ["Sweet", "Nutty"])
-	glass_type: { type: String, required: true }, // Type de verre (par exemple "Old Fashioned glass")
-	img: { type: String, required: true }, // URL de l'image du cocktail
-});
+const CocktailSchema = new mongoose.Schema(
+	{
+		name: { type: String, required: true }, // Nom du cocktail
+		ingredients: [IngredientSchema], // Liste des ingrédients
+		instructions: { type: String, required: true }, // Instructions pour préparer le cocktail
+		category: { type: String, required: true }, // Catégorie du cocktail (par exemple "Short Drink")
+		tags: [{ type: String }], // Liste des tags (par exemple ["Sweet", "Nutty"])
+		glass_type: { type: String, required: true }, // Type de verre (par exemple "Old Fashioned glass")
+		img: { type: String, required: true }, // URL de l'image du cocktail
+	}
+	// { collection: 'Cocktail4You' }
+);
 
 // Création du modèle à partir du schéma
-const Cocktail = mongoose.models.Cocktail || mongoose.model('Cocktail', CocktailSchema);
+const Cocktail = mongoose.models.Cocktail || mongoose.model('Cocktail', CocktailSchema, 'Cocktail4You');
 
 export default Cocktail;

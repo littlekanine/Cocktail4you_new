@@ -39,10 +39,19 @@ const HomePage = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const ageConfirmation = localStorage.getItem('ageConfirmed');
+    if (ageConfirmation === 'yes') {
+      setIsOver18(true);
+      setIsModalVisible(false);  
+    }
+  }, []);
+
   const handleAgeConfirmation = (answer) => {
     if (answer === "yes") {
       setIsOver18(true);
       setIsModalVisible(false);  
+	  localStorage.setItem('ageConfirmed', 'yes'); 
     } else {
       alert("Désolé, vous devez avoir plus de 18 ans pour accéder à ce site.");
     }

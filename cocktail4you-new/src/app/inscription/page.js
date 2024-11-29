@@ -15,15 +15,21 @@ const page = () => {
 						</h1>
 					</div>
 				</Link>
-				<h1 className="flex center widthFull  title-connexion">Acceder à votre espace personnel</h1>
+				<h1 className="flex center widthFull  title-connexion">Rejopignez-nous !</h1>
 				<div className="flex connexion column">
-					<div className="flex height100vh column center align-center">
+					<div className="flex height100vh column center align-center gap10">
+                    <div className="nomUtilisateur flex column center width80 ">
+							<p>Email</p>
+							<label htmlFor="site-search"></label>
+							<input type="text" name="q" className="" />
+							<div className="flex center">
+							</div>
+						</div>
 						<div className="nomUtilisateur flex column center width80 ">
 							<p>Nom d'utilisateur</p>
 							<label htmlFor="site-search"></label>
 							<input type="text" name="q" className="" />
 							<div className="flex center">
-								<p>Nom d'utilisateur oublié ?</p>
 							</div>
 						</div>
 						<div className="flex column center width80 margin10Bottom">
@@ -31,17 +37,11 @@ const page = () => {
 							<label htmlFor="site-search"></label>
 							<input type="password" name="q" />
 							<div className="flex center">
-								<p>Mot de passe oublié ?</p>
 							</div>
 						</div>
 						<div className="flex center margin10Bottom">
-							<Button text="Connexion" className="flex center align-center connexion-button" />
+							<Button text="Inscription" className="flex center align-center connexion-button" />
 						</div>
-						<Link href="/inscription">
-							<div>
-								<p className="font400">S'inscrire</p>
-							</div>
-						</Link>
 					</div>
 				</div>
 			</div>

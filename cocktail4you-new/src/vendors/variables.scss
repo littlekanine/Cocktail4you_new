@@ -15,7 +15,7 @@ h2,
 h3,
 p,
 a {
-	font-family: Karantina;
+	font-family: "Karantina";
 }
 
 html,
@@ -103,6 +103,10 @@ body,
 	margin-bottom: 0 !important;
 }
 
+.margin10Bottom {
+	margin-bottom:10px;
+}
+
 .overflow-none {
 	overflow: hidden;
 }
@@ -147,4 +151,12 @@ body,
 	transform: translateY(0);
 	transition: opacity 0.5s ease, transform 0.5s ease;
 	scrollbar-width: none;
+}
+
+.font300 {
+	font-weight:300;
+}
+
+.font400 {
+	font-weight:400
 }

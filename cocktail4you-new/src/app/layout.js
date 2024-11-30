@@ -1,6 +1,7 @@
 import './globals.css';
 import { CocktailProvider } from './context/CocktailContext';
 import './globals.css';
+import Head from './head.js'
 
 export const metadata = {
 	title: 'Create Next App',
@@ -10,6 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
+			<Head />
 			<body>
 				{/* Enveloppez l'application avec le fournisseur de contexte */}
 				<CocktailProvider>{children}</CocktailProvider>

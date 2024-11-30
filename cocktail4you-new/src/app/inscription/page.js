@@ -7,36 +7,52 @@ import Button from '../components/buttons/Button';
 import { useState } from 'react';
 
 const Page = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ email: '', username: '', password: '' });
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const validateForm = () => {
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Veuillez entrer une adresse email valide.');
+      return false;
+    }
+    if (formData.password.length < 6) {
+      setError('Le mot de passe doit contenir au moins 6 caractères.');
+      return false;
+    }
+    return true;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Réinitialiser les messages d'erreur ou de succès
     setError('');
     setMessage('');
 
-    const userData = { email, username, password };
+    if (!validateForm()) return;
 
-    // Envoi des données du formulaire à l'API
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      setMessage(data.message); // Afficher un message de succès
-    } else {
-      setError(data.error); // Afficher un message d'erreur
+      if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
+      setMessage(data.message);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -54,37 +70,44 @@ const Page = () => {
         <div className="flex connexion column">
           <form onSubmit={handleSubmit} className="flex height100vh column center align-center gap10">
             <div className="flex column center width80">
-              <p>Email</p>
+              <label htmlFor="email">Email</label>
               <input
+                id="email"
                 type="text"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formData.email}
+                onChange={handleChange}
                 required
               />
             </div>
             <div className="flex column center width80">
-              <p>Nom d'utilisateur</p>
+              <label htmlFor="username">Nom d'utilisateur</label>
               <input
+                id="username"
                 type="text"
                 name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={formData.username}
+                onChange={handleChange}
                 required
               />
             </div>
             <div className="flex column center width80 margin10Bottom">
-              <p>Mot de passe</p>
+              <label htmlFor="password">Mot de passe</label>
               <input
+                id="password"
                 type="password"
                 name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleChange}
                 required
               />
             </div>
             <div className="flex center margin10Bottom">
-              <Button text="Inscription" className="flex center align-center connexion-button" />
+              <Button
+                text={isLoading ? 'Chargement...' : 'Inscription'}
+                className="flex center align-center connexion-button"
+                disabled={isLoading}
+              />
             </div>
           </form>
           {error && <p className="error-message">{error}</p>}

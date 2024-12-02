@@ -16,7 +16,7 @@ const CocktailSchema = new mongoose.Schema(
 		category: { type: String, required: true }, // Catégorie du cocktail (par exemple "Short Drink")
 		tags: [{ type: String }], // Liste des tags (par exemple ["Sweet", "Nutty"])
 		glass_type: { type: String, required: true }, // Type de verre (par exemple "Old Fashioned glass")
-		img: { type: String, required: true }, // URL de l'image du cocktail
+		img: { type: String, required: false }, // URL de l'image du cocktail
 	}
 	// { collection: 'Cocktail4You' }
 );

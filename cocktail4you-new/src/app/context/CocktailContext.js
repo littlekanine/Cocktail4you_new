@@ -22,10 +22,10 @@ export const CocktailProvider = ({ children }) => {
 			try {
 				const response = await fetch('/api/cocktails'); // Remplacez par votre API Route
 				const data = await response.json();
-				console.log(data);
+				console.log("Réponse de l'API:", data);
 
 				if (data.success) {
-					setCocktails(data.cocktails); // Stockez les cocktails dans le state
+					setCocktails(data.data); // Stockez les cocktails dans le state
 				} else {
 					console.error('Erreur lors du chargement des cocktails :', data.error);
 				}
@@ -38,6 +38,10 @@ export const CocktailProvider = ({ children }) => {
 
 		fetchCocktails();
 	}, []); // Chargement au montage
+
+	// useEffect(() => {
+	// 	console.log('Cocktails dans le state:', cocktails); // Affiche les cocktails dans le state
+	// }, [cocktails]);
 
 	return <CocktailContext.Provider value={{ cocktails, loading }}>{children}</CocktailContext.Provider>;
 };

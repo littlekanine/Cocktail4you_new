@@ -5,10 +5,17 @@ import Button from '../buttons/Button';
 import { useState, useEffect } from 'react';
 import { useCocktails } from '@/app/context/CocktailContext';
 
-const Cocktails = ({ cocktails }) => {
-	const [clickedStates, setClickedStates] = useState(Array(cocktails.length).fill(false));
+const Cocktails = ({ searchTerm }) => {
+	const { cocktails, loading } = useCocktails();
+	const [clickedStates, setClickedStates] = useState([]);
 	const [activeCard, setActiveCard] = useState(null);
 	const [isVisible, setIsVisible] = useState(false);
+
+	useEffect(() => {
+		if (cocktails?.length > 0) {
+			setClickedStates(Array(cocktails.length).fill(false));
+		}
+	}, [cocktails]);
 
 	const handleCardClick = (index) => {
 		setActiveCard((prevState) => (prevState === index ? null : index));
@@ -39,9 +46,21 @@ const Cocktails = ({ cocktails }) => {
 		}
 	}, [activeCard]);
 
+	const filteredCocktails = cocktails.filter((cocktail) => cocktail.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+	console.log(cocktails);
+
+	if (loading) {
+		return <div>Chargement des cocktails...</div>;
+	}
+
+	if (!filteredCocktails || filteredCocktails.length === 0) {
+		return <div>Aucun cocktail disponible.</div>;
+	}
+
 	return (
 		<div className="flex column gap20">
-			{cocktails.map((cocktail, index) => (
+			{filteredCocktails.map((cocktail, index) => (
 				<div
 					key={index}
 					className={`flex gap20 relative ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}

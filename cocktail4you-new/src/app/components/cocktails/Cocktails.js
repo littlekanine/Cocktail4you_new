@@ -48,8 +48,6 @@ const Cocktails = ({ searchTerm }) => {
 
 	const filteredCocktails = cocktails.filter((cocktail) => cocktail.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-	console.log(cocktails);
-
 	if (loading) {
 		return <div>Chargement des cocktails...</div>;
 	}

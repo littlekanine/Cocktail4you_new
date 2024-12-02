@@ -22,7 +22,6 @@ export const CocktailProvider = ({ children }) => {
 			try {
 				const response = await fetch('/api/cocktails'); // Remplacez par votre API Route
 				const data = await response.json();
-				console.log("Réponse de l'API:", data);
 
 				if (data.success) {
 					setCocktails(data.data); // Stockez les cocktails dans le state

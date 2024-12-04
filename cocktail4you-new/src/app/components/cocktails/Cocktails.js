@@ -17,6 +17,11 @@ const Cocktails = ({ searchTerm }) => {
 		}
 	}, [cocktails]);
 
+	useEffect(() => {
+		setActiveCard(null);
+		setIsVisible(false);
+	}, [searchTerm]);
+
 	const handleCardClick = (index) => {
 		setActiveCard((prevState) => (prevState === index ? null : index));
 	};
@@ -78,16 +83,26 @@ const Cocktails = ({ searchTerm }) => {
 									<h1 className="flex center">{cocktail.name}</h1>
 									<div className="flex row start align-center">
 										<div>
-											{cocktail.ingredients.map((ingredient, idx) => (
-												<p key={idx}>
-													{ingredient.name} - {ingredient.quantity} {ingredient.unit}
-												</p>
+											{cocktail.ingredients.map((ingredient, index) => (
+												<div key={index}>
+													<p>
+														{ingredient.name || 'Unknown'} - {ingredient.quantity || ''} {ingredient.unit || ''}
+													</p>
+												</div>
 											))}
 										</div>
 									</div>
 									<p>Recette: {cocktail.instructions}</p>
 									<p>Le verre : {cocktail.glass_type}</p>
-									<p>Décoration : {cocktail.decoration}</p>
+									<div>
+										{cocktail.decoration.map((decoration, index) => (
+											<div key={index}>
+												<p>
+													Décoration : {decoration.name}-{decoration.quantity}
+												</p>
+											</div>
+										))}
+									</div>
 									<p>{cocktail.history}</p>
 								</div>
 							</div>

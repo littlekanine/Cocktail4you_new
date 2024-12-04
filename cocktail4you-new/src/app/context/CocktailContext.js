@@ -1,46 +1,38 @@
-'use client'; // Nécessaire pour utiliser les hooks dans un projet Next.js
+'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
-// Créez le contexte
 const CocktailContext = createContext();
 
-// Créez un hook personnalisé pour accéder au contexte plus facilement
 export const useCocktails = () => {
 	return useContext(CocktailContext);
 };
 
-// Fournisseur de contexte
 export const CocktailProvider = ({ children }) => {
-	const [cocktails, setCocktails] = useState([]); // État global des cocktails
-	const [loading, setLoading] = useState(true); // Indique si les données sont en cours de chargement
+	const [cocktails, setCocktails] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		// Fonction pour récupérer les cocktails depuis l'API
 		async function fetchCocktails() {
-			setLoading(true); // Début du chargement
+			setLoading(true);
 			try {
-				const response = await fetch('/api/cocktails'); // Remplacez par votre API Route
+				const response = await fetch('/api/cocktails');
 				const data = await response.json();
 
 				if (data.success) {
-					setCocktails(data.data); // Stockez les cocktails dans le state
+					setCocktails(data.data);
 				} else {
 					console.error('Erreur lors du chargement des cocktails :', data.error);
 				}
 			} catch (error) {
 				console.error('Erreur réseau :', error);
 			} finally {
-				setLoading(false); // Fin du chargement
+				setLoading(false);
 			}
 		}
 
 		fetchCocktails();
-	}, []); // Chargement au montage
-
-	// useEffect(() => {
-	// 	console.log('Cocktails dans le state:', cocktails); // Affiche les cocktails dans le state
-	// }, [cocktails]);
+	}, []);
 
 	return <CocktailContext.Provider value={{ cocktails, loading }}>{children}</CocktailContext.Provider>;
 };

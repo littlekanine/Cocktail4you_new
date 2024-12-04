@@ -9,15 +9,13 @@
 }
 
 .age-confirmation-modal {
-	width:90%;
+	width: 90%;
 }
 
 .avertissement {
 	color: $yellow;
-	margin-bottom : 20px;
-	text-align:center;
-	filter: drop-shadow(0px 5px 7px #3a1820);
-
+	margin-bottom: 20px;
+	text-align: center;
 }
 
 .fade-up {
@@ -53,7 +51,6 @@ input[type='search'] {
 	font-family: 'Roboto', sans-serif;
 	color: $caramel;
 	transform: translateY(0);
-	filter: drop-shadow(0px 5px 7px #3a1820);
 	z-index: 10;
 }
 

@@ -15,7 +15,7 @@ const page = () => {
 						</h1>
 					</div>
 				</Link>
-				<h1 className="flex center widthFull  title-connexion">Acceder à votre espace personnel</h1>
+				<h1 className="flex center widthFull  title-connexion shadow">Acceder à votre espace personnel</h1>
 				<div className="flex connexion column">
 					<div className="flex height100vh column center align-center">
 						<div className="nomUtilisateur flex column center width80 ">

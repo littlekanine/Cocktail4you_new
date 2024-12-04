@@ -13,8 +13,6 @@
 	color: $yellow;
 	font-weight: 300;
 	padding-top: 10px;
-	filter: drop-shadow(0px 5px 7px #3a1820);
-
 }
 
 p {
@@ -43,7 +41,6 @@ input[type='password'] {
 	font-family: 'Roboto', sans-serif;
 	color: $caramel;
 	transform: translateY(0);
-	filter: drop-shadow(0px 5px 7px #3a1820);
 	z-index: 10;
 }
 

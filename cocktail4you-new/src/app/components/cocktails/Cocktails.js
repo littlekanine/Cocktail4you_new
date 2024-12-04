@@ -58,7 +58,7 @@ const Cocktails = ({ searchTerm }) => {
 	}
 
 	if (!filteredCocktails || filteredCocktails.length === 0) {
-		return <div>Aucun cocktail disponible.</div>;
+		return <div className="deco flex center">Aucun cocktail disponible.</div>;
 	}
 
 	return (
@@ -69,8 +69,8 @@ const Cocktails = ({ searchTerm }) => {
 					className={`flex gap20 relative ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}
 					onClick={() => handleCardClick(index)}
 				>
-					<img src={cocktail.img} alt={cocktail.name} className={`card-image ${activeCard === index ? 'expanded' : 'collapsed'}`} />
-					<div className={`flex row card-info space-between ${activeCard === index ? 'expanded' : 'collapsed'}`}>
+					<img src={cocktail.img} alt={cocktail.name} className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`} />
+					<div className={`flex row card-info card-info  space-between ${activeCard === index ? 'expanded' : 'collapsed'}`}>
 						{activeCard !== index ? (
 							<div className="flex column center design-card">
 								<h1>{cocktail.name}</h1>
@@ -95,13 +95,16 @@ const Cocktails = ({ searchTerm }) => {
 									<p>Recette: {cocktail.instructions}</p>
 									<p>Le verre : {cocktail.glass_type}</p>
 									<div>
-										{cocktail.decoration.map((decoration, index) => (
-											<div key={index}>
-												<p>
-													Décoration : {decoration.name}-{decoration.quantity}
-												</p>
-											</div>
-										))}
+										<p>Décorations :</p>
+										{Array.isArray(cocktail.decoration) && cocktail.decoration.length > 0 ? (
+											cocktail.decoration.map((decoration, index) => (
+												<div key={index} className="deco">
+													{decoration.name || 'Inconnu'} - {decoration.quantity || 'N/A'}
+												</div>
+											))
+										) : (
+											<p>Aucune décoration disponible.</p>
+										)}
 									</div>
 									<p>{cocktail.history}</p>
 								</div>

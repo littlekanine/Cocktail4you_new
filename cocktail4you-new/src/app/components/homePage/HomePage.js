@@ -58,7 +58,7 @@ const HomePage = () => {
 		<div className="flex center align-center height100vh overflow-none">
 			{isModalVisible && (
 				<div className="flex column  align-center age-confirmation-modal">
-					<h2 className=" flex  align-center avertissement">Vous devez avoir plus de 18 ans pour accéder à ce site.</h2>
+					<h2 className=" flex  align-center avertissement shadow">Vous devez avoir plus de 18 ans pour accéder à ce site.</h2>
 					<div className="flex row center gap20">
 						<Button text="Je confirme" onClick={() => handleAgeConfirmation('yes')} />
 						<Button text="Je suis mineur" onClick={() => handleAgeConfirmation('no')} />
@@ -100,7 +100,7 @@ const HomePage = () => {
 								value={inputValue}
 								onChange={handleInputChange}
 								autoComplete="off"
-								className={` ${inputValue !== '' ? 'margin0' : ''}`}
+								className={`shadow ${inputValue !== '' ? 'margin0' : ''}`}
 							/>
 							<div className={`flex column cocktails-container ${inputValue === '' ? 'hidden' : ''}`}>
 								<Cocktails searchTerm={inputValue} />
@@ -108,8 +108,8 @@ const HomePage = () => {
 						</div>
 						{inputValue === '' && (
 							<div className={`flex row center align-center spacee-between ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
-								<Button text="Populaire" />
-								<Button text="Créations" />
+								<Button text="Populaire" className="shadow" />
+								<Button text="Créations" className="shadow" />
 							</div>
 						)}
 					</div>

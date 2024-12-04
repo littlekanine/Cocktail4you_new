@@ -12,7 +12,6 @@
 	background-color: $brown;
 	border-radius: 25px;
 	color: $yellow;
-	filter: drop-shadow(-3px 2px 4px #3a1820);
 	padding-left: 10px;
 	padding: 10px;
 	transition: all 0.5s ease-in-out;
@@ -49,7 +48,6 @@
 	height: 94px;
 	object-fit: cover;
 	border-radius: 25px;
-	filter: drop-shadow(2px 4px 4px #3a1820);
 	transition: all 0.5s ease-in-out;
 	transform-origin: left;
 
@@ -72,4 +70,9 @@
 	font-size: 28px;
 	font-weight: 300;
 	overflow: auto;
+}
+.deco {
+	font-size: 28px;
+	color: $yellow;
+	font-family: 'Karantina';
 }

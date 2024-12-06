@@ -53,8 +53,12 @@ const Cocktails = ({ searchTerm }) => {
 
 	const filteredCocktails = cocktails.filter((cocktail) => cocktail.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
+	useEffect(() => {
+		console.log("Cocktails filtrés :", filteredCocktails);
+	}, [filteredCocktails]);
+
 	if (loading) {
-		return <div>Chargement des cocktails...</div>;
+		return <div className='deco flex center'>Chargement des cocktails...</div>;
 	}
 
 	if (!filteredCocktails || filteredCocktails.length === 0) {

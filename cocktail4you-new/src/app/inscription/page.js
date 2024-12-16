@@ -37,7 +37,7 @@ const Page = () => {
 
 		setIsLoading(true);
 		try {
-			const response = await fetch('/api/users', {
+			const response = await fetch('/api/user', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -75,18 +75,18 @@ const Page = () => {
 						</div>
 						<div className="flex column center width80">
 							<label htmlFor="username">Nom d'utilisateur</label>
-							<input id="username" type="text" name="username" value={formData.username} onChange={handleChange} required />
+							<input id="username" type="text" name="username" value={formData.username} onChange={handleChange} required autoComplete="username" />
 						</div>
 						<div className="flex column center width80 margin10Bottom">
 							<label htmlFor="password">Mot de passe</label>
-							<input id="password" type="password" name="password" value={formData.password} onChange={handleChange} required />
+							<input id="password" type="password" name="password" value={formData.password} onChange={handleChange} required autoComplete="new-password" />
 						</div>
 						<div className="flex center margin10Bottom">
 							<Button text={isLoading ? 'Chargement...' : 'Inscription'} className="flex center align-center connexion-button" disabled={isLoading} />
 						</div>
 					</form>
-					{error && <p className="error-message">{error}</p>}
-					{message && <p className="success-message">{message}</p>}
+					{error && <p className="flex center align-center error-message">{error}</p>}
+					{message && <p className="flex center align-center success-message">{message}</p>}
 				</div>
 			</div>
 		</div>

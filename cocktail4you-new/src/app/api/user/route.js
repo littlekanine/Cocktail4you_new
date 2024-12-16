@@ -1,4 +1,4 @@
-import dbConnect from '../../../lib/mongodb'; // Connexion à la DB
+import dbConnect from '../../../../lib/mongodb'; // Connexion à la DB
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 
@@ -11,38 +11,34 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 
-export default async function handler(req, res) {
-	if (req.method === 'POST') {
-		const { email, username, password } = req.body;
+export async function POST(req) {
+	try {
+		const { email, username, password } = await req.json();
 
 		// Vérifier que les champs ne sont pas vides
 		if (!email || !username || !password) {
-			return res.status(400).json({ error: 'Tous les champs sont requis' });
+			return new Response(JSON.stringify({ error: 'Tous les champs sont requis' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		try {
-			// Connexion à MongoDB
-			await dbConnect();
+		// Connexion à MongoDB
+		await dbConnect();
 
-			// Vérifier si l'utilisateur existe déjà
-			const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-			if (existingUser) {
-				return res.status(400).json({ error: "Email ou nom d'utilisateur déjà utilisé" });
-			}
-
-			// Hacher le mot de passe
-			const hashedPassword = await bcrypt.hash(password, 10);
-
-			// Créer un nouvel utilisateur
-			const newUser = new User({ email, username, password: hashedPassword });
-			await newUser.save();
-
-			return res.status(200).json({ message: 'Utilisateur inscrit avec succès' });
-		} catch (err) {
-			console.error(err);
-			return res.status(500).json({ error: 'Erreur interne du serveur' });
+		// Vérifier si l'utilisateur existe déjà
+		const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+		if (existingUser) {
+			return new Response(JSON.stringify({ error: "Email ou nom d'utilisateur déjà utilisé" }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
-	} else {
-		res.status(405).json({ error: 'Méthode HTTP non autorisée' });
+
+		// Hacher le mot de passe
+		const hashedPassword = await bcrypt.hash(password, 10);
+
+		// Créer un nouvel utilisateur
+		const newUser = new User({ email, username, password: hashedPassword });
+		await newUser.save();
+
+		return new Response(JSON.stringify({ message: 'Vous êtes inscrit ! Bienvenue !' }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+	} catch (err) {
+		console.error(err);
+		return new Response(JSON.stringify({ error: 'Erreur interne du serveur' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
 	}
 }

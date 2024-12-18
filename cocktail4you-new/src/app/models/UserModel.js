@@ -1,0 +1,47 @@
+import mongoose from 'mongoose';
+
+const userSchema = new mongoose.Schema(
+	{
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+			match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+		},
+		username: {
+			type: String,
+			required: true,
+			unique: true,
+			minlength: 3,
+			maxlength: 30,
+		},
+		password: {
+			type: String,
+			required: true,
+			minlength: 8,
+		},
+		isEmailVerified: {
+			type: Boolean,
+			default: false,
+		},
+		emailVerificationToken: {
+			type: String,
+		},
+		emailVerificationExpires: {
+			type: Date,
+		},
+	},
+	{ timestamps: true }
+);
+
+// Middleware pour hacher le mot de passe
+userSchema.pre('save', async function (next) {
+	if (!this.isModified('password')) return next();
+	const bcrypt = require('bcrypt');
+	this.password = await bcrypt.hash(this.password, 10);
+	next();
+});
+
+const User = mongoose.models.User || mongoose.model('User', userSchema);
+
+export default User;

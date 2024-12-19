@@ -6,20 +6,17 @@ export async function GET(req) {
 		const { searchParams } = new URL(req.url);
 		const token = searchParams.get('token');
 
-		// Connexion à MongoDB
 		await dbConnect();
 
-		// Trouver l'utilisateur par le token
 		const user = await User.findOne({
 			emailVerificationToken: token,
-			emailVerificationExpires: { $gt: Date.now() }, // Vérifie si le token n'a pas expiré
+			emailVerificationExpires: { $gt: Date.now() },
 		});
 
 		if (!user) {
 			return new Response(JSON.stringify({ error: 'Lien invalide ou expiré' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		// Mettre à jour l'état de l'utilisateur
 		user.isEmailVerified = true;
 		user.emailVerificationToken = undefined;
 		user.emailVerificationExpires = undefined;

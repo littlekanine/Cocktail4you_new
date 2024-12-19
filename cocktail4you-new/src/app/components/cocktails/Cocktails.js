@@ -51,10 +51,15 @@ const Cocktails = ({ searchTerm }) => {
 		}
 	}, [activeCard]);
 
-	const filteredCocktails = cocktails.filter((cocktail) => cocktail.name.toLowerCase().includes(searchTerm.toLowerCase()));
+	const filteredCocktails = cocktails.filter((cocktail) => {
+		const nameMatch = cocktail.name.toLowerCase().includes(searchTerm.toLowerCase());
+		const ingredientMatch = cocktail.ingredients.some((ingredient) =>
+		  ingredient.name.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+		return nameMatch || ingredientMatch;
+	  });
 
 	useEffect(() => {
-		console.log("Cocktails filtrés :", filteredCocktails);
 	}, [filteredCocktails]);
 
 	if (loading) {

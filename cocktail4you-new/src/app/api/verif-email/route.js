@@ -1,7 +1,12 @@
+'use client';
+
+import { redirect } from 'next/dist/server/api-utils';
 import dbConnect from '../../../../lib/mongodb';
-import User from './userModel'; // Assure-toi que le chemin vers ton modèle utilisateur est correct
+import User from './userModel';
+import { useRouter } from 'next/router';
 
 export async function GET(req) {
+	const router = useRouter();
 	try {
 		const { searchParams } = new URL(req.url);
 		const token = searchParams.get('token');

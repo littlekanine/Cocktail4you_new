@@ -1,9 +1,9 @@
 "use client";
 
-import "./page.scss";
-import "../components/homePage/homePage.scss";
+import "/page.scss";
+import "../pages/homePage/homePage.scss";
 import Link from "next/link";
-import Button from "../../components/buttons/Button";
+import Button from "@/app/components/buttons/Button";
 import { useState } from "react";
 
 const Page = () => {

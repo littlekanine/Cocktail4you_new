@@ -72,8 +72,13 @@ export async function POST(req) {
 		// Envoyer l'email de confirmation
 		await sendVerificationEmail(email, token);
 
-		// Retourner une réponse indiquant que l'inscription est réussie
-		return new Response(JSON.stringify({ message: 'Inscription réussie. Veuillez vérifier votre email.' }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+		return new Response(
+			JSON.stringify({
+				message: 'Utilisateur créé avec succès.',
+				redirectTo: `${process.env.BASE_URL}/waiting-confirm?name=${encodeURIComponent(newUser.username)}&email=${encodeURIComponent(newUser.email)}`,
+			}),
+			{ status: 200, headers: { 'Content-Type': 'application/json' } }
+		);
 	} catch (err) {
 		console.error(err);
 		return new Response(JSON.stringify({ error: 'Erreur interne du serveur' }), { status: 500, headers: { 'Content-Type': 'application/json' } });

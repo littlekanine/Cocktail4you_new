@@ -1,8 +1,8 @@
 'use client';
 
 import './homePage.scss';
-import Button from '../buttons/Button';
-import Cocktails from '../cocktails/Cocktails';
+import Button from '../components/buttons/Button';
+import Cocktails from '../components/cocktails/Cocktails';
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 

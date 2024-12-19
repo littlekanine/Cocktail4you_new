@@ -1,5 +1,5 @@
 import './page.scss';
-import '../components/homePage/homePage.scss';
+import '../homePage/homePage.scss';
 import Link from 'next/link';
 
 import Button from '../components/buttons/Button';

@@ -1,7 +1,7 @@
 'use client';
 
 import './page.scss';
-import '../components/homePage/homePage.scss';
+import '../homePage/homePage.scss';
 import Link from 'next/link';
 import Button from '../components/buttons/Button';
 import { useState } from 'react';
@@ -47,23 +47,14 @@ const Page = () => {
 				body: JSON.stringify(formData),
 			});
 
-			const text = await response.text(); // Récupère la réponse brute
-			console.log('Réponse brute :', text);
-
-			if (!response.ok) {
-				throw new Error('Erreur API : ' + text); // Affiche l'erreur si elle existe
-			}
-
-			const data = JSON.parse(text); // Si c'est bien du JSON, parsez-le
-			console.log('Données reçues :', data);
-
-			// const data = await response.json();
-
-			console.log('Redirection en cours...');
-			router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/waiting-confirm?name=${encodeURIComponent(formData.username)}&email=${encodeURIComponent(formData.email)}`);
-			console.log('Redirection effectuée.');
+			const data = await response.json();
 
 			if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
+
+			// Redirection
+			if (data.redirectTo) {
+				router.push(data.redirectTo);
+			}
 		} catch (err) {
 			setError(err.message);
 		} finally {

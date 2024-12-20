@@ -12,8 +12,6 @@ export async function GET(req) {
 		// Récupérer tous les cocktails depuis la base de données
 		const cocktails = await CocktailsModels.find({});
 
-		console.log('Données des cocktails récupérées:', cocktails);
-
 		// Retourner les cocktails en réponse JSON
 		return NextResponse.json({ success: true, data: cocktails });
 	} catch (error) {

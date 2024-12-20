@@ -2,9 +2,9 @@ import dbConnect from '../../../../lib/mongodb'; // Connexion à la DB
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
-import User from '@/app/models/UserModel';
+import User from '../../models/UserModel';
 
-async function sendVerificationEmail(email, token) {
+async function sendVerificationEmail(email, token, id) {
 	try {
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
@@ -17,7 +17,7 @@ async function sendVerificationEmail(email, token) {
 			},
 		});
 
-		const verificationUrl = `${process.env.BASE_URL}/api/user/verify?token=${token}`;
+		const verificationUrl = `${process.env.BASE_URL}/api/verif-email?token=${token}&id=${id}`;
 
 		// Contenu de l'e-mail
 		const mailOptions = {
@@ -27,7 +27,7 @@ async function sendVerificationEmail(email, token) {
 			html: `
 				<p>Bonjour,</p>
 				<p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse e-mail :</p>
-				<a href="${verificationUrl}" target="_blank">Confirmer mon email</a>
+				<p><a href="${verificationUrl}" target="_blank" style="text-decoration:none; color:blue; font-weight:bold;">Cliquez ici pour valider votre compte</a></p>
 				<p>Ce lien expire dans 1 heure.</p>
 			`,
 		};

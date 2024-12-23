@@ -1,0 +1,17 @@
+@use '../../../vendors/variables.scss' as *;
+
+.success {
+    background-color: $caramel;
+}
+
+h1 {
+    color: $yellow;
+}
+
+h2 {
+    color: $yellow;
+}
+
+.number {
+    color: $brown;
+}

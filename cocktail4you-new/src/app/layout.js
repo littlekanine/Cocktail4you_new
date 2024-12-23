@@ -1,6 +1,7 @@
 import './globals.css';
 import { CocktailProvider } from './context/CocktailContext';
 import './globals.css';
+import Link from 'next/link';
 
 export const metadata = {
 	title: "Cocktails4You - Accueil",

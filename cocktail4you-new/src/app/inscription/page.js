@@ -91,8 +91,8 @@ const Page = () => {
 							<Button text={isLoading ? 'Chargement...' : 'Inscription'} className="flex center align-center connexion-button" disabled={isLoading} />
 						</div>
 					</form>
-					{error && <p className="flex center align-center error-message">{error}</p>}
-					{message && <p className="flex center align-center success-message">{message}</p>}
+					{error && <p aria-live="polite" className="flex center align-center error-message">{error}</p>}
+					{message && <p aria-live="polite" className="flex center align-center success-message">{message}</p>}
 				</div>
 			</div>
 		</div>

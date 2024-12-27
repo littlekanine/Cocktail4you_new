@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema(
 		password: {
 			type: String,
 			required: true,
-			minlength: 8,
 		},
 		isEmailVerified: {
 			type: Boolean,
@@ -37,10 +36,11 @@ const userSchema = new mongoose.Schema(
 // Middleware pour hacher le mot de passe
 userSchema.pre('save', async function (next) {
 	if (!this.isModified('password')) return next();
-	const bcrypt = require('bcrypt');
+	const bcrypt = require('bcryptjs');
 	this.password = await bcrypt.hash(this.password, 10);
 	next();
 });
+
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 

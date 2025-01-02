@@ -65,13 +65,6 @@ const Page = () => {
 	return (
 		<div className="height100vh flex">
 			<div className="connexion-container flex center align-center widthFull column">
-				<Link href="/">
-					<div className="logo-connexion">
-						<h1>
-							C<span className="number">4</span>Y
-						</h1>
-					</div>
-				</Link>
 				<h1 className="flex center widthFull title-connexion shadow">Rejoignez-nous !</h1>
 				<div className="flex connexion column">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center gap10">
@@ -91,8 +84,16 @@ const Page = () => {
 							<Button text={isLoading ? 'Chargement...' : 'Inscription'} className="flex center align-center connexion-button" disabled={isLoading} />
 						</div>
 					</form>
-					{error && <p aria-live="polite" className="flex center align-center error-message">{error}</p>}
-					{message && <p aria-live="polite" className="flex center align-center success-message">{message}</p>}
+					{error && (
+						<p aria-live="polite" className="flex center align-center error-message">
+							{error}
+						</p>
+					)}
+					{message && (
+						<p aria-live="polite" className="flex center align-center success-message">
+							{message}
+						</p>
+					)}
 				</div>
 			</div>
 		</div>

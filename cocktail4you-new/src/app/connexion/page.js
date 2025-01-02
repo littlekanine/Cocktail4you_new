@@ -69,11 +69,11 @@ const Page = () => {
 				<div className="flex connexion column center align-center">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center width80">
 						<div className="nomUtilisateur flex column center width80">
-							<p>Nom d'utilisateur</p>
+							<p>Nom d&apos;utilisateur</p>
 							<label htmlFor="username"></label>
 							<input type="text" name="username" id="username" autoComplete="username" value={formData.username} onChange={handleChange} required />
 							<div className="flex center">
-								<p>Nom d'utilisateur oublié ?</p>
+								<p>Nom d&apos;utilisateur oublié ?</p>
 							</div>
 						</div>
 
@@ -113,7 +113,7 @@ const Page = () => {
 
 					<Link href="/inscription">
 						<div>
-							<p className="font400">S'inscrire</p>
+							<p className="font400">S&apos;inscrire</p>
 						</div>
 					</Link>
 				</div>

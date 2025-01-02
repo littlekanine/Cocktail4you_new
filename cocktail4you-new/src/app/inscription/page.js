@@ -73,7 +73,7 @@ const Page = () => {
 							<input id="email" type="text" name="email" value={formData.email} onChange={handleChange} required />
 						</div>
 						<div className="flex column center width80">
-							<label htmlFor="username">Nom d'utilisateur</label>
+							<label htmlFor="username">Nom d&apos;utilisateur</label>
 							<input id="username" type="text" name="username" value={formData.username} onChange={handleChange} required autoComplete="username" />
 						</div>
 						<div className="flex column center width80 margin10Bottom">

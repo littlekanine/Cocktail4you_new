@@ -5,7 +5,7 @@ import './page.scss';
 import '../homePage/homePage.scss';
 import { useEffect, useState } from 'react';
 
-const page = () => {
+const Page = () => {
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState('');
 
@@ -41,4 +41,4 @@ const page = () => {
 	return <div className="flex heigt100vh"></div>;
 };
 
-export default page;
+export default Page;

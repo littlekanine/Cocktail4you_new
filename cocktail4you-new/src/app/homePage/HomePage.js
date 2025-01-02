@@ -34,7 +34,7 @@ const HomePage = () => {
 
 			return () => clearTimeout(timer);
 		}
-	}, []);
+	}, [isVisible]);
 
 	useEffect(() => {
 		const ageConfirmation = localStorage.getItem('ageConfirmed');

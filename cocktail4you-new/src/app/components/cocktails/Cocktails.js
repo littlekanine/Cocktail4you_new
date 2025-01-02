@@ -4,6 +4,7 @@ import './cocktails.scss';
 import Button from '../buttons/Button';
 import { useState, useEffect } from 'react';
 import { useCocktails } from '@/app/context/CocktailContext';
+import Image from 'next/image';
 
 const Cocktails = ({ searchTerm }) => {
 	const { cocktails, loading } = useCocktails();
@@ -53,17 +54,14 @@ const Cocktails = ({ searchTerm }) => {
 
 	const filteredCocktails = cocktails.filter((cocktail) => {
 		const nameMatch = cocktail.name.toLowerCase().includes(searchTerm.toLowerCase());
-		const ingredientMatch = cocktail.ingredients.some((ingredient) =>
-		  ingredient.name.toLowerCase().includes(searchTerm.toLowerCase())
-		);
+		const ingredientMatch = cocktail.ingredients.some((ingredient) => ingredient.name.toLowerCase().includes(searchTerm.toLowerCase()));
 		return nameMatch || ingredientMatch;
-	  });
+	});
 
-	useEffect(() => {
-	}, [filteredCocktails]);
+	useEffect(() => {}, [filteredCocktails]);
 
 	if (loading) {
-		return <div className='deco flex center'>Chargement des cocktails...</div>;
+		return <div className="deco flex center">Chargement des cocktails...</div>;
 	}
 
 	if (!filteredCocktails || filteredCocktails.length === 0) {
@@ -78,7 +76,7 @@ const Cocktails = ({ searchTerm }) => {
 					className={`flex gap20 relative ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}
 					onClick={() => handleCardClick(index)}
 				>
-					<img src={cocktail.img} alt={cocktail.name} className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`} />
+					<Image src={cocktail.img} alt={cocktail.name} className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`} />
 					<div className={`flex row card-info card-info  space-between ${activeCard === index ? 'expanded' : 'collapsed'}`}>
 						{activeCard !== index ? (
 							<div className="flex column center design-card">

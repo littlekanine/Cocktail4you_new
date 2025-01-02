@@ -1,38 +1,34 @@
+// waiting-confirm/page.js
+
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import './waiting.scss';
 
-export default function WaitingConfirmPage() {
+function WaitingConfirmPage() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const name = searchParams.get('name');
 	const email = searchParams.get('email');
-	const token = searchParams.get('token'); // Token envoyé dans l'URL
-	const [message, setMessage] = useState(''); // Message à afficher à l'utilisateur
+	const token = searchParams.get('token');
+	const [message, setMessage] = useState('');
 	const [loading, setLoading] = useState(true);
-
-	console.log('Requête reçue pour la vérification de token :', token);
 
 	useEffect(() => {
 		if (token) {
-			// Si le token est présent, on envoie une requête pour vérifier l'email
 			fetch(`/api/user/verify?token=${token}`, {
 				method: 'GET',
 			})
 				.then((response) => {
 					if (response.ok) {
-						// Si la réponse est ok, on redirige vers la page de succès
 						router.push('/verify-issue/success');
 					} else {
-						// Sinon, rediriger vers la page d'erreur
 						router.push('/verify-issue/error');
 					}
 				})
 				.catch(() => {
-					// En cas d'erreur de réseau, rediriger vers une page d'erreur
 					router.push('/verify-issue/error');
 				});
 		} else {
@@ -55,5 +51,14 @@ export default function WaitingConfirmPage() {
 			<p className="text-center center align-center shadow">{message}</p>
 			<p className="shadow">Une fois votre email confirmé, vous pourrez continuer.</p>
 		</div>
+	);
+}
+
+// Enrouler votre composant avec Suspense pour gérer l'exécution côté client
+export default function WaitingPageWithSuspense() {
+	return (
+		<Suspense fallback={<div>Chargement...</div>}>
+			<WaitingConfirmPage />
+		</Suspense>
 	);
 }

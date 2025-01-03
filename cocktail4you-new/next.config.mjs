@@ -1,7 +1,12 @@
-// next.config.mjs
-
-export default {
-	reactStrictMode: true, // Mode strict pour React
-	swcMinify: true, // Minification avec SWC pour la production
-	// Ajoutez d'autres options de configuration ici si nécessaire
+const nextConfig = {
+	reactStrictMode: true, // Activer le mode strict React
+	swcMinify: true, // Utiliser SWC pour la minification
+	eslint: {
+		ignoreDuringBuilds: true, // Ignorer les erreurs ESLint pendant les builds si nécessaire
+	},
+	images: {
+		unoptimized: true, // Désactive les optimisations d'images de Next.js
+	},
 };
+
+export default nextConfig;

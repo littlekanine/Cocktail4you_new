@@ -76,7 +76,11 @@ const Cocktails = ({ searchTerm }) => {
 					className={`flex gap20 relative ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}
 					onClick={() => handleCardClick(index)}
 				>
-					<Image src={cocktail.img} alt={cocktail.name} className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`} />
+					{cocktail.img ? (
+						<Image src={cocktail.img} alt={cocktail.name || 'Default Name'} className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`} />
+					) : (
+						<p>Aucune image disponible</p>
+					)}{' '}
 					<div className={`flex row card-info card-info  space-between ${activeCard === index ? 'expanded' : 'collapsed'}`}>
 						{activeCard !== index ? (
 							<div className="flex column center design-card">

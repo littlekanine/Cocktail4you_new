@@ -34,3 +34,35 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Deploy on Docker
+
+Firstable go to `your/dir/cocktail4you-new`. There you have to create a file named `.env.local`.
+This file must look something like that :
+```bash
+MONGODB_URI=mongodb+.../Cocktail4You?
+retryWrites=true&w=majority
+EMAIL_USER=<user>
+EMAIL_PASSWORD=<password>
+BASE_URL=http://localhost:3000/
+NEXT_PUBLIC_BASE_URL=http://localhost:3000/
+JWT_SECRET=<token>
+```
+
+### Building image :
+
+You just have to run this command here : `your/dir/cocktail4you-new`
+```bash
+docker build . -t c4t:latest --no-cache
+```
+
+### Launching image : 
+
+You just have to run this command here : `your/dir/cocktail4you-new`
+```bash
+cedric$ docker run -p 8000:3000 c4t:latest
+```
+
+### Viste cocktail4you-new from docker :
+
+On your favortie browser (mozilla) go to `http://localhost:8000`

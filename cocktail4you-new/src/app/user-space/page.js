@@ -3,42 +3,24 @@
 import React from 'react';
 import './page.scss';
 import '../homePage/homePage.scss';
-import { useEffect, useState } from 'react';
-
+import { useAuth } from '../context/AuthContext';
 const Page = () => {
-	const [user, setUser] = useState(null);
-	const [error, setError] = useState('');
+	const { user, loading } = useAuth(); // Récupère l'utilisateur et l'état de chargement depuis le contexte
 
-	useEffect(() => {
-		const fetchUser = async () => {
-			try {
-				const response = await fetch('/api/auth/user', {
-					method: 'GET',
-					credentials: 'include',
-				});
-
-				if (!response.ok) {
-					throw new Error('Erreur lors de la récupération des données utilisateur.');
-				}
-
-				const data = await response.json();
-				setUser(data.user);
-			} catch (err) {
-				setError(err.message);
-			}
-		};
-
-		fetchUser();
-	}, []);
-
-	if (error) {
-		return <p>Erreur : {error}</p>;
+	// Gestion des cas : erreur, chargement ou affichage des données utilisateur
+	if (loading) {
+		return <p>Chargement des données utilisateur...</p>;
 	}
 
 	if (!user) {
-		return <p>Chargement...</p>;
+		return <p>Aucun utilisateur trouvé. Veuillez vous connecter.</p>;
 	}
-	return <div className="flex heigt100vh"></div>;
+
+	return (
+		<div className="flex height100vh">
+			<h1>Bienvenue, {user.username}</h1>
+		</div>
+	);
 };
 
 export default Page;

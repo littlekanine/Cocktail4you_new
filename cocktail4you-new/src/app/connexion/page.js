@@ -6,8 +6,10 @@ import Link from 'next/link';
 import Button from '../components/buttons/Button';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
 
 const Page = () => {
+	const { checkAuth } = useAuth();
 	const [formData, setFormData] = useState({ username: '', password: '' });
 	const [error, setError] = useState('');
 	const [message, setMessage] = useState('');
@@ -47,8 +49,14 @@ const Page = () => {
 				}),
 			});
 			const data = await response.json();
+			await checkAuth();
 
 			if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
+
+			// Stockage du token dans le localStorage
+			if (data.token) {
+				localStorage.setItem('auth_token', data.token);
+			}
 
 			if (data.redirectTo) {
 				router.push(data.redirectTo);

@@ -2,6 +2,11 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
 	{
+		role: {
+			type: String,
+			enum: ['user', 'admin'],
+			default: 'user',
+		},
 		email: {
 			type: String,
 			required: true,
@@ -29,6 +34,9 @@ const userSchema = new mongoose.Schema(
 		emailVerificationExpires: {
 			type: Date,
 		},
+		lastLogin: {
+			type: Date,
+		},
 	},
 	{ timestamps: true }
 );
@@ -40,7 +48,6 @@ userSchema.pre('save', async function (next) {
 	this.password = await bcrypt.hash(this.password, 10);
 	next();
 });
-
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 

@@ -45,6 +45,34 @@ export const AuthProvider = ({ children }) => {
 		setLoading(false); // Fin du chargement
 	}
 
+	async function refreshAuth() {
+		console.log('reached tonton');
+		try {
+			const response = await fetch('/api/refresh-token', {
+				method: 'POST',
+				credentials: 'include',
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
+			const data = await response.json();
+
+			if (data.token) {
+				// Option : stocker dans un cookie plutôt que dans localStorage
+				document.cookie = `auth_token=${data.token}; Path=/; HttpOnly; Secure`;
+				setToken(data.token);
+				console.log(data.token);
+			}
+
+			await checkAuth();
+		} catch (error) {
+			console.error('Erreur lors du rafraîchissement de l’authentification :', error);
+			setUser(null);
+		}
+	}
+
 	// Utilisation de useEffect pour récupérer le token depuis localStorage uniquement côté client
 	useEffect(() => {
 		// Vérifier si le code est exécuté côté client avant d'utiliser localStorage
@@ -57,11 +85,25 @@ export const AuthProvider = ({ children }) => {
 	// Vérification de l'authentification après que le token soit récupéré
 	useEffect(() => {
 		if (token) {
-			checkAuth(); // Appeler checkAuth seulement si un token est disponible
+			// Vérifier l'authentification initiale si le token est présent
+			checkAuth();
+
+			// Rafraîchir le token automatiquement avant son expiration
+			const interval = setInterval(() => {
+				refreshAuth().catch(() => {
+					setLoading(false); // Si le rafraîchissement échoue, arrêter le chargement
+				});
+			}, 10 * 60 * 1000); // Rafraîchir toutes les 10 minutes
+
+			// Nettoyer l'intervalle au démontage ou lors d'un changement de token
+			return () => clearInterval(interval);
 		} else {
-			setLoading(false); // Si pas de token, on considère que l'utilisateur est déconnecté
+			// Si le token est absent, essayer de rafraîchir l'authentification
+			refreshAuth().catch(() => {
+				setLoading(false); // En cas d'échec, arrêter le chargement
+			});
 		}
-	}, [token]); // Ce useEffect se déclenche chaque fois que le token change
+	}, [token]); // Dépendance au token pour détecter les changements
 
 	return <AuthContext.Provider value={{ user, setUser, loading, checkAuth }}>{children}</AuthContext.Provider>;
 };

@@ -5,69 +5,55 @@ import User from '../../models/UserModel';
 
 export async function POST(req) {
 	try {
-		// Récupérer les données de la requête ou des cookies
-		const { username, password } = await req.json().catch(() => ({})); // Pour le cas où aucune donnée JSON n'est fournie
-		const cookies = req.headers.get('cookie'); // Récupère les cookies de l'entête HTTP
+		// Récupérer les données de la requête
+		const { username, password } = await req.json();
 
-		await dbConnect(); // Connexion à la base de données
+		// Connexion à la base de données
+		await dbConnect();
 
-		// Cas 1 : Authentification avec nom d'utilisateur et mot de passe
+		// Authentification avec nom d'utilisateur et mot de passe
 		if (username && password) {
 			const user = await User.findOne({ username });
+
+			// Vérification de l'utilisateur
 			if (!user) {
 				return new Response(JSON.stringify({ error: "Nom d'utilisateur ou mot de passe incorrect" }), { status: 401 });
 			}
 
+			// Vérification du mot de passe
 			const isPasswordValid = await bcrypt.compare(password.trim(), user.password);
 			if (!isPasswordValid) {
 				return new Response(JSON.stringify({ error: "Nom d'utilisateur ou mot de passe incorrect" }), { status: 401 });
 			}
 
-			// Générer un token JWT
-			const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '3h' });
+			// Générer les tokens
+			const accessToken = jwt.sign(
+				{ id: user._id, email: user.email },
+				process.env.JWT_SECRET,
+				{ expiresIn: '3h' } // Durée de l'access token
+			);
 
-			// Réponse réussie avec un nouveau cookie
+			const refreshToken = jwt.sign(
+				{ id: user._id },
+				process.env.REFRESH_TOKEN_SECRET,
+				{ expiresIn: '7d' } // Durée du refresh token
+			);
+
+			// Réponse avec les cookies
 			return new Response(JSON.stringify({ message: 'Connexion réussie', redirectTo: '/user-space' }), {
 				status: 200,
 				headers: {
-					'Set-Cookie': `auth_token=${token}; HttpOnly; Path=/; Max-Age=10800; SameSite=Strict`,
+					'Set-Cookie': [
+						`access_token=${accessToken}; HttpOnly; Path=/; Max-Age=10800; SameSite=Strict; Secure`,
+						`refresh_token=${refreshToken}; HttpOnly; Path=/; Max-Age=604800; SameSite=Strict; Secure`,
+					].join(', '),
 					'Content-Type': 'application/json',
 				},
 			});
 		}
 
-		// Cas 2 : Vérification d'un token existant dans les cookies
-		if (cookies) {
-			const cookie = cookies.split(';').find((cookie) => cookie.trim().startsWith('token='));
-			const token = cookie ? cookie.split('=')[1] : null;
-
-			if (!token) {
-				return new Response(JSON.stringify({ error: 'Token non trouvé dans les cookies' }), { status: 401 });
-			}
-
-			// Vérifier et décoder le token
-			let decoded;
-			try {
-				decoded = jwt.verify(token, process.env.JWT_SECRET);
-			} catch (err) {
-				if (err instanceof jwt.TokenExpiredError) {
-					return new Response(JSON.stringify({ error: 'Token expiré' }), { status: 401 });
-				}
-				return new Response(JSON.stringify({ error: 'Token invalide' }), { status: 401 });
-			}
-
-			// Récupérer l'utilisateur depuis l'ID décodé
-			const user = await User.findById(decoded.id).select('-password');
-			if (!user) {
-				return new Response(JSON.stringify({ error: 'Utilisateur non trouvé' }), { status: 404 });
-			}
-
-			// Réponse réussie
-			return new Response(JSON.stringify({ message: 'Token valide', user }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-		}
-
-		// Si aucun des cas n'est valide
-		return new Response(JSON.stringify({ error: 'Requête invalide : fournir un token ou des identifiants' }), { status: 400 });
+		// Si aucun identifiant n'est fourni
+		return new Response(JSON.stringify({ error: 'Requête invalide : fournir un nom d’utilisateur et un mot de passe' }), { status: 400 });
 	} catch (err) {
 		console.error('Erreur interne :', err);
 		return new Response(JSON.stringify({ error: 'Erreur interne du serveur' }), { status: 500 });

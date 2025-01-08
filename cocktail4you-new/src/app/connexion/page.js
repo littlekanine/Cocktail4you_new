@@ -55,7 +55,7 @@ const Page = () => {
 
 			// Stockage du token dans le localStorage
 			if (data.token) {
-				localStorage.setItem('auth_token', data.token);
+				// localStorage.setItem('auth_token', data.token);
 			}
 
 			if (data.redirectTo) {

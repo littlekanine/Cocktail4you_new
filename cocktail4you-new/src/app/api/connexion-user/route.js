@@ -27,7 +27,7 @@ export async function POST(req) {
 			}
 
 			// Générer les tokens
-			const accessToken = jwt.sign(
+			const auth_token = jwt.sign(
 				{ id: user._id, email: user.email },
 				process.env.JWT_SECRET,
 				{ expiresIn: '3h' } // Durée de l'access token
@@ -44,7 +44,7 @@ export async function POST(req) {
 				status: 200,
 				headers: {
 					'Set-Cookie': [
-						`access_token=${accessToken}; HttpOnly; Path=/; Max-Age=10800; SameSite=Strict; Secure`,
+						`access_token=${auth_token}; HttpOnly; Path=/; Max-Age=10800; SameSite=Strict; Secure`,
 						`refresh_token=${refreshToken}; HttpOnly; Path=/; Max-Age=604800; SameSite=Strict; Secure`,
 					].join(', '),
 					'Content-Type': 'application/json',

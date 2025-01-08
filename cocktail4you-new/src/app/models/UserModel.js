@@ -37,6 +37,12 @@ const userSchema = new mongoose.Schema(
 		lastLogin: {
 			type: Date,
 		},
+		likedCocktails: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Cocktail', // Référence au modèle Cocktail
+			},
+		],
 	},
 	{ timestamps: true }
 );

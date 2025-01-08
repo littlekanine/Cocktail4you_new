@@ -7,7 +7,7 @@ export async function GET(req) {
 	console.log('API reached');
 
 	// Récupérer le token du cookie
-	const token = req.cookies.get('auth_token'); // Si pas dans l'en-tête, chercher dans les cookies
+	const token = req.cookies.get('access_token');
 	const tokenValue = token ? token.value : null;
 	console.log('Token:', tokenValue);
 

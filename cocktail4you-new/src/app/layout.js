@@ -8,7 +8,7 @@ import Header from './header/header';
 export default function RootLayout({ children }) {
 	return (
 		<html lang="fr">
-			<body>
+			<body className="overflow-none">
 				<AuthProvider>
 					<CocktailProvider>
 						<div className="layout-container">

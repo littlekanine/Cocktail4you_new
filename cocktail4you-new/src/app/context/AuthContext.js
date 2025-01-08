@@ -73,6 +73,33 @@ export const AuthProvider = ({ children }) => {
 		}
 	}
 
+	async function logout() {
+		try {
+			// Appelle l'API de déconnexion pour supprimer les cookies côté serveur
+			const response = await fetch('/api/logout', {
+				method: 'POST',
+				credentials: 'include', // Inclure les cookies dans la requête
+			});
+
+			if (!response.ok) {
+				throw new Error('Erreur lors de la déconnexion côté serveur');
+			}
+
+			// Réinitialise l'état côté client
+			setUser(null);
+			setToken(null);
+
+			// Supprime également le token localement si utilisé
+			localStorage.removeItem('auth_token');
+		} catch (error) {
+			console.error('Erreur lors de la déconnexion :', error);
+		} finally {
+			// Nettoyer l'état même en cas d'erreur
+			setUser(null);
+			setToken(null);
+		}
+	}
+
 	// Utilisation de useEffect pour récupérer le token depuis localStorage uniquement côté client
 	useEffect(() => {
 		// Vérifier si le code est exécuté côté client avant d'utiliser localStorage
@@ -100,10 +127,10 @@ export const AuthProvider = ({ children }) => {
 		} else {
 			// Si le token est absent, essayer de rafraîchir l'authentification
 			refreshAuth().catch(() => {
-				setLoading(false); // En cas d'échec, arrêter le chargement
+				logout();
 			});
 		}
 	}, [token]); // Dépendance au token pour détecter les changements
 
-	return <AuthContext.Provider value={{ user, setUser, loading, checkAuth }}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={{ user, setUser, loading, checkAuth, logout }}>{children}</AuthContext.Provider>;
 };

@@ -15,6 +15,27 @@ const Cocktails = ({ searchTerm }) => {
 	const [isVisible, setIsVisible] = useState(false);
 
 	useEffect(() => {
+		if (user) {
+			// Appeler une API pour récupérer les favoris de l'utilisateur à partir de la base de données
+			const fetchFavorites = async () => {
+				try {
+					const response = await fetch('/api/favorites', { method: 'GET', credentials: 'include' });
+					const result = await response.json();
+					console.log(result);
+					if (response.ok) {
+						// Mettre à jour l'état clickedStates en fonction des favoris
+						setClickedStates(cocktails.map((cocktail) => result.favorites.includes(cocktail._id.toString())));
+					}
+				} catch (error) {
+					console.error('Erreur lors du chargement des favoris:', error);
+				}
+			};
+
+			fetchFavorites();
+		}
+	}, [user, cocktails]);
+
+	useEffect(() => {
 		if (cocktails?.length > 0) {
 			setClickedStates(Array(cocktails.length).fill(false));
 		}

@@ -1,11 +1,9 @@
 import dbConnect from '../../../../lib/mongodb';
 import { verifyToken } from '@/app/utils/verifyToken';
 import User from '@/app/models/UserModel';
-import { NextResponse } from 'next/server'; // Importation de NextResponse
+import { NextResponse } from 'next/server';
 
 export async function GET(req) {
-	console.log('API reached');
-
 	// Récupérer le token du cookie
 	const token = req.cookies.get('access_token');
 	const tokenValue = token ? token.value : null;

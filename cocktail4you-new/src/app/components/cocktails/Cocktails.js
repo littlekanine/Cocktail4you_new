@@ -38,17 +38,20 @@ const Cocktails = ({ searchTerm }) => {
 		try {
 			const response = await fetch('/api/favorites', {
 				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ userId: user._id, cocktailId }),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ cocktailId }),
+				credentials: 'include', // Permet d'inclure les cookies dans la requête
 			});
 
 			const result = await response.json();
+			console.log(document.cookie);
+
 			if (!response.ok) {
 				console.error('Erreur lors de la sauvegarde :', result.error);
 				return;
 			}
-
-			alert('Cocktail ajouté à vos favoris !');
 		} catch (error) {
 			console.error('Erreur de requête :', error);
 		}
@@ -67,6 +70,7 @@ const Cocktails = ({ searchTerm }) => {
 		// Sauvegarder le cocktail comme favori
 		saveFavorite(cocktailId);
 	};
+
 	useEffect(() => {
 		if (activeCard !== null) {
 			const timer = setTimeout(() => {
@@ -103,7 +107,7 @@ const Cocktails = ({ searchTerm }) => {
 		<div className="flex column gap20">
 			{filteredCocktails.map((cocktail, index) => {
 				// Extrait l'identifiant unique du cocktail
-				const cocktailId = cocktail._id; // Assurez-vous que `_id` est bien présent dans vos données
+				const cocktailId = cocktail._id;
 
 				return (
 					<div

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
 import Button from '../components/buttons/Button';
+import Link from 'next/link';
 
 const Page = () => {
 	const { user, loading, logout } = useAuth(); // Récupère l'utilisateur et l'état de chargement depuis le contexte
@@ -45,7 +46,9 @@ const Page = () => {
 			<div className="flex center align-center gap20 heightFull column">
 				<Button className="width250" text={'Partager ma création'} />
 				<Button className="width250" text={'Mes créations'} />
-				<Button className="width250" text={"Mention j'aime"} />
+				<Link href="./liked">
+					<Button className="width250" text={"Mention j'aime"} />
+				</Link>
 				<Button className="width250" text={'Créer ma liste de course'} />
 				<Button className="width250" text={'Mes listes'} />
 				<Button className="width250" text={'Deconnexion'} onClick={handleLogout} />

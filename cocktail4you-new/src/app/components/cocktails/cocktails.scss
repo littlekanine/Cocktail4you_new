@@ -8,7 +8,7 @@
 .card-info {
 	position: relative;
 	width: 225px;
-	height: 94px;
+	height: 100px;
 	background-color: $brown;
 	border-radius: 25px;
 	color: $yellow;
@@ -17,15 +17,18 @@
 	transition: all 0.5s ease-in-out;
 	scrollbar-width: none;
 	h1 {
-		font-size: 26px;
-		font-weight: 400;
-	}
-	h2 {
+		font-family: 'Bebas Neue';
 		font-size: 22px;
 		font-weight: 400;
 	}
+	h2 {
+		font-family: 'Bebas Neue';
+		font-size: 18px;
+		font-weight: 100;
+	}
 	h3 {
-		font-size: 20px;
+		font-family: 'Bebas Neue';
+		font-size: 16px;
 		font-weight: 400;
 	}
 
@@ -38,7 +41,7 @@
 
 	&.card-info.collapsed {
 		width: 225px;
-		height: 94px;
+		height: 100px;
 		transition: none;
 	}
 }
@@ -67,12 +70,20 @@
 	opacity: 1;
 	max-height: 100%;
 	transition: opacity 2s ease;
-	font-size: 28px;
+	font-size: 26px;
 	font-weight: 300;
 	overflow: auto;
+	& p {
+		font-family: 'Bebas Neue';
+	}
 }
 .deco {
 	font-size: 28px;
 	color: $yellow;
 	font-family: 'Karantina';
+}
+
+.card-indications {
+	color: $white;
+	font-size: 24px;
 }

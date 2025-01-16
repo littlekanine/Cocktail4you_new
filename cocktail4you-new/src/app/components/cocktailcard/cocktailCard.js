@@ -12,7 +12,13 @@ const CocktailCard = ({ cocktail, index, activeCard, clickedStates, handleCardCl
 			onClick={() => handleCardClick(index)}
 		>
 			{cocktail.img ? (
-				<Image src={cocktail.img} alt={cocktail.name || 'Default Name'} className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`} />
+				<Image
+					src={cocktail.img}
+					alt={cocktail.name || 'Default Name'}
+					className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`}
+					width={94}
+					height={94}
+				/>
 			) : (
 				<p>Aucune image disponible</p>
 			)}
@@ -30,29 +36,44 @@ const CocktailCard = ({ cocktail, index, activeCard, clickedStates, handleCardCl
 							<div className="flex row start align-center">
 								<div>
 									{cocktail.ingredients.map((ingredient, index) => (
-										<div key={index}>
-											<p>
-												{ingredient.name || 'Inconnu'} - {ingredient.quantity || ''} {ingredient.unit || ''}
+										<div className="flex widthFull" key={index}>
+											<p className="flex space-between width280 shadow">
+												<span className="flex">{ingredient.name || 'Inconnu'}</span>
+												<span className="flex card-indications shadow ">
+													{' '}
+													{ingredient.quantity || ''} {ingredient.unit || ''}
+												</span>
 											</p>
 										</div>
 									))}
 								</div>
 							</div>
-							<p>Recette: {cocktail.instructions}</p>
-							<p>Le verre : {cocktail.glass_type}</p>
-							<div>
-								<p>Décorations :</p>
-								{Array.isArray(cocktail.decoration) && cocktail.decoration.length > 0 ? (
-									cocktail.decoration.map((decoration, index) => (
-										<div key={index} className="deco">
-											{decoration.name || 'Inconnu'} - {decoration.quantity || 'N/A'}
-										</div>
-									))
-								) : (
-									<p>Aucune décoration disponible.</p>
-								)}
+							<div className="flex center column">
+								<p className="flex column center align-center gap10">
+									Recette <span className="card-indications shadow text-center">{cocktail.instructions}</span>
+								</p>
 							</div>
-							<p>{cocktail.history}</p>
+							<p>
+								Le verre : <span className="card-indications shadow">{cocktail.glass_type}</span>
+							</p>
+							<div>
+								<p>Décorations : </p>
+								<span className="card-indications shadow">
+									{Array.isArray(cocktail.decoration) && cocktail.decoration.length > 0 ? (
+										cocktail.decoration.map((decoration, index) => (
+											<div key={index} className="deco width280">
+												<p className="card-indications flex row space-between shadow">
+													<span className="flex">{decoration.name || 'Inconnu'}</span>{' '}
+													<span className="flex"> {decoration.quantity || 'N/A'}</span>
+												</p>
+											</div>
+										))
+									) : (
+										<p>A votre appréciation</p>
+									)}
+								</span>
+							</div>
+							<p className="card-indications shadow">{cocktail.history}</p>
 						</div>
 					</div>
 				)}

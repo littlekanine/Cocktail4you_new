@@ -5,7 +5,7 @@ const nextConfig = {
 		ignoreDuringBuilds: true, // Ignorer les erreurs ESLint pendant les builds si nécessaire
 	},
 	images: {
-		unoptimized: true, // Désactive les optimisations d'images de Next.js
+		domains: ['cocktails-image-4you.s3.eu-north-1.amazonaws.com'], // Ajoutez votre domaine S3 ici
 	},
 };
 

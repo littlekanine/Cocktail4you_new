@@ -3,13 +3,13 @@
 import './homePage.scss';
 import Button from '../components/buttons/Button';
 import Cocktails from '../components/cocktails/Cocktails';
+import { useCocktails } from '../context/CocktailContext';
 import { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 
 const HomePage = () => {
+	const { activeCard, setActiveCard } = useCocktails();
 	const [inputValue, setInputValue] = useState('');
 	const [isVisible, setIsVisible] = useState(true);
-	const [activeCard, setActiveCard] = useState(null);
 	const [isModalVisible, setIsModalVisible] = useState(true);
 	const [isOver18, setIsOver18] = useState(false);
 
@@ -70,7 +70,7 @@ const HomePage = () => {
 				<>
 					<div className="flex column">
 						{inputValue === '' && (
-							<h1 className={`title flex center align-center ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
+							<h1 className={`title flex center align-center shadow ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
 								Cocktails<span className="number">4</span>You
 							</h1>
 						)}
@@ -90,7 +90,7 @@ const HomePage = () => {
 							</div>
 						</div>
 						{inputValue === '' && (
-							<div className={`flex row center align-center spacee-between ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
+							<div className={`flex row center align-center gap20 ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
 								<Button text="Populaire" className="shadow" />
 								<Button text="Créations" className="shadow" />
 							</div>

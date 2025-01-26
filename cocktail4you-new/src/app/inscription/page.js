@@ -69,7 +69,9 @@ const Page = () => {
 				<div className="flex connexion column">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center gap10">
 						<div className="flex column center width80">
-							<label htmlFor="email">Email</label>
+							<label className="Karantina" htmlFor="email">
+								Email
+							</label>
 							<input id="email" type="text" name="email" value={formData.email} onChange={handleChange} required />
 						</div>
 						<div className="flex column center width80">

@@ -75,18 +75,18 @@ const Page = () => {
 			<div className="connexion-container flex center align-center widthFull column">
 				<h1 className="flex center widthFull title-connexion shadow">Accéder à votre espace personnel</h1>
 				<div className="flex connexion column center align-center">
-					<form onSubmit={handleSubmit} className="flex height100vh column center align-center width80">
+					<form onSubmit={handleSubmit} className="flex height100vh column center align-center width80 gap20">
 						<div className="nomUtilisateur flex column center width80">
-							<p>Nom d&apos;utilisateur</p>
+							<p className="flex center karantina font26">Nom d&apos;utilisateur</p>
 							<label htmlFor="username"></label>
 							<input type="text" name="username" id="username" autoComplete="username" value={formData.username} onChange={handleChange} required />
 							<div className="flex center">
-								<p>Nom d&apos;utilisateur oublié ?</p>
+								<p className="karantina font22">Nom d&apos;utilisateur oublié ?</p>
 							</div>
 						</div>
 
 						<div className="flex column center width80 margin10Bottom">
-							<p>Mot de passe</p>
+							<p className="flex center karantina font26">Mot de passe</p>
 							<label htmlFor="password"></label>
 							<input
 								type="password"
@@ -98,7 +98,7 @@ const Page = () => {
 								required
 							/>
 							<div className="flex center">
-								<p>Mot de passe oublié ?</p>
+								<p className="karantina font22">Mot de passe oublié ?</p>
 							</div>
 						</div>
 

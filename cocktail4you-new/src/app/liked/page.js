@@ -4,76 +4,27 @@ import { useState, useEffect } from 'react';
 import CocktailCard from '../components/cocktailcard/cocktailCard';
 import './page.scss';
 import '../components/cocktails/cocktails.scss';
+import { useAuth } from '../context/AuthContext';
+import { useCocktails } from '../context/CocktailContext';
 
 const Page = () => {
-	const [cocktails, setCocktails] = useState([]); // Tableau des cocktails
-	const [favorites, setFavorites] = useState([]); // Tableau des favoris récupérés
-	const [clickedStates, setClickedStates] = useState([]); // État des boutons favori (si cliqué ou non)
-	const [activeCard, setActiveCard] = useState(null); // Carte active pour l'affichage détaillé
-	const [isVisible, setIsVisible] = useState(false); // Contrôle de la visibilité des détails
+	const { user } = useAuth();
+	const { cocktails, loading, favorites, activeCard, setActiveCard, isVisible, setIsVisible, fetchFavorites } = useCocktails();
 
-	// Récupérer les cocktails et les favoris depuis les APIs
-	useEffect(() => {
-		const fetchCocktails = async () => {
-			try {
-				const response = await fetch('/api/cocktails');
-				const data = await response.json();
-				console.log('Cocktails:', data); // Vérifier les cocktails récupérés
-				if (data.success && Array.isArray(data.data)) {
-					setCocktails(data.data); // Utilisez le tableau de cocktails sous 'data'
-				} else {
-					console.error('La réponse ne contient pas un tableau valide sous "data":', data);
-				}
-			} catch (error) {
-				console.error('Erreur lors du chargement des cocktails:', error);
-			}
-		};
+	const likedCocktails = cocktails.filter((cocktail) => favorites.includes(cocktail._id));
 
-		const fetchFavorites = async () => {
-			try {
-				const response = await fetch('/api/favorites', { method: 'GET', credentials: 'include' });
-				const result = await response.json();
-				console.log('Favorites:', result); // Vérifier les favoris récupérés
-				if (response.ok) {
-					setFavorites(result.favorites); // Stocker les favoris dans l'état favorites
-				}
-			} catch (error) {
-				console.error('Erreur lors du chargement des favoris:', error);
-			}
-		};
-
-		fetchCocktails(); // Charger les cocktails
-		fetchFavorites(); // Charger les favoris
-	}, []);
-
-	// Fonction pour gérer l'ajout/suppression des favoris (si nécessaire)
-	const handleFavoriteClick = (cocktailId) => {
-		setClickedStates((prevClickedStates) => (prevClickedStates.includes(cocktailId) ? prevClickedStates.filter((id) => id !== cocktailId) : [...prevClickedStates, cocktailId]));
-	};
-
-	// Filtrer les cocktails en fonction des favoris
-	const likedCocktails = Array.isArray(cocktails)
-		? cocktails.filter((cocktail) => favorites.includes(cocktail._id)) // Comparer directement les IDs (les deux sont des chaînes)
-		: [];
-
-	console.log('Liked Cocktails:', likedCocktails); // Afficher les cocktails filtrés
-
-	// Gérer l'activation de la carte
-	const handleCardClick = (index) => {
-		setActiveCard((prevState) => (prevState === index ? null : index));
-	};
-
-	// Gérer l'affichage détaillé
+	// Gérer l'affichage détaillé avec délai
 	useEffect(() => {
 		if (activeCard !== null) {
 			const timer = setTimeout(() => {
 				setIsVisible(true);
 			}, 500);
-
 			return () => clearTimeout(timer);
 		}
+		fetchFavorites();
 	}, [activeCard]);
 
+	// Assurer la visibilité correcte après désactivation
 	useEffect(() => {
 		if (activeCard === null) {
 			setIsVisible(false);
@@ -85,17 +36,18 @@ const Page = () => {
 		<div className="flex column gap20">
 			<h1 className="flex center title shadow">Mes cocktails favoris</h1>
 
-			<div className="cocktail-list flex center">
-				{likedCocktails.length > 0 ? (
+			<div className="cocktail-list flex center align-center column gap20">
+				{loading ? (
+					<div>Chargement des favoris...</div>
+				) : likedCocktails.length > 0 ? (
 					likedCocktails.map((cocktail, index) => (
 						<CocktailCard
-							key={cocktail._id} // Utilisez un identifiant unique pour chaque carte
+							key={cocktail._id} // Identifiant unique pour chaque carte
 							cocktail={cocktail}
 							index={index}
 							activeCard={activeCard}
-							clickedStates={clickedStates}
-							handleCardClick={handleCardClick}
-							handleButtonClick={handleFavoriteClick}
+							handleCardClick={setActiveCard} // Passer setActiveCard directement ici
+							handleButtonClick={(event) => handleButtonClick(event, cocktail._id)}
 							isVisible={isVisible}
 						/>
 					))

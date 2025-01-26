@@ -17,15 +17,15 @@
 	transition: all 0.5s ease-in-out;
 	scrollbar-width: none;
 	h1 {
-		font-size: 26px;
-		font-weight: 400;
-	}
-	h2 {
 		font-size: 22px;
 		font-weight: 400;
 	}
-	h3 {
+	h2 {
 		font-size: 20px;
+		font-weight: 400;
+	}
+	h3 {
+		font-size: 18px;
 		font-weight: 400;
 	}
 
@@ -38,7 +38,7 @@
 
 	&.card-info.collapsed {
 		width: 225px;
-		height: 94px;
+		height: 110px;
 		transition: none;
 	}
 }
@@ -53,6 +53,7 @@
 
 	&.expanded {
 		width: 100%;
+		height: 94px;
 		transform-origin: left;
 		align-items: center !important;
 		justify-content: center !important;
@@ -60,6 +61,7 @@
 
 	&.card-image.collapsed {
 		width: 94px;
+		height: 110px;
 	}
 }
 

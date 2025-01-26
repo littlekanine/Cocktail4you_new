@@ -46,25 +46,25 @@
 	}
 }
 
-.card-image {
-	width: 94px;
-	height: 94px;
-	object-fit: cover;
-	border-radius: 25px;
-	transition: all 0.5s ease-in-out;
-	transform-origin: left;
+// .card-image {
+// 	width: 94px;
+// 	height: 94px;
+// 	object-fit: cover;
+// 	border-radius: 25px;
+// 	transition: all 0.5s ease-in-out;
+// 	transform-origin: left;
 
-	&.expanded {
-		width: 100%;
-		transform-origin: left;
-		align-items: center !important;
-		justify-content: center !important;
-	}
+// 	&.expanded {
+// 		width: 100%;
+// 		transform-origin: left;
+// 		align-items: center !important;
+// 		justify-content: center !important;
+// 	}
 
-	&.card-image.collapsed {
-		width: 94px;
-	}
-}
+// 	&.card-image.collapsed {
+// 		width: 94px;
+// 	}
+// }
 
 .design-card-expanded {
 	opacity: 1;

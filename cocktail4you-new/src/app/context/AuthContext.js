@@ -44,7 +44,6 @@ export const AuthProvider = ({ children }) => {
 	}
 
 	async function refreshAuth() {
-		console.log('reached tonton');
 		try {
 			const response = await fetch('/api/refresh-token', {
 				method: 'POST',
@@ -61,7 +60,6 @@ export const AuthProvider = ({ children }) => {
 				// Option : stocker dans un cookie plutôt que dans localStorage
 				document.cookie = `auth_token=${data.token}; Path=/; HttpOnly; Secure`;
 				setToken(data.token);
-				console.log(data.token);
 			}
 
 			await checkAuth();

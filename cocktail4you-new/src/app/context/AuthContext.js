@@ -96,27 +96,6 @@ export const AuthProvider = ({ children }) => {
 		}
 	}
 
-	async function addFavorite(cocktailId) {
-		try {
-			const response = await fetch('/api/favorites', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ cocktailId }), // Envoi du cocktailId
-				credentials: 'include', // Inclure les cookies
-			});
-
-			if (!response.ok) {
-				throw new Error('Erreur lors de la mise à jour des favoris');
-			}
-
-			const data = await response.json();
-			console.log('Favoris mis à jour :', data.favorites);
-			// Optionnel : mettre à jour localement les favoris dans le contexte
-		} catch (error) {
-			console.error('Erreur lors de la mise à jour des favoris :', error);
-		}
-	}
-
 	// Utilisation de useEffect pour récupérer le token depuis localStorage uniquement côté client
 	useEffect(() => {
 		// Vérifier si le code est exécuté côté client avant d'utiliser localStorage
@@ -149,5 +128,5 @@ export const AuthProvider = ({ children }) => {
 		}
 	}, [token]); // Dépendance au token pour détecter les changements
 
-	return <AuthContext.Provider value={{ user, setUser, loading, checkAuth, logout, addFavorite }}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={{ user, setUser, loading, checkAuth, logout }}>{children}</AuthContext.Provider>;
 };

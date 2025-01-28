@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Button from '../components/buttons/Button';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '../context/LanguageContext';
 
 const Page = () => {
 	const [formData, setFormData] = useState({ email: '', username: '', password: '' });
@@ -13,6 +14,7 @@ const Page = () => {
 	const [message, setMessage] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
+	const { isFrench } = useLanguage();
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -65,7 +67,12 @@ const Page = () => {
 	return (
 		<div className="height100vh flex">
 			<div className="connexion-container flex center align-center widthFull column">
-				<h1 className="flex center widthFull title-connexion shadow">Rejoignez-nous !</h1>
+				{isFrench ? (
+					<h1 className="flex center widthFull title-connexion shadow">Rejoignez-nous !</h1>
+				) : (
+					<h1 className="flex center widthFull title-connexion shadow">Join us !</h1>
+				)}
+
 				<div className="flex connexion column">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center gap10">
 						<div className="flex column center width80">
@@ -75,15 +82,20 @@ const Page = () => {
 							<input id="email" type="text" name="email" value={formData.email} onChange={handleChange} required />
 						</div>
 						<div className="flex column center width80">
-							<label htmlFor="username">Nom d&apos;utilisateur</label>
+							{isFrench ? <label htmlFor="username">Nom d&apos;utilisateur</label> : <label htmlFor="username">Username</label>}
 							<input id="username" type="text" name="username" value={formData.username} onChange={handleChange} required autoComplete="username" />
 						</div>
 						<div className="flex column center width80 margin10Bottom">
-							<label htmlFor="password">Mot de passe</label>
+							{isFrench ? <label htmlFor="password">Mot de passe</label> : <label htmlFor="password">Password</label>}
+
 							<input id="password" type="password" name="password" value={formData.password} onChange={handleChange} required autoComplete="new-password" />
 						</div>
 						<div className="flex center margin10Bottom">
-							<Button text={isLoading ? 'Chargement...' : 'Inscription'} className="flex center align-center connexion-button" disabled={isLoading} />
+							{isFrench ? (
+								<Button text={isLoading ? 'Chargement...' : 'Inscription'} className="flex center align-center connexion-button" disabled={isLoading} />
+							) : (
+								<Button text={isLoading ? 'Chargement...' : 'Sign up'} className="flex center align-center connexion-button" disabled={isLoading} />
+							)}
 						</div>
 					</form>
 					{error && (

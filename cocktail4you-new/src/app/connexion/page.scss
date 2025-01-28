@@ -6,6 +6,10 @@
 	height: 60%;
 	background-color: $brown;
 	border-radius: 25px;
+
+	@media (min-width: 520px) {
+		height: 40%;
+	}
 }
 
 .title-connexion {

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import CocktailCard from '../components/cocktailcard/cocktailCard';
 import './page.scss';
-import '../components/cocktails/cocktails.scss';
+import '../components/cocktailcard/cocktailCard.scss';
 import { useAuth } from '../context/AuthContext';
 import { useCocktails } from '../context/CocktailContext';
 

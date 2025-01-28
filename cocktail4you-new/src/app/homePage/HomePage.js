@@ -5,6 +5,7 @@ import Button from '../components/buttons/Button';
 import Cocktails from '../components/cocktails/Cocktails';
 import { useCocktails } from '../context/CocktailContext';
 import { useState, useEffect, useMemo } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const HomePage = () => {
 	const { activeCard, setActiveCard } = useCocktails();
@@ -12,6 +13,7 @@ const HomePage = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [isModalVisible, setIsModalVisible] = useState(true);
 	const [isOver18, setIsOver18] = useState(false);
+	const { isFrench } = useLanguage();
 
 	const handleInputChange = (e) => {
 		setInputValue(e.target.value);
@@ -91,8 +93,8 @@ const HomePage = () => {
 						</div>
 						{inputValue === '' && (
 							<div className={`flex row center align-center gap20 ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
-								<Button text="Populaire" className="shadow" />
-								<Button text="Créations" className="shadow" />
+								{isFrench ? <Button text="Populaire" className="shadow" /> : <Button text="Popular" className="shadow" />}
+								{isFrench ? <Button text="Créations" className="shadow" /> : <Button text="Creations" className="shadow" />}
 							</div>
 						)}
 					</div>

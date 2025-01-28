@@ -32,7 +32,7 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 			) : (
 				<p>Aucune image disponible</p>
 			)}
-			<div className={`flex row card-info card-info space-between ${activeCard === index ? 'expanded' : 'collapsed'}`}>
+			<div className={`flex row card-info space-between  ${activeCard === index ? 'expanded' : 'collapsed'}`}>
 				{activeCard !== index ? (
 					<div className="flex column center design-card">
 						<h1>{cocktail.name}</h1>

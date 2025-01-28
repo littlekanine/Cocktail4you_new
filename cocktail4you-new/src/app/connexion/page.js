@@ -7,6 +7,7 @@ import Button from '../components/buttons/Button';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const Page = () => {
 	const { checkAuth } = useAuth();
@@ -15,6 +16,7 @@ const Page = () => {
 	const [message, setMessage] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
+	const { isFrench } = useLanguage();
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,20 +75,26 @@ const Page = () => {
 	return (
 		<div className="height100vh flex">
 			<div className="connexion-container flex center align-center widthFull column">
-				<h1 className="flex center widthFull title-connexion shadow">Accéder à votre espace personnel</h1>
+				{isFrench ? (
+					<h1 className="flex center widthFull title-connexion shadow">Accéder à votre espace personnel</h1>
+				) : (
+					<h1 className="flex center widthFull title-connexion shadow">Access your personal space</h1>
+				)}
+
 				<div className="flex connexion column center align-center">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center width80 gap20">
 						<div className="nomUtilisateur flex column center width80">
-							<p className="flex center karantina font26">Nom d&apos;utilisateur</p>
+							{isFrench ? <p className="flex karantina font26">Nom d&apos;utilisateur</p> : <p className="flex karantina font26">Username</p>}
 							<label htmlFor="username"></label>
 							<input type="text" name="username" id="username" autoComplete="username" value={formData.username} onChange={handleChange} required />
 							<div className="flex center">
-								<p className="karantina font22">Nom d&apos;utilisateur oublié ?</p>
+								{isFrench ? <p className="karantina font22">Nom d&apos;utilisateur oublié ?</p> : <p className="karantina font22">Forgot username ?</p>}
 							</div>
 						</div>
 
 						<div className="flex column center width80 margin10Bottom">
-							<p className="flex center karantina font26">Mot de passe</p>
+							{isFrench ? <p className="flex karantina font26">Mot de passe</p> : <p className="flex karantina font26">Password</p>}
+
 							<label htmlFor="password"></label>
 							<input
 								type="password"
@@ -98,7 +106,7 @@ const Page = () => {
 								required
 							/>
 							<div className="flex center">
-								<p className="karantina font22">Mot de passe oublié ?</p>
+								{isFrench ? <p className="karantina font22">Mot de passe oublié ?</p> : <p className="karantina font22">Forgot password ?</p>}
 							</div>
 						</div>
 
@@ -120,9 +128,7 @@ const Page = () => {
 					)}
 
 					<Link href="/inscription">
-						<div>
-							<p className="font400">S&apos;inscrire</p>
-						</div>
+						<div className="">{isFrench ? <p className="font400">S&apos;inscrire</p> : <p className="font400">Sign up</p>}</div>
 					</Link>
 				</div>
 			</div>

@@ -1,6 +1,5 @@
 'use client';
 
-import './cocktails.scss';
 import { useCocktails } from '@/app/context/CocktailContext';
 import { useAuth } from '@/app/context/AuthContext';
 import CocktailCard from '../cocktailcard/cocktailCard';

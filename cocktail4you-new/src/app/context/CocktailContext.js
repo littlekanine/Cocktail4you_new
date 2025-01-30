@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useLanguage } from './LanguageContext';
 
 // Créer le contexte CocktailContext
 const CocktailContext = createContext();
@@ -19,6 +20,7 @@ export const CocktailProvider = ({ children }) => {
 	const [clickedStates, setClickedStates] = useState({}); // Gestion des clics sur les favoris
 	const [activeCard, setActiveCard] = useState(null); // Carte active
 	const [isVisible, setIsVisible] = useState(false); // Visibilité de l'élément
+	const { isFrench } = useLanguage();
 
 	// Fonction pour charger les cocktails et les favoris
 	const fetchCocktails = async () => {
@@ -55,6 +57,46 @@ export const CocktailProvider = ({ children }) => {
 			console.error('Erreur lors du chargement des favoris :', error);
 			setFavorites([]); // En cas d'erreur, initialise à []
 		}
+	};
+	const getLocalizedCocktails = () => {
+		return cocktails.map((cocktail) => {
+			// Fonction pour récupérer la valeur localisée
+			const getLocalizedValue = (field) => {
+				if (Array.isArray(field)) {
+					// Si c'est un tableau d'objets avec des propriétés 'en' et 'fr'
+					return field
+						.map((item) => {
+							if (typeof item === 'object' && item !== null) {
+								return item[isFrench ? 'fr' : 'en'] || ''; // Accède à la valeur locale
+							}
+							return item || ''; // Retourne l'élément si c'est une chaîne, ou une chaîne vide
+						})
+						.join(', '); // Joindre avec une virgule (ou autre caractère de séparation)
+				}
+
+				// Si c'est un objet avec des clés 'en' et 'fr'
+				if (typeof field === 'object' && field !== null) {
+					return field[isFrench ? 'fr' : 'en'] || ''; // Accède à la valeur localisée
+				}
+
+				// Si c'est une valeur primitive (chaîne, nombre, etc.)
+				return field || ''; // Retourne la valeur ou une chaîne vide
+			};
+
+			return {
+				...cocktail,
+				// Applique la localisation à chaque propriété du cocktail
+				name: getLocalizedValue(cocktail.name),
+				ingredients: cocktail.ingredients.map((ingredient) => ({
+					...ingredient,
+					name: getLocalizedValue(ingredient.name), // Adaptation des ingrédients
+				})),
+				instructions: getLocalizedValue(cocktail.instructions),
+				category: getLocalizedValue(cocktail.category),
+				tags: getLocalizedValue(cocktail.tags),
+				glass_type: getLocalizedValue(cocktail.glass_type),
+			};
+		});
 	};
 
 	// Fonction pour sauvegarder un favori
@@ -191,7 +233,7 @@ export const CocktailProvider = ({ children }) => {
 	return (
 		<CocktailContext.Provider
 			value={{
-				cocktails,
+				cocktails: getLocalizedCocktails(),
 				loading,
 				favorites,
 				setFavorites,
@@ -207,6 +249,7 @@ export const CocktailProvider = ({ children }) => {
 				handleButtonClick,
 				handleFavoriteClick,
 				fetchFavorites,
+				getLocalizedCocktails,
 			}}
 		>
 			{children}

@@ -5,7 +5,6 @@ import { NextResponse } from 'next/server'; // Utilisation de NextResponse
 export async function POST(req) {
 	// Récupération du refresh token depuis les cookies
 	const refreshToken = req.cookies.get('refresh_token').value; // .get() pour obtenir les cookies
-	console.log('mon refresh :', refreshToken);
 
 	if (!refreshToken) {
 		return NextResponse.json({ error: 'Refresh token manquant' }, { status: 401 });

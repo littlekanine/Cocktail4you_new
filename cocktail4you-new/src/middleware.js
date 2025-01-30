@@ -12,7 +12,6 @@ export async function middleware(req) {
 	try {
 		// Vérifie et décode le token
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-		console.log('Token valide. Utilisateur :', decoded);
 
 		// Ajouter les informations utilisateur dans les en-têtes pour un usage ultérieur
 		const headers = new Headers(req.headers);

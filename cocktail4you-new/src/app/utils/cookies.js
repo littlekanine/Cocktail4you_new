@@ -5,7 +5,6 @@ export function getCookie(name) {
 		const parts = value.split(`; ${name}=`);
 		if (parts.length === 2) {
 			const token = parts.pop().split(';').shift();
-			console.log('Token trouvé:', token); // Ajout d'un log pour vérifier le token
 			return token;
 		}
 	}

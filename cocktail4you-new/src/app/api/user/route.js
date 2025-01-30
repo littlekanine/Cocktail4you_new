@@ -1,82 +1,81 @@
-import dbConnect from "../../../../lib/mongodb"; // Connexion à la DB
-import User from "../../models/UserModel";
-import crypto from "crypto";
-import nodemailer from "nodemailer";
+import dbConnect from '../../../../lib/mongodb'; // Connexion à la DB
+import User from '../../models/UserModel';
+import crypto from 'crypto';
+import nodemailer from 'nodemailer';
 
 async function sendVerificationEmail(email, token, id) {
-    try {
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASSWORD,
-            },
-            tls: {
-                rejectUnauthorized: false,
-            },
-        });
+	try {
+		const transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+				user: process.env.EMAIL_USER,
+				pass: process.env.EMAIL_PASSWORD,
+			},
+			tls: {
+				rejectUnauthorized: false,
+			},
+		});
 
-        const verificationUrl = `${process.env.BASE_URL}/api/verif-email?token=${token}&id=${id}`;
+		const verificationUrl = `${process.env.BASE_URL}/api/verif-email?token=${token}&id=${id}`;
 
-        // Contenu de l'e-mail
-        const mailOptions = {
-            from: process.env.EMAIL_USER, // Expéditeur
-            to: email, // Destinataire
-            subject: "Vérification de votre adresse e-mail",
-            html: `
+		// Contenu de l'e-mail
+		const mailOptions = {
+			from: process.env.EMAIL_USER, // Expéditeur
+			to: email, // Destinataire
+			subject: 'Vérification de votre adresse e-mail',
+			html: `
 				<p>Bonjour,</p>
 				<p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse e-mail :</p>
 				<p><a href="${verificationUrl}" target="_blank" style="text-decoration:none; color:blue; font-weight:bold;">Cliquez ici pour valider votre compte</a></p>
 				<p>Ce lien expire dans 1 heure.</p>
 			`,
-        };
+		};
 
-        // Envoyer l'email
-        await transporter.sendMail(mailOptions);
-        console.log(`Email de vérification envoyé à ${email}`);
-    } catch (err) {
-        console.error("Erreur lors de l'envoi de l'e-mail de vérification :", err);
-        throw new Error("Erreur lors de l'envoi de l'e-mail de vérification.");
-    }
+		// Envoyer l'email
+		await transporter.sendMail(mailOptions);
+	} catch (err) {
+		console.error("Erreur lors de l'envoi de l'e-mail de vérification :", err);
+		throw new Error("Erreur lors de l'envoi de l'e-mail de vérification.");
+	}
 }
 
 export async function POST(req) {
-    try {
-        const { email, username, password } = await req.json();
+	try {
+		const { email, username, password } = await req.json();
 
-        // Vérifier que les champs ne sont pas vides
-        if (!email || !username || !password) {
-            return new Response(JSON.stringify({ error: "Tous les champs sont requis" }), { status: 400, headers: { "Content-Type": "application/json" } });
-        }
+		// Vérifier que les champs ne sont pas vides
+		if (!email || !username || !password) {
+			return new Response(JSON.stringify({ error: 'Tous les champs sont requis' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+		}
 
-        // Connexion à MongoDB
-        await dbConnect();
+		// Connexion à MongoDB
+		await dbConnect();
 
-        // Vérifier si l'utilisateur existe déjà
-        const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-        if (existingUser) {
-            return new Response(JSON.stringify({ error: "Email ou nom d'utilisateur déjà utilisé" }), { status: 400, headers: { "Content-Type": "application/json" } });
-        }
+		// Vérifier si l'utilisateur existe déjà
+		const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+		if (existingUser) {
+			return new Response(JSON.stringify({ error: "Email ou nom d'utilisateur déjà utilisé" }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+		}
 
-        // Créer un nouvel utilisateur (le mot de passe sera haché par le middleware)
-        const newUser = new User({ email, username, password });
-        const token = crypto.randomBytes(32).toString("hex");
-        newUser.emailVerificationToken = token;
-        newUser.emailVerificationExpires = Date.now() + 3600000; // Expire dans 1 heure
-        await newUser.save();
+		// Créer un nouvel utilisateur (le mot de passe sera haché par le middleware)
+		const newUser = new User({ email, username, password });
+		const token = crypto.randomBytes(32).toString('hex');
+		newUser.emailVerificationToken = token;
+		newUser.emailVerificationExpires = Date.now() + 3600000; // Expire dans 1 heure
+		await newUser.save();
 
-        // Envoyer l'email de confirmation
-        await sendVerificationEmail(email, token);
+		// Envoyer l'email de confirmation
+		await sendVerificationEmail(email, token);
 
-        return new Response(
-            JSON.stringify({
-                message: "Utilisateur créé avec succès.",
-                redirectTo: `${process.env.BASE_URL}/waiting-confirm?name=${encodeURIComponent(newUser.username)}&email=${encodeURIComponent(newUser.email)}`,
-            }),
-            { status: 200, headers: { "Content-Type": "application/json" } }
-        );
-    } catch (err) {
-        console.error(err);
-        return new Response(JSON.stringify({ error: "Erreur interne du serveur" }), { status: 500, headers: { "Content-Type": "application/json" } });
-    }
+		return new Response(
+			JSON.stringify({
+				message: 'Utilisateur créé avec succès.',
+				redirectTo: `${process.env.BASE_URL}/waiting-confirm?name=${encodeURIComponent(newUser.username)}&email=${encodeURIComponent(newUser.email)}`,
+			}),
+			{ status: 200, headers: { 'Content-Type': 'application/json' } }
+		);
+	} catch (err) {
+		console.error(err);
+		return new Response(JSON.stringify({ error: 'Erreur interne du serveur' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+	}
 }

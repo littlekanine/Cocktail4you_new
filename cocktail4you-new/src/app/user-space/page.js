@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import Button from '../components/buttons/Button';
 import Link from 'next/link';
 
@@ -10,6 +11,7 @@ const Page = () => {
 	const { user, loading, logout } = useAuth(); // Récupère l'utilisateur et l'état de chargement depuis le contexte
 	const [isClient, setIsClient] = useState(false); // État pour vérifier si le composant est monté côté client
 	const router = useRouter();
+	const { isFrench } = useLanguage(); // Langue actuelle (français ou non)
 
 	useEffect(() => {
 		setIsClient(true); // Lorsque le composant est monté côté client
@@ -17,11 +19,11 @@ const Page = () => {
 
 	// Gestion des cas : erreur, chargement ou affichage des données utilisateur
 	if (loading) {
-		return <p>Chargement des données utilisateur...</p>;
+		return <p>{isFrench ? 'Chargement des données utilisateur...' : 'Loading user data...'}</p>;
 	}
 
 	if (!user) {
-		return <p>Aucun utilisateur trouvé. Veuillez vous connecter.</p>;
+		return <p>{isFrench ? 'Aucun utilisateur trouvé. Veuillez vous connecter.' : 'No user found. Please log in.'}</p>;
 	}
 
 	// Fonction de déconnexion
@@ -30,8 +32,8 @@ const Page = () => {
 			await logout(); // Appelle la fonction `logout` du contexte
 			router.push('/'); // Redirige l'utilisateur vers la page d'accueil après déconnexion
 		} catch (error) {
-			console.error('Erreur lors de la déconnexion :', error);
-			alert('Erreur lors de la déconnexion');
+			console.error(isFrench ? 'Erreur lors de la déconnexion :' : 'Error during logout:', error);
+			alert(isFrench ? 'Erreur lors de la déconnexion' : 'Error during logout');
 		}
 	};
 
@@ -42,16 +44,16 @@ const Page = () => {
 
 	return (
 		<div className="flex height100vh shadow column">
-			<h1 className="flex center">Bienvenue, {user.username}</h1>
 			<div className="flex center align-center gap20 heightFull column">
-				<Button className="width250" text={'Partager ma création'} />
-				<Button className="width250" text={'Mes créations'} />
+				<h1 className="flex center">{isFrench ? `Bienvenue, ${user.username}` : `Welcome, ${user.username}`}</h1>
+				<Button className="width250" text={isFrench ? 'Partager ma création' : 'Share My Creation'} />
+				<Button className="width250" text={isFrench ? 'Mes créations' : 'My Creations'} />
 				<Link href="./liked">
-					<Button className="width250" text={"Mention j'aime"} />
+					<Button className="width250" text={isFrench ? "Mentions j'aime" : 'Likes'} />
 				</Link>
-				<Button className="width250" text={'Créer ma liste de course'} />
-				<Button className="width250" text={'Mes listes'} />
-				<Button className="width250" text={'Deconnexion'} onClick={handleLogout} />
+				<Button className="width250" text={isFrench ? 'Créer ma liste de courses' : 'Create My Shopping List'} />
+				<Button className="width250" text={isFrench ? 'Mes listes' : 'My Lists'} />
+				<Button className="width250" text={isFrench ? 'Déconnexion' : 'Logout'} onClick={handleLogout} />
 			</div>
 		</div>
 	);

@@ -7,9 +7,9 @@ const SlideButton = () => {
 	const { isFrench, toggleLanguage } = useLanguage();
 	return (
 		<div>
-			<label class="switch">
+			<label className="switch">
 				<input type="checkbox" checked={!isFrench} onChange={toggleLanguage}></input>
-				<span class="slider round"></span>
+				<span className="slider round"></span>
 			</label>
 		</div>
 	);

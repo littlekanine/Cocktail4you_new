@@ -6,8 +6,6 @@ export async function GET(req) {
 	const token = searchParams.get('token'); // Récupérer le token depuis les paramètres de l'URL
 	const id = searchParams.get('id'); // Récupérer l'ID
 
-	console.log('Requête reçue pour la vérification de token :', token);
-
 	if (!token || !id) {
 		return new Response(JSON.stringify({ error: 'Token ou ID manquant' }), {
 			status: 400,

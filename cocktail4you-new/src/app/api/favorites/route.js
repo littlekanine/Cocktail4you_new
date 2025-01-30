@@ -8,7 +8,6 @@ export async function POST(req) {
 	try {
 		// Récupérer le token à partir des cookies
 		const token = req.cookies.get('access_token')?.value;
-		console.log(token);
 
 		await dbConnect();
 
@@ -29,7 +28,6 @@ export async function POST(req) {
 		// Récupérer l'utilisateur à partir de l'ID du token
 		const userId = decoded.id;
 		const { cocktailId } = await req.json();
-		console.log('Cocktail ID récupéré:', cocktailId);
 
 		const user = await User.findById(userId);
 		if (!user) {
@@ -72,7 +70,6 @@ export async function POST(req) {
 export async function GET(req) {
 	try {
 		const token = req.cookies.get('access_token')?.value;
-		console.log(token);
 
 		// Connectez à la base de données
 		await dbConnect();
@@ -115,7 +112,6 @@ export async function DELETE(req) {
 	try {
 		// Récupérer le token à partir des cookies
 		const token = req.cookies.get('access_token')?.value;
-		console.log(token);
 
 		await dbConnect();
 

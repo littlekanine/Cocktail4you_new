@@ -3,6 +3,7 @@
 import { useCocktails } from '@/app/context/CocktailContext';
 import { useAuth } from '@/app/context/AuthContext';
 import CocktailCard from '../cocktailcard/cocktailCard';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 const Cocktails = ({ searchTerm }) => {
 	const { user } = useAuth();
@@ -16,8 +17,21 @@ const Cocktails = ({ searchTerm }) => {
 	} = useCocktails();
 
 	const filteredCocktails = cocktails.filter((cocktail) => {
-		const nameMatch = cocktail.name.toLowerCase().includes(searchTerm.toLowerCase());
-		const ingredientMatch = cocktail.ingredients.some((ingredient) => ingredient.name.toLowerCase().includes(searchTerm.toLowerCase()));
+		// Récupérer le nom en fonction de la langue
+		const nameField = cocktail.name;
+
+		// Vérifier si searchTerm est une string et appliquer le filtre
+		const searchQuery = typeof searchTerm === 'string' ? searchTerm.toLowerCase() : '';
+		const nameMatch = nameField ? nameField.toLowerCase().includes(searchQuery) : false;
+
+		// Filtrer par ingrédients, en vérifiant la langue de chaque nom d'ingrédient
+		const ingredientMatch =
+			cocktail.ingredients &&
+			cocktail.ingredients.some((ingredient) => {
+				const ingredientName = ingredient.name;
+				return ingredientName ? ingredientName.toLowerCase().includes(searchQuery) : false;
+			});
+
 		return nameMatch || ingredientMatch;
 	});
 
@@ -30,7 +44,6 @@ const Cocktails = ({ searchTerm }) => {
 	if (!filteredCocktails || filteredCocktails.length === 0) {
 		return <div className="deco flex center">Aucun cocktail disponible.</div>;
 	}
-
 	return (
 		<div className="flex column gap20">
 			{filteredCocktails.map((cocktail, index) => (

@@ -4,9 +4,11 @@ import './cocktailCard.scss';
 import Button from '../buttons/Button';
 import { useCocktails } from '@/app/context/CocktailContext';
 import { useAuth } from '@/app/context/AuthContext';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButtonClick, isVisible }) => {
 	const { clickedStates, handleFavoriteClick } = useCocktails();
+	const { isFrench } = useLanguage();
 	const { user } = useAuth();
 	if (!cocktail || !cocktail._id) {
 		console.error('Cocktail manquant ou invalide :', cocktail);
@@ -37,7 +39,15 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 					<div className="flex column center design-card">
 						<h1>{cocktail.name}</h1>
 						<h2>{cocktail.category}</h2>
-						<h3>{cocktail.tags.join(' ')}</h3>
+						<h3>
+							{Array.isArray(cocktail.tags) && cocktail.tags.length > 0
+								? cocktail.tags
+										.flat() // Aplatir le tableau de tags
+										.join(' ') // Joindre les tags avec un espace
+								: isFrench
+								? 'Aucun tag disponible'
+								: 'No tag available'}
+						</h3>
 					</div>
 				) : (
 					<div className="flex column center design-card-expanded heightFull">
@@ -48,10 +58,25 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 									{cocktail.ingredients.map((ingredient, index) => (
 										<div className="flex widthFull" key={index}>
 											<p className="flex space-between width280 shadow">
-												<span className="flex">{ingredient.name || 'Inconnu'}</span>
-												<span className="flex card-indications shadow ">
-													{' '}
-													{ingredient.quantity || ''} {ingredient.unit || ''}
+												{/* Utilisation de la langue active pour récupérer le bon texte */}
+												<span className="flex">
+													{
+														// Vérification si ingredient.name est un objet avec les clés 'fr' et 'en'
+														typeof ingredient.name === 'object' && ingredient.name !== null
+															? ingredient.name[isFrench ? 'fr' : 'en'] || 'Inconnu'
+															: ingredient.name || 'Inconnu'
+													}
+												</span>
+												<span className="flex card-indications shadow">
+													{ingredient.quantity || ''}
+													{
+														// Vérification si ingredient.unit est un objet avec les clés 'fr' et 'en'
+														ingredient.unit
+															? typeof ingredient.unit === 'object' && ingredient.unit !== null
+																? ingredient.unit[isFrench ? 'fr' : 'en']
+																: ingredient.unit
+															: ''
+													}
 												</span>
 											</p>
 										</div>
@@ -73,8 +98,12 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 										cocktail.decoration.map((decoration, index) => (
 											<div key={index} className="deco width280">
 												<p className="card-indications flex row space-between shadow">
-													<span className="flex">{decoration.name || 'Inconnu'}</span>{' '}
-													<span className="flex"> {decoration.quantity || 'N/A'}</span>
+													{
+														// Vérification si decoration.name est un objet avec les clés 'fr' et 'en'
+														typeof decoration === 'object' && decoration !== null
+															? decoration[isFrench ? 'fr' : 'en'] || ''
+															: decoration || 'A votre appréciation'
+													}{' '}
 												</p>
 											</div>
 										))
@@ -83,7 +112,11 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 									)}
 								</span>
 							</div>
-							<p className="card-indications shadow">{cocktail.history}</p>
+							<p className="card-indications shadow">
+								{typeof cocktail.history === 'object' && cocktail.history !== null
+									? cocktail.history[isFrench ? 'fr' : 'en'] || ''
+									: cocktail.history || ''}
+							</p>
 						</div>
 					</div>
 				)}

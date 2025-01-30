@@ -2,6 +2,8 @@ import dbConnect from '../../../../lib/mongodb'; // Connexion à la DB
 import User from '../../models/UserModel';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
+import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
 async function sendVerificationEmail(email, token, id) {
 	try {
@@ -18,10 +20,9 @@ async function sendVerificationEmail(email, token, id) {
 
 		const verificationUrl = `${process.env.BASE_URL}/api/verif-email?token=${token}&id=${id}`;
 
-		// Contenu de l'e-mail
 		const mailOptions = {
-			from: process.env.EMAIL_USER, // Expéditeur
-			to: email, // Destinataire
+			from: process.env.EMAIL_USER,
+			to: email,
 			subject: 'Vérification de votre adresse e-mail',
 			html: `
 				<p>Bonjour,</p>
@@ -31,7 +32,6 @@ async function sendVerificationEmail(email, token, id) {
 			`,
 		};
 
-		// Envoyer l'email
 		await transporter.sendMail(mailOptions);
 	} catch (err) {
 		console.error("Erreur lors de l'envoi de l'e-mail de vérification :", err);
@@ -41,35 +41,59 @@ async function sendVerificationEmail(email, token, id) {
 
 export async function POST(req) {
 	try {
-		const { email, username, password } = await req.json();
+		const { email, username, password, gRecaptchaToken } = await req.json();
 
-		// Vérifier que les champs ne sont pas vides
-		if (!email || !username || !password) {
+		// ✅ Vérifier que tous les champs sont remplis
+		if (!email || !username || !password || !gRecaptchaToken) {
 			return new Response(JSON.stringify({ error: 'Tous les champs sont requis' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		// Connexion à MongoDB
+		// ✅ Vérifier le token reCAPTCHA
+		const recaptchaResponse = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
+			params: {
+				secret: process.env.RECAPTCHAT_SECRET_KEY,
+				response: gRecaptchaToken,
+			},
+		});
+
+		if (!recaptchaResponse.data.success || recaptchaResponse.data.score < 0.5) {
+			return new Response(JSON.stringify({ error: 'Vérification reCAPTCHA échouée' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+		}
+
+		// ✅ Connexion à MongoDB
 		await dbConnect();
 
-		// Vérifier si l'utilisateur existe déjà
+		// ✅ Vérifier si l'utilisateur existe déjà
 		const existingUser = await User.findOne({ $or: [{ email }, { username }] });
 		if (existingUser) {
 			return new Response(JSON.stringify({ error: "Email ou nom d'utilisateur déjà utilisé" }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		// Créer un nouvel utilisateur (le mot de passe sera haché par le middleware)
-		const newUser = new User({ email, username, password });
+		// ✅ Hachage du mot de passe avant sauvegarde
+		const hashedPassword = await bcrypt.hash(password, 10);
+
+		// ✅ Création d'un nouvel utilisateur
+		const newUser = new User({
+			email,
+			username,
+			password: hashedPassword, // Stocker le mot de passe haché
+		});
+
+		// ✅ Générer un token de vérification
 		const token = crypto.randomBytes(32).toString('hex');
 		newUser.emailVerificationToken = token;
 		newUser.emailVerificationExpires = Date.now() + 3600000; // Expire dans 1 heure
+
+		// ✅ Sauvegarder l'utilisateur
 		await newUser.save();
 
-		// Envoyer l'email de confirmation
-		await sendVerificationEmail(email, token);
+		// ✅ Envoyer l'email de confirmation avec l'ID de l'utilisateur
+		await sendVerificationEmail(email, token, newUser._id);
 
+		// ✅ Répondre au client
 		return new Response(
 			JSON.stringify({
-				message: 'Utilisateur créé avec succès.',
+				message: 'Utilisateur créé avec succès. Vérifiez votre e-mail.',
 				redirectTo: `${process.env.BASE_URL}/waiting-confirm?name=${encodeURIComponent(newUser.username)}&email=${encodeURIComponent(newUser.email)}`,
 			}),
 			{ status: 200, headers: { 'Content-Type': 'application/json' } }

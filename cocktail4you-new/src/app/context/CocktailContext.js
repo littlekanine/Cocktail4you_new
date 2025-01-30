@@ -227,7 +227,14 @@ export const CocktailProvider = ({ children }) => {
 
 	// Gérer le clic sur une carte (active ou inactive)
 	const handleCardClick = (cocktailId) => {
-		setActiveCard((prevState) => (prevState === cocktailId ? null : cocktailId));
+		// Sauvegarder la position du scroll avant d'ouvrir la carte
+		const scrollPosition = window.scrollY;
+		setActiveCard((prevState) => {
+			const newState = prevState === cocktailId ? null : cocktailId;
+			// Restaure la position de scroll après le changement d'état
+			window.scrollTo(0, scrollPosition);
+			return newState;
+		});
 	};
 
 	return (

@@ -7,14 +7,17 @@ import Button from '../components/buttons/Button';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '../context/LanguageContext';
+import { useGoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import axios from 'axios';
 
-const Page = () => {
+const SignupForm = () => {
 	const [formData, setFormData] = useState({ email: '', username: '', password: '' });
 	const [error, setError] = useState('');
 	const [message, setMessage] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 	const { isFrench } = useLanguage();
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,22 +43,35 @@ const Page = () => {
 		if (!validateForm()) return;
 
 		setIsLoading(true);
+
 		try {
+			// Vérifier si reCAPTCHA est bien chargé
+			if (!executeRecaptcha) {
+				setError('reCAPTCHA non chargé, essayez de recharger la page.');
+				setIsLoading(false);
+				return;
+			}
+
+			const gRecaptchaToken = await executeRecaptcha('signup');
+
+			// Envoyer les données + token reCAPTCHA au serveur
 			const response = await fetch('/api/user', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(formData),
+				body: JSON.stringify({ ...formData, gRecaptchaToken }),
 			});
 
 			const data = await response.json();
 
 			if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
 
-			// Redirection
+			// Redirection si l'inscription est réussie
 			if (data.redirectTo) {
 				router.push(data.redirectTo);
+			} else {
+				setMessage('Inscription réussie !');
 			}
 		} catch (err) {
 			setError(err.message);
@@ -111,6 +127,14 @@ const Page = () => {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const Page = () => {
+	return (
+		<GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
+			<SignupForm />
+		</GoogleReCaptchaProvider>
 	);
 };
 

@@ -17,19 +17,15 @@
 	transition: all 0.5s ease-in-out;
 	scrollbar-width: none;
 	h1 {
-		font-family: 'Bebas Neue';
+		font-family: 'Didact Gothic', serif;
 		font-size: 22px;
-		font-weight: 400;
+		font-weight: 600;
+		color: $yellow;
 	}
 	h2 {
-		font-family: 'Bebas Neue';
-		font-size: 18px;
+		font-family: 'Didact Gothic', serif;
+		font-size: 14px;
 		font-weight: 100;
-	}
-	h3 {
-		font-family: 'Bebas Neue';
-		font-size: 16px;
-		font-weight: 400;
 	}
 
 	&.expanded {
@@ -75,19 +71,43 @@
 	max-height: 100%;
 	transition: opacity 2s ease;
 	font-size: 26px;
-	font-weight: 300;
+	font-weight: 500;
 	overflow: auto;
 	& p {
-		font-family: 'Bebas Neue';
+		font-family: 'Didact Gothic', serif;
 	}
 }
 .deco {
-	font-size: 28px;
+	font-size: 26px;
 	color: $yellow;
 	font-family: 'Karantina';
 }
 
 .card-indications {
 	color: $white;
-	font-size: 24px;
+	font-size: 22px;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.title-card-cocktail {
+	position: absolute;
+	top: 30%; /* Centrer verticalement */
+	left: 25%; /* Centrer horizontalement */
+	transform: translate(0%, 0%);
+	opacity: 0; // Caché par défaut
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.expanded .title-card-cocktail {
+	animation: fadeIn 0.5s ease-in-out 0.3s forwards;
 }

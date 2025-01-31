@@ -20,26 +20,32 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 	return (
 		<div
 			key={cocktailId} // Utilisez cocktailId comme clé unique
-			className={`flex gap20 relative ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}
+			className={`flex gap20 ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}
 			onClick={() => handleCardClick(index)}
 		>
-			{cocktail.img ? (
-				<Image
-					src={cocktail.img}
-					width={94}
-					height={0}
-					alt={cocktail.name || 'Default Name'}
-					className={`card-image shadow ${activeCard === index ? 'expanded' : 'collapsed'}`}
-				/>
-			) : (
-				<p>Aucune image disponible</p>
-			)}
-			<div className={`flex row card-info space-between  ${activeCard === index ? 'expanded' : 'collapsed'}`}>
+			<div className={`${activeCard === index ? ' expanded widthFull' : 'collapsed'} relative`}>
+				{cocktail.img ? (
+					<Image
+						src={cocktail.img}
+						width={94}
+						height={94} // Assure une taille correcte
+						alt={cocktail.name || 'Default Name'}
+						className={`card-image ${activeCard === index ? 'expanded brightness widthFull' : 'collapsed'}`}
+					/>
+				) : isFrench ? (
+					<p>Aucune image disponible</p>
+				) : (
+					<p>No images available</p>
+				)}
+
+				{/* ✅ Titre visible uniquement si la carte est expand */}
+				{activeCard === index && <h1 className="title-card-cocktail yellow shadow-white">{cocktail.name}</h1>}
+			</div>
+			<div className={`flex row card-info space-between shadow ${activeCard === index ? 'expanded' : 'collapsed'}`}>
 				{activeCard !== index ? (
 					<div className="flex column center design-card">
-						<h1>{cocktail.name}</h1>
-						<h2>{cocktail.category}</h2>
-						<h3>
+						<h1 className="shadow">{cocktail.name}</h1>
+						<h2 className="shadow">
 							{Array.isArray(cocktail.tags) && cocktail.tags.length > 0
 								? cocktail.tags
 										.flat() // Aplatir le tableau de tags
@@ -47,12 +53,12 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 								: isFrench
 								? 'Aucun tag disponible'
 								: 'No tag available'}
-						</h3>
+						</h2>
 					</div>
 				) : (
 					<div className="flex column center design-card-expanded heightFull">
 						<div className={`flex column gap10 scroll cache heightFull ${activeCard === index && isVisible ? 'cocktail-info-visible' : ''}`}>
-							<h1 className="flex center">{cocktail.name}</h1>
+							{/* <h1 className="flex center">{cocktail.name}</h1> */}
 							<div className="flex row start align-center">
 								<div>
 									{cocktail.ingredients.map((ingredient, index) => (
@@ -85,23 +91,24 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 							</div>
 							<div className="flex center column">
 								<p className="flex column center align-center gap10">
-									Recette <span className="card-indications shadow text-center">{cocktail.instructions}</span>
+									{isFrench ? <span>Recette</span> : <span>Recipe </span>}{' '}
+									<span className="card-indications shadow text-center">{cocktail.instructions}</span>
 								</p>
 							</div>
 							<p>
-								Le verre : <span className="card-indications shadow">{cocktail.glass_type}</span>
+								{isFrench ? <span>Le verre</span> : <span>The glass</span>} : <span className="card-indications shadow">{cocktail.glass_type}</span>
 							</p>
 							<div>
-								<p>Décorations : </p>
+								{isFrench ? <p>Décorations : </p> : <p>Decoration</p>}
 								<span className="card-indications shadow">
 									{Array.isArray(cocktail.decoration) && cocktail.decoration.length > 0 ? (
 										cocktail.decoration.map((decoration, index) => (
-											<div key={index} className="deco width280">
-												<p className="card-indications flex row space-between shadow">
+											<div key={index} className="deco flex column width280">
+												<p className="card-indications flex column space-between shadow">
 													{
 														// Vérification si decoration.name est un objet avec les clés 'fr' et 'en'
 														typeof decoration === 'object' && decoration !== null
-															? decoration[isFrench ? 'fr' : 'en'] || ''
+															? decoration[isFrench ? 'fr' : 'en'].join(' - ') || ''
 															: decoration || 'A votre appréciation'
 													}{' '}
 												</p>

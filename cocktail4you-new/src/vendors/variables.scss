@@ -12,6 +12,8 @@ $white: #f6f7ee;
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
 h1,
 h2,
 h3,
@@ -96,6 +98,10 @@ body,
 	overflow: auto;
 }
 
+.widthAuto {
+	width: auto;
+}
+
 .margin0 {
 	margin-bottom: 0 !important;
 }
@@ -162,6 +168,13 @@ body,
 	scrollbar-width: none;
 }
 
+.brightness {
+	filter: brightness(0.5) drop-shadow(0px 5px 7px #3a1820);
+}
+.shadow-white {
+	filter: drop-shadow(0px 5px 15px $white);
+}
+
 .font300 {
 	font-weight: 300;
 }
@@ -204,10 +217,18 @@ body,
 	font-family: 'Karantina';
 }
 
+.yellow {
+	color: $yellow;
+}
+
 .font26 {
 	font-size: 26px;
 }
 
 .font22 {
 	font-size: 22px;
+}
+
+.in-block {
+	display: inline-block;
 }

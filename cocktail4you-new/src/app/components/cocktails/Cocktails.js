@@ -3,7 +3,6 @@
 import { useCocktails } from '@/app/context/CocktailContext';
 import { useAuth } from '@/app/context/AuthContext';
 import CocktailCard from '../cocktailcard/cocktailCard';
-import { useLanguage } from '@/app/context/LanguageContext';
 
 const Cocktails = ({ searchTerm }) => {
 	const { user } = useAuth();

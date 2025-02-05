@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import CocktailCard from '../components/cocktailcard/cocktailCard';
-import './page.scss';
 import '../components/cocktailcard/cocktailCard.scss';
 import { useAuth } from '../context/AuthContext';
 import { useCocktails } from '../context/CocktailContext';
 
 const Page = () => {
 	const { user } = useAuth();
-	const { cocktails, loading, favorites, activeCard, setActiveCard, isVisible, setIsVisible, fetchFavorites } = useCocktails();
+	const { cocktails, loading, favorites, activeCard, handleCardClick, isVisible, setIsVisible, fetchFavorites } = useCocktails();
 
 	const likedCocktails = cocktails.filter((cocktail) => favorites.includes(cocktail._id));
 
@@ -33,10 +32,10 @@ const Page = () => {
 
 	// Affichage des cocktails favoris
 	return (
-		<div className="flex column gap20">
+		<div className="flex column gap20 padding-top-20">
 			<h1 className="flex center title shadow">Mes cocktails favoris</h1>
 
-			<div className="cocktail-list flex center align-center column gap20">
+			<div className="cocktail-list flex center align-center column gap20 padding-left-10 padding-right-10">
 				{loading ? (
 					<div>Chargement des favoris...</div>
 				) : likedCocktails.length > 0 ? (
@@ -46,13 +45,15 @@ const Page = () => {
 							cocktail={cocktail}
 							index={index}
 							activeCard={activeCard}
-							handleCardClick={setActiveCard} // Passer setActiveCard directement ici
+							handleCardClick={handleCardClick} // Passer setActiveCard directement ici
 							handleButtonClick={(event) => handleButtonClick(event, cocktail._id)}
 							isVisible={isVisible}
 						/>
 					))
 				) : (
-					<div>Pas de favoris trouvés</div>
+					<div>
+						<h2 className="yellow shadow">Pas de favoris trouvés</h2>
+					</div>
 				)}
 			</div>
 		</div>

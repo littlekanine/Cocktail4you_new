@@ -20,7 +20,7 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 	return (
 		<div
 			key={cocktailId} // Utilisez cocktailId comme clé unique
-			className={`flex gap20 ${activeCard === index ? 'column align-center' : activeCard === null ? 'row' : 'hidden'}`}
+			className={`flex gap20 ${activeCard === index ? 'column align-center ' : activeCard === null ? 'row' : 'hidden'}`}
 			onClick={() => handleCardClick(index)}
 		>
 			<div className={`${activeCard === index ? ' expanded widthFull' : 'collapsed'} relative`}>

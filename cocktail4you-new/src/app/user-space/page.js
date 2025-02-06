@@ -42,11 +42,15 @@ const Page = () => {
 		return null; // Ne pas rendre le composant avant que le hook soit disponible
 	}
 
+	const handleAddCocktails = () => {
+		
+	}
+
 	return (
 		<div className="flex height100vh shadow column">
 			<div className="flex center align-center gap20 heightFull column">
 				<h1 className="flex center">{isFrench ? `Bienvenue, ${user.username}` : `Welcome, ${user.username}`}</h1>
-				<Button className="width250" text={isFrench ? 'Partager ma création' : 'Share My Creation'} />
+				<Button className="width250" text={isFrench ? 'Partager ma création' : 'Share My Creation'} onClick={handleAddCocktails} />
 				<Button className="width250" text={isFrench ? 'Mes créations' : 'My Creations'} />
 				<Link href="./liked">
 					<Button className="width250" text={isFrench ? "Mentions j'aime" : 'Likes'} />

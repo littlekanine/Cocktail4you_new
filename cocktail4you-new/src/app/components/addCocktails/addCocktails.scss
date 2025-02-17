@@ -1,0 +1,41 @@
+@use "../../../vendors/variables.scss" as *;
+
+
+label {
+    font-family: 'Karantina';
+    font-size: 20px;
+    color: $yellow;
+}
+
+.containerAdd {
+    background-color: $brown;
+    border-radius : 25px;
+    width: 250px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+input, textarea{
+    border:none;
+    border-radius: 25px;
+    width: 100%;
+    height: 30px;
+}
+
+.textAddCocktails {
+    color: $yellow;
+
+} 
+.buttonAddAlcohol {
+    width: 30px;
+    height: 30px;
+    background-color: $yellow !important;
+    color: $brown !important;
+    border: none;
+    border-radius: 10px;
+}
+
+.addPicture {
+    border: none;
+    border-radius: 25px;
+}

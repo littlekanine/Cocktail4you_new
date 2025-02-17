@@ -35,12 +35,18 @@ const AddCocktails = () => {
         console.log(form);
     };
 
-    const [alcohols, setAlcohols] = useState([""]); // Initialisation avec un champ vide
+    const [alcohols, setAlcohols] = useState([{ name: "", dosage: "" }]);
 
     // 🔄 Mettre à jour un input en fonction de son index
     const handleChangeAlcohol = (index, event) => {
+        const { name, value } = event.target;
         const newAlcohols = [...alcohols];
-        newAlcohols[index] = event.target.value;
+
+        newAlcohols[index] = {
+            ...newAlcohols[index],
+            [name]: value, // Met à jour la bonne propriété (name ou dosage)
+        };
+
         setAlcohols(newAlcohols);
     };
 
@@ -61,15 +67,20 @@ const AddCocktails = () => {
             <h2 className="title flex center ">Ajouter un Cocktail</h2>
             <form className="flex center align-center column gap10" onSubmit={handleSubmit}>
                 <div className=" flex column gap5">
-                    <label className="textAddCocktails">Nom du Cocktail:</label>
+                    <label className="textAddCocktails">Nom du Cocktail :</label>
                     <input className="flex" type="text" name="name" value={form.name} onChange={handleChange} required />
                 </div>
-                <div className="flex column gap5">
-                    <label>Alcools et Dosage:</label>
+                <div className="flex center align-center column gap5">
+                    <label>Alcools et Dosage :</label>
                     {alcohols.map((alcohol, index) => (
-                        <div key={index} className="flex gap5">
-                            <input className="flex" type="text" name={`alcohols-${index}`} value={alcohol} onChange={(e) => handleChangeAlcohol(index, e)} required />
-                            {alcohols.length > 1 && (
+                        <div key={index} className="flex center align-center gap10">
+                            {/* Input pour le nom de l'alcool */}
+                            <input type="text" name="name" value={alcohol.name} placeholder="Alcool" onChange={(e) => handleChangeAlcohol(index, e)} required className="inputAlcohol" />
+
+                            {/* Input pour le dosage */}
+                            <input type="text" name="dosage" placeholder="Dosage" value={alcohol.dosage} onChange={(e) => handleChangeAlcohol(index, e)} required className="inputDosage" />
+
+							{alcohols.length > 1 && (
                                 <button type="button" onClick={() => removeAlcohol(index)}>
                                     -
                                 </button>
@@ -81,24 +92,24 @@ const AddCocktails = () => {
                     </button>
                 </div>
                 <div className=" flex column gap5">
-                    <label>Instructions:</label>
-                    <textarea className="flex" name="instructions" value={form.instructions} onChange={handleChange} required></textarea>
+                    <label>Instructions :</label>
+                    <textarea className="flex no-resize" name="instructions" value={form.instructions} onChange={handleChange} required></textarea>
                 </div>
                 <div className=" flex column gap5">
-                    <label>Catégorie:</label>
+                    <label>Catégorie :</label>
                     <input className="flex" type="text" name="category" value={form.category} onChange={handleChange} required />
                 </div>
                 <div className=" flex column gap5">
-                    <label>Type de Verre:</label>
+                    <label>Type de Verre :</label>
                     <input className="flex" type="text" name="glassType" value={form.glassType} onChange={handleChange} required />
                 </div>
                 <div className=" flex column gap5">
-                    <label>Décoration:</label>
+                    <label>Décoration :</label>
                     <input className="flex" type="text" name="decoration" value={form.decoration} onChange={handleChange} optional />
                 </div>
                 <div className=" flex column gap5">
-                    <label>Historique:</label>
-                    <textarea className="flex" name="history" value={form.history} onChange={handleChange} optional></textarea>
+                    <label>Historique :</label>
+                    <textarea className="flex no-resize" name="history" value={form.history} onChange={handleChange} optional></textarea>
                 </div>
                 <div className=" flex column gap5">
                     <FileUpload handleFileChange={handleFileChange} />

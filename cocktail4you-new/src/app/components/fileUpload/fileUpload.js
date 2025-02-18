@@ -13,7 +13,7 @@ const FileUpload = ({ handleFileChange }) => {
     return (
         <div className="flex center align-center">
             {/* Bouton stylisé pour choisir un fichier */}
-            <label htmlFor="file-upload" className="flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition">
+            <label htmlFor="file-upload" className="flex items-center center ">
                 📷 Choisir une photo
             </label>
 

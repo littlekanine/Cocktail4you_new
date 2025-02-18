@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./addCocktails.scss";
 import FileUpload from "../fileUpload/fileUpload";
 
-const AddCocktails = () => {
+const AddCocktails = ({ onClose }) => {
     const [form, setForm] = useState({
         name: "",
         alcohols: "",
@@ -64,7 +64,11 @@ const AddCocktails = () => {
 
     return (
         <div className="flex center align center column gap20 containerAdd">
-            <h2 className="title flex center ">Ajouter un Cocktail</h2>
+            <h2 className="titleAddCocktail flex center ">Ajouter un Cocktail</h2>
+            <button className="closeButton" onClick={onClose}>
+                ×
+            </button>
+
             <form className="flex center align-center column gap10" onSubmit={handleSubmit}>
                 <div className=" flex column gap5">
                     <label className="textAddCocktails">Nom du Cocktail :</label>
@@ -80,7 +84,7 @@ const AddCocktails = () => {
                             {/* Input pour le dosage */}
                             <input type="text" name="dosage" placeholder="Dosage" value={alcohol.dosage} onChange={(e) => handleChangeAlcohol(index, e)} required className="inputDosage" />
 
-							{alcohols.length > 1 && (
+                            {alcohols.length > 1 && (
                                 <button type="button" onClick={() => removeAlcohol(index)}>
                                     -
                                 </button>

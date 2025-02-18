@@ -1,11 +1,9 @@
 'use client';
 
 import { useCocktails } from '@/app/context/CocktailContext';
-import { useAuth } from '@/app/context/AuthContext';
 import CocktailCard from '../cocktailcard/cocktailCard';
 
 const Cocktails = ({ searchTerm }) => {
-	const { user } = useAuth();
 	const {
 		cocktails,
 		loading,

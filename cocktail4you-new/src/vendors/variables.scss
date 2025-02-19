@@ -74,6 +74,10 @@ body,
     height: 100%;
 }
 
+.width90 {
+    width: 90%;
+}
+
 .width80 {
     width: 80%;
 }
@@ -108,6 +112,10 @@ body,
 
 .margin10Bottom {
     margin-bottom: 10px;
+}
+
+.padding10 {
+    padding: 10px;
 }
 
 .padding20top {
@@ -233,6 +241,8 @@ body,
     font-family: "Karantina";
 }
 
+
+
 .yellow {
     color: $yellow;
 }
@@ -243,6 +253,10 @@ body,
 
 .font22 {
     font-size: 22px;
+}
+
+.font20 {
+    font-size: 20px;
 }
 
 .in-block {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./addCocktails.scss";
 import FileUpload from "../fileUpload/fileUpload";
+import { useCocktails } from "@/app/context/CocktailContext";
 
 const AddCocktails = ({ onClose }) => {
     const [form, setForm] = useState({
@@ -13,6 +14,11 @@ const AddCocktails = ({ onClose }) => {
         history: "",
         photo: null,
     });
+
+	const isFrench = useCocktails
+
+    const categories = ["Classique", "Tendance", "Création", "Sans Alcool"];
+    const cocktailGlasses = ["Verre à Martini", "Highball", "Old Fashioned (Lowball)", "Verre à Margarita", "Flûte à Champagne", "Verre à Tiki", "Verre Collins", "Coupette", "Verre à Irish Coffee"];
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -63,29 +69,32 @@ const AddCocktails = ({ onClose }) => {
     };
 
     return (
-        <div className="flex center align center column gap20 containerAdd">
-            <h2 className="titleAddCocktail flex center ">Ajouter un Cocktail</h2>
+        <div className="flex center align center column gap20 containerAdd relative">
             <button className="closeButton" onClick={onClose}>
                 ×
             </button>
+			{isFrench ? <h2 className="titleAddCocktail flex center align-center ">Ajouter un Cocktail</h2> : <h2 className="titleAddCocktail flex center align-center ">Add a Cocktail</h2>}
+            {/* <h2 className="titleAddCocktail flex center align-center ">Ajouter un Cocktail</h2> */}
 
             <form className="flex center align-center column gap10" onSubmit={handleSubmit}>
-                <div className=" flex column gap5">
+                <div className=" flex column gap5 width90">
                     <label className="textAddCocktails">Nom du Cocktail :</label>
-                    <input className="flex" type="text" name="name" value={form.name} onChange={handleChange} required />
+                    <input className="flex padding10  font20" type="text" name="name" value={form.name} onChange={handleChange} required />
                 </div>
-                <div className="flex center align-center column gap5">
+                <div className="flex  column gap5 width90 ">
                     <label>Alcools et Dosage :</label>
                     {alcohols.map((alcohol, index) => (
-                        <div key={index} className="flex center align-center gap10">
-                            {/* Input pour le nom de l'alcool */}
-                            <input type="text" name="name" value={alcohol.name} placeholder="Alcool" onChange={(e) => handleChangeAlcohol(index, e)} required className="inputAlcohol" />
+                        <div key={index} className="flex  gap10">
+                            <div className="flex row align-center gap10">
+                                {/* Input pour le nom de l'alcool */}
+                                <input type="text" name="name" value={alcohol.name} placeholder="Alcool" onChange={(e) => handleChangeAlcohol(index, e)} required className="inputAlcohol flex padding10  font20" />
 
-                            {/* Input pour le dosage */}
-                            <input type="text" name="dosage" placeholder="Dosage" value={alcohol.dosage} onChange={(e) => handleChangeAlcohol(index, e)} required className="inputDosage" />
-
+                                {/* Input pour le dosage */}
+                                <input type="text" name="dosage" placeholder="40" value={alcohol.dosage} onChange={(e) => handleChangeAlcohol(index, e)} required className="inputDosage flex padding10  font20" />
+                                <p className="ml">ml</p>
+                            </div>
                             {alcohols.length > 1 && (
-                                <button type="button" onClick={() => removeAlcohol(index)}>
+                                <button type="button" className="button-" onClick={() => removeAlcohol(index)}>
                                     -
                                 </button>
                             )}
@@ -95,27 +104,45 @@ const AddCocktails = ({ onClose }) => {
                         +
                     </button>
                 </div>
-                <div className=" flex column gap5">
+                <div className=" flex column gap5 width90">
                     <label>Instructions :</label>
-                    <textarea className="flex no-resize" name="instructions" value={form.instructions} onChange={handleChange} required></textarea>
+                    <textarea className="flex no-resize padding10  font20" name="instructions" value={form.instructions} onChange={handleChange} required></textarea>
                 </div>
-                <div className=" flex column gap5">
+                <div className=" flex column gap5 width90">
                     <label>Catégorie :</label>
-                    <input className="flex" type="text" name="category" value={form.category} onChange={handleChange} required />
+                    <select className="flex padding10 font20" name="category" value={form.category} onChange={handleChange} required>
+                        <option value="" disabled>
+                            Choisir une catégorie
+                        </option>
+                        {categories.map((category, index) => (
+                            <option key={index} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>{" "}
                 </div>
-                <div className=" flex column gap5">
+                <div className=" flex column gap5 width90">
                     <label>Type de Verre :</label>
-                    <input className="flex" type="text" name="glassType" value={form.glassType} onChange={handleChange} required />
+                    <select className="flex padding10 font20" name="glassType" value={form.glassType} onChange={handleChange} required>
+                        <option value="" disabled>
+                            Choisir un verre
+                        </option>
+						{cocktailGlasses.map((glass, index) => (
+							<option key={index} value={glass}>
+								{glass}
+							</option>
+						))}
+                    </select>
                 </div>
-                <div className=" flex column gap5">
+                <div className=" flex column gap5 width90">
                     <label>Décoration :</label>
-                    <input className="flex" type="text" name="decoration" value={form.decoration} onChange={handleChange} optional />
+                    <input className="flex padding10  font20" type="text" name="decoration" value={form.decoration} onChange={handleChange} optional />
                 </div>
-                <div className=" flex column gap5">
+                <div className=" flex column gap5 width90">
                     <label>Historique :</label>
-                    <textarea className="flex no-resize" name="history" value={form.history} onChange={handleChange} optional></textarea>
+                    <textarea type="text" className="flex padding10  font20  no-resize" name="history" value={form.history} onChange={handleChange} optional></textarea>
                 </div>
-                <div className=" flex column gap5">
+                <div className=" flex column gap5 width90">
                     <FileUpload handleFileChange={handleFileChange} />
                 </div>
                 <button type="submit">Ajouter</button>

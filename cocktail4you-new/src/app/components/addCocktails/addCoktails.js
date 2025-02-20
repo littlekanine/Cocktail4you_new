@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./addCocktails.scss";
 import FileUpload from "../fileUpload/fileUpload";
 import { useCocktails } from "@/app/context/CocktailContext";
+import { useCrea } from "@/app/context/PostCocktails";
+
+
 
 const AddCocktails = ({ onClose }) => {
     const [form, setForm] = useState({
@@ -14,6 +17,8 @@ const AddCocktails = ({ onClose }) => {
         history: "",
         photo: null,
     });
+
+	const postCocktail = useCrea();
 
 	const isFrench = useCocktails
 
@@ -145,7 +150,7 @@ const AddCocktails = ({ onClose }) => {
                 <div className=" flex column gap5 width90">
                     <FileUpload handleFileChange={handleFileChange} />
                 </div>
-                <button type="submit">Ajouter</button>
+                <button type="submit" onClick={postCocktail}>Ajouter</button>
             </form>
         </div>
     );

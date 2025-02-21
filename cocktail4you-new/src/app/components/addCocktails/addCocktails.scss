@@ -85,6 +85,13 @@ input:focus, textarea:focus, select:focus {
     color: $brown;
 }
 
+.inputQuantite {
+    width:45%;
+    font-family: Karantina;
+    font-size: 20px;
+    color: $brown;
+}
+
 .closeButton {
     color: $yellow;
     background-color: transparent;
@@ -109,4 +116,15 @@ input:focus, textarea:focus, select:focus {
     border: none;
     font-size: 20px;
     background-color: transparent   ;
+}
+
+.buttonAddCocktail {
+    width: 50%;
+    height: 30px;
+    border : none;
+    border-radius: 25px;
+    background-color: $yellow;
+    color: $brown;
+    font-family: Karantina; 
+    font-size: 20px;
 }

@@ -1,4 +1,5 @@
 import React, { createContext, useState,useContext  } from "react";
+import axios from "axios";
 
 export const PostCocktailsContext = createContext();
 
@@ -16,9 +17,11 @@ export const PostCocktailsProvider = ({ children }) => {
         setError(null);
         try {
             const response = await axios.post("api/cocktailsCrea", cocktail);
-            setCocktails([...cocktails, response.data]);
+            setCocktails(prevCocktails => [...prevCocktails, response.data]);
+            console.log(response)
         } catch (err) {
             setError(err.message);
+            console.error("Erreur lors de l'ajout du cocktail", err);
         } finally {
             setLoading(false);
         }

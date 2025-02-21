@@ -18,7 +18,7 @@ const FileUpload = ({ handleFileChange }) => {
             </label>
 
             {/* Input file caché */}
-            <input type="file" id="file-upload" className="hidden" onChange={handleChange} required />
+            <input type="file" id="file-upload" className="hidden"  onChange={handleChange} required />
 
             {/* Affichage du nom du fichier sélectionné */}
             {fileName && <p className="text-sm text-gray-600">{fileName}</p>}

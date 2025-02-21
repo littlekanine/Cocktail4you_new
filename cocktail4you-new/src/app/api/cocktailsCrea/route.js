@@ -4,7 +4,7 @@ import CocktailsCrea from '../../models/CocktailsModels';
 import { NextResponse } from 'next/server'; // Importation de NextResponse
 
 // Handler GET
-export async function GET(req) {
+export async function POST(req) {
 	try {
 		// Connexion à la base de données
 		await dbConnect();

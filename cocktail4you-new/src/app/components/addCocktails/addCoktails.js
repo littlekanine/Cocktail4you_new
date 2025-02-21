@@ -4,12 +4,10 @@ import FileUpload from "../fileUpload/fileUpload";
 import { useCocktails } from "@/app/context/CocktailContext";
 import { useCrea } from "@/app/context/PostCocktails";
 
-
-
 const AddCocktails = ({ onClose }) => {
     const [form, setForm] = useState({
         name: "",
-        alcohols: "",
+        ingredients: "",
         instructions: "",
         category: "",
         glassType: "",
@@ -18,9 +16,9 @@ const AddCocktails = ({ onClose }) => {
         photo: null,
     });
 
-	const postCocktail = useCrea();
+    const { postCocktail } = useCrea();
 
-	const isFrench = useCocktails
+    const isFrench = useCocktails;
 
     const categories = ["Classique", "Tendance", "Création", "Sans Alcool"];
     const cocktailGlasses = ["Verre à Martini", "Highball", "Old Fashioned (Lowball)", "Verre à Margarita", "Flûte à Champagne", "Verre à Tiki", "Verre Collins", "Coupette", "Verre à Irish Coffee"];
@@ -42,34 +40,76 @@ const AddCocktails = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Logique pour soumettre le formulaire
-        console.log(form);
-    };
 
-    const [alcohols, setAlcohols] = useState([{ name: "", dosage: "" }]);
-
-    // 🔄 Mettre à jour un input en fonction de son index
-    const handleChangeAlcohol = (index, event) => {
-        const { name, value } = event.target;
-        const newAlcohols = [...alcohols];
-
-        newAlcohols[index] = {
-            ...newAlcohols[index],
-            [name]: value, // Met à jour la bonne propriété (name ou dosage)
+        const cocktailData = {
+            ...form,
+            ingredients: ingredients, // ✅ Garde les ingrédients
+            decorations: decorations, // ✅ Ajoute les décorations
         };
 
-        setAlcohols(newAlcohols);
+        setForm({
+            name: "",
+            ingredients: "",
+            instructions: "",
+            category: "",
+            glassType: "",
+            decoration: "",
+            history: "",
+            photo: null,
+        });
+
+        console.log("Données envoyées :", cocktailData);
+        postCocktail(cocktailData);
+    };
+
+    const [ingredients, setIngredients] = useState([{ name: "", quantity: "", unit: "ml" }]);
+    const [decorations, setDecorations] = useState([{ name: "", quantity: "" }]);
+
+    // 🔄 Mettre à jour un input en fonction de son index
+    const handleChangeIngredient = (index, event) => {
+        const { name, value } = event.target;
+        const newIngredients = [...ingredients];
+
+        newIngredients[index] = {
+            ...newIngredients[index],
+            [name]: value, // Met à jour soit "name", soit "quantity"
+        };
+
+        setIngredients(newIngredients);
+    };
+
+    const handleChangeDecoration = (index, event) => {
+        const { name, value } = event.target;
+        const newDecorations = [...decorations];
+
+        newDecorations[index] = {
+            ...newDecorations[index],
+            [name]: value, // Met à jour soit "name", soit "quantity"
+        };
+
+        setDecorations(newDecorations);
     };
 
     // ➕ Ajouter un nouvel input vide
     const addAlcohol = () => {
-        setAlcohols([...alcohols, ""]);
+        setIngredients([...ingredients, { name: "", quantity: "", unit: "ml" }]);
     };
 
     const removeAlcohol = (index) => {
-        if (alcohols.length > 1) {
-            const newAlcohols = alcohols.filter((_, i) => i !== index);
-            setAlcohols(newAlcohols);
+        if (ingredients.length > 1) {
+            const newAlcohols = ingredients.filter((_, i) => i !== index);
+            setIngredients(newAlcohols);
+        }
+    };
+
+    const addDecoration = () => {
+        setDecorations([...decorations, { name: "", quantity: "" }]);
+    };
+
+    const removeDecoration = (index) => {
+        if (decorations.length > 1) {
+            const newDecorations = decorations.filter((_, i) => i !== index);
+            setDecorations(newDecorations);
         }
     };
 
@@ -78,7 +118,7 @@ const AddCocktails = ({ onClose }) => {
             <button className="closeButton" onClick={onClose}>
                 ×
             </button>
-			{isFrench ? <h2 className="titleAddCocktail flex center align-center ">Ajouter un Cocktail</h2> : <h2 className="titleAddCocktail flex center align-center ">Add a Cocktail</h2>}
+            {isFrench ? <h2 className="titleAddCocktail flex center align-center ">Ajouter un Cocktail</h2> : <h2 className="titleAddCocktail flex center align-center ">Add a Cocktail</h2>}
             {/* <h2 className="titleAddCocktail flex center align-center ">Ajouter un Cocktail</h2> */}
 
             <form className="flex center align-center column gap10" onSubmit={handleSubmit}>
@@ -88,17 +128,17 @@ const AddCocktails = ({ onClose }) => {
                 </div>
                 <div className="flex  column gap5 width90 ">
                     <label>Alcools et Dosage :</label>
-                    {alcohols.map((alcohol, index) => (
+                    {ingredients.map((ingredient, index) => (
                         <div key={index} className="flex  gap10">
                             <div className="flex row align-center gap10">
                                 {/* Input pour le nom de l'alcool */}
-                                <input type="text" name="name" value={alcohol.name} placeholder="Alcool" onChange={(e) => handleChangeAlcohol(index, e)} required className="inputAlcohol flex padding10  font20" />
+                                <input type="text" name="name" value={ingredient.name} placeholder="Alcool" onChange={(e) => handleChangeIngredient(index, e)} required className="inputAlcohol flex padding10  font20" />
 
                                 {/* Input pour le dosage */}
-                                <input type="text" name="dosage" placeholder="40" value={alcohol.dosage} onChange={(e) => handleChangeAlcohol(index, e)} required className="inputDosage flex padding10  font20" />
+                                <input type="text" name="dosage" placeholder="40" value={ingredient.dosage} onChange={(e) => handleChangeIngredient(index, e)} required className="inputDosage flex padding10  font20" />
                                 <p className="ml">ml</p>
                             </div>
-                            {alcohols.length > 1 && (
+                            {ingredients.length > 1 && (
                                 <button type="button" className="button-" onClick={() => removeAlcohol(index)}>
                                     -
                                 </button>
@@ -132,17 +172,37 @@ const AddCocktails = ({ onClose }) => {
                         <option value="" disabled>
                             Choisir un verre
                         </option>
-						{cocktailGlasses.map((glass, index) => (
-							<option key={index} value={glass}>
-								{glass}
-							</option>
-						))}
+                        {cocktailGlasses.map((glass, index) => (
+                            <option key={index} value={glass}>
+                                {glass}
+                            </option>
+                        ))}
                     </select>
                 </div>
-                <div className=" flex column gap5 width90">
-                    <label>Décoration :</label>
-                    <input className="flex padding10  font20" type="text" name="decoration" value={form.decoration} onChange={handleChange} optional />
+                <div className="flex column gap5 width90">
+                    <label>Décorations et Quantité :</label>
+                    {decorations.map((decoration, index) => (
+                        <div key={index} className="flex gap10">
+                            <div className="flex row align-center gap10">
+                                {/* Input pour le nom de la décoration */}
+                                <input type="text" name="name" value={decoration.name} placeholder="Décoration" onChange={(e) => handleChangeDecoration(index, e)} required className="inputAlcohol flex padding10 font20" />
+
+                                {/* Input pour la quantité */}
+                                <input type="text" name="quantity" placeholder="Quantité" value={decoration.quantity} onChange={(e) => handleChangeDecoration(index, e)} required className="inputQuantite flex padding10 font20" />
+
+                            </div>
+                            {decorations.length > 1 && (
+                                <button type="button" className="button-" onClick={() => removeDecoration(index)}>
+                                    -
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                    <button className="flex center align-center buttonAddAlcohol" onClick={addDecoration}>
+                        +
+                    </button>
                 </div>
+
                 <div className=" flex column gap5 width90">
                     <label>Historique :</label>
                     <textarea type="text" className="flex padding10  font20  no-resize" name="history" value={form.history} onChange={handleChange} optional></textarea>
@@ -150,7 +210,9 @@ const AddCocktails = ({ onClose }) => {
                 <div className=" flex column gap5 width90">
                     <FileUpload handleFileChange={handleFileChange} />
                 </div>
-                <button type="submit" onClick={postCocktail}>Ajouter</button>
+                <button type="submit" onClick={handleSubmit} className="buttonAddCocktail">
+                    Ajouter
+                </button>
             </form>
         </div>
     );

@@ -7,13 +7,13 @@ import { useCrea } from "@/app/context/PostCocktailsContext";
 const AddCocktails = ({ onClose }) => {
     const [form, setForm] = useState({
         name: "",
-        ingredients: "",
+        ingredients: [],
         instructions: "",
         category: "",
         glassType: "",
         decoration: "",
         history: "",
-        photo: null,
+        photo: "",
     });
 
     const { postCocktail } = useCrea();
@@ -135,7 +135,14 @@ const AddCocktails = ({ onClose }) => {
                                 <input type="text" name="name" value={ingredient.name} placeholder="Alcool" onChange={(e) => handleChangeIngredient(index, e)} required className="inputAlcohol flex padding10  font20" />
 
                                 {/* Input pour le dosage */}
-                                <input type="text" name="dosage" placeholder="40" value={ingredient.dosage} onChange={(e) => handleChangeIngredient(index, e)} required className="inputDosage flex padding10  font20" />
+                                <input
+                                    type="number"
+                                    name="dosage"
+                                    placeholder="40"
+                                    value={ingredient.dosage ?? ""} // ✅ Remplace undefined par ""
+                                    onChange={(e) => handleChangeIngredient(index, e)}
+                                    required
+                                />
                                 <p className="ml">ml</p>
                             </div>
                             {ingredients.length > 1 && (

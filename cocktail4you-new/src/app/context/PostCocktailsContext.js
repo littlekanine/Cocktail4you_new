@@ -12,13 +12,24 @@ export const PostCocktailsProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+
     const postCocktail = async (cocktail) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post("api/cocktailsCrea", cocktail);
-            setCocktails(prevCocktails => [...prevCocktails, response.data]);
-            console.log(response)
+            const response = await fetch("/api/cocktailsCrea", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(cocktail),
+            });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+            setCocktails(prevCocktails => [...prevCocktails, data.data]);
+            console.log(data);
         } catch (err) {
             setError(err.message);
             console.error("Erreur lors de l'ajout du cocktail", err);

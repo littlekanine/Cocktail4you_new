@@ -4,7 +4,7 @@ import "./globals.css";
 import { CocktailProvider } from "./context/CocktailContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
-import { PostCocktailsProvider } from "./context/PostCocktails";
+import { PostCocktailsProvider } from "./context/PostCocktailsContext";
 import Header from "./header/header";
 
 export default function RootLayout({ children }) {

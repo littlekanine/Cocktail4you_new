@@ -1,21 +1,21 @@
-import dbConnect from '../../../../lib/mongodb';
-import CocktailsCrea from '../../models/CocktailsModels';
+import dbConnect from "../../../../lib/mongodb";
+import CocktailsCrea from "../../../app/models/CocktailsCreaModel";
+import { NextResponse } from "next/server";
 
-import { NextResponse } from 'next/server'; // Importation de NextResponse
-
-// Handler GET
 export async function POST(req) {
 	try {
-		// Connexion à la base de données
 		await dbConnect();
 
-		// Récupérer tous les cocktails depuis la base de données
-		const cocktails = await CocktailsCrea.find({});
+		const body = await req.json();
 
-		// Retourner les cocktails en réponse JSON
-		return NextResponse.json({ success: true, data: cocktails });
+		const newCocktail = new CocktailsCrea(body);
+
+		await newCocktail.save();
+
+		return NextResponse.json({ success: true, data: newCocktail }, { status: 201 });
+
 	} catch (error) {
-		console.error('Erreur de connexion à la base de données:', error);
-		return NextResponse.json({ success: false, error: 'Échec de la connexion à la base de données' }, { status: 500 });
+		console.error("Erreur lors de l'ajout du cocktail:", error);
+		return NextResponse.json({ success: false, error: "Erreur serveur" }, { status: 500 });
 	}
 }

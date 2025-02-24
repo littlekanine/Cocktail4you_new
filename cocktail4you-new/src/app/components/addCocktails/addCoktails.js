@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./addCocktails.scss";
 import FileUpload from "../fileUpload/fileUpload";
 import { useCocktails } from "@/app/context/CocktailContext";
-import { useCrea } from "@/app/context/PostCocktails";
+import { useCrea } from "@/app/context/PostCocktailsContext";
 
 const AddCocktails = ({ onClose }) => {
     const [form, setForm] = useState({
@@ -189,7 +189,6 @@ const AddCocktails = ({ onClose }) => {
 
                                 {/* Input pour la quantité */}
                                 <input type="text" name="quantity" placeholder="Quantité" value={decoration.quantity} onChange={(e) => handleChangeDecoration(index, e)} required className="inputQuantite flex padding10 font20" />
-
                             </div>
                             {decorations.length > 1 && (
                                 <button type="button" className="button-" onClick={() => removeDecoration(index)}>

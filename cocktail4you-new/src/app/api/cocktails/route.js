@@ -1,9 +1,7 @@
 import dbConnect from '../../../../lib/mongodb';
 import CocktailsModels from '../../models/CocktailsModels';
-
 import { NextResponse } from 'next/server'; // Importation de NextResponse
 
-// Handler GET
 export async function GET(req) {
 	try {
 		// Connexion à la base de données

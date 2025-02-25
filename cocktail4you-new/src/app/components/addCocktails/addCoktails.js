@@ -50,7 +50,7 @@ const AddCocktails = ({ onClose }) => {
 		formData.append('file', file);
 
 		try {
-			const response = await fetch('/api/upload', {
+			const response = await fetch('/api/uploadImgAws', {
 				method: 'POST',
 				body: formData,
 			});
@@ -71,28 +71,30 @@ const AddCocktails = ({ onClose }) => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const { glassType, ...rest } = form; // 🔥 Exclure glassType de form
 
 		const cocktailData = {
-			...form,
-			ingredients,
-			decoration: decorations,
-			glass_type: form.glassType,
-			img: form.photo,
+			...rest, // ✅ Prendre les autres données du formulaire
+			ingredients, // ✅ Prendre les ingrédients à jour
+			decoration: decorations, // ✅ Prendre les décorations à jour
+			glass_type: glassType, // ✅ Renommé proprement
+			img: form.photo, // ✅ Stocker la img
 		};
-
-		setForm({
-			name: '',
-			ingredients: '',
-			instructions: '',
-			category: '',
-			glassType: '',
-			decoration: '',
-			history: '',
-			photo: '',
-		});
 
 		console.log('Données envoyées :', cocktailData);
 		postCocktail(cocktailData);
+
+		// setForm({
+		// 	name: '',
+		// 	instructions: '',
+		// 	category: '',
+		// 	glassType: '',
+		// 	history: '',
+		// 	photo: '',
+		// });
+
+		// setIngredients([{ name: '', quantity: '', unit: 'ml' }]);
+		// setDecorations([{ name: '', quantity: '' }]);
 	};
 
 	const [ingredients, setIngredients] = useState([{ name: '', quantity: '', unit: 'ml' }]);
@@ -166,7 +168,7 @@ const AddCocktails = ({ onClose }) => {
 					<label>Alcools et Dosage :</label>
 					{ingredients.map((ingredient, index) => (
 						<div key={index} className="flex  gap10">
-							<div className="flex row align-center gap10">
+							<div className="flex center row align-center gap10">
 								{/* Input pour le nom de l'alcool */}
 								<input
 									type="text"
@@ -186,6 +188,7 @@ const AddCocktails = ({ onClose }) => {
 									value={ingredient.quantity ?? ''}
 									onChange={(e) => handleChangeIngredient(index, e)}
 									required
+									className="inputAlcohol flex padding10  font20"
 								/>
 
 								<p className="ml">ml</p>
@@ -277,7 +280,7 @@ const AddCocktails = ({ onClose }) => {
 				<div className=" flex column gap5 width90">
 					<FileUpload handleFileChange={handleFileChange} />
 				</div>
-				<button type="submit" onClick={handleSubmit} className="buttonAddCocktail">
+				<button type="submit" className="buttonAddCocktail">
 					Ajouter
 				</button>
 			</form>

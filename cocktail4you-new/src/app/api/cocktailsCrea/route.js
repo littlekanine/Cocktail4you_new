@@ -16,6 +16,7 @@ export async function POST(req) {
 		}
 
 		const newCocktail = new CocktailsCreaModel(body);
+		console.log('Nouveau cocktail:', newCocktail);
 
 		await newCocktail.save();
 

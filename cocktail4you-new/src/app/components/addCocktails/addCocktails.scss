@@ -1,4 +1,4 @@
-@use "../../../vendors/variables.scss" as *;
+@use '../../../vendors/variables.scss' as *;
 
 .titleAddCocktail {
 	font-size: 30px;
@@ -7,124 +7,123 @@
 }
 
 label {
-    font-family: 'Karantina';
-    font-size: 20px;
-    color: $yellow;
+	font-family: 'Karantina';
+	font-size: 20px;
+	color: $yellow;
 }
 
 .containerAdd {
-    background-color: $brown;
-    border-radius : 25px;
-    width: 250px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+	background-color: $brown;
+	border-radius: 25px;
+	width: 250px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-input{
-    border:none;
-    border-radius: 25px;
-    width: 100%;
-    height: 30px;
-    color: $brown;
-    font-family: Karantina;
+input {
+	border: none;
+	border-radius: 25px;
+	width: 100%;
+	height: 30px;
+	color: $brown;
+	font-family: Karantina;
 }
 
 select {
-    border:none;
-    border-radius: 25px;
-    width: 100%;
-    color: $brown;
-    font-family: Karantina;
+	border: none;
+	border-radius: 25px;
+	width: 100%;
+	color: $brown;
+	font-family: Karantina;
 }
 
 textarea {
-    border:none;
-    border-radius: 25px;
-    width: 100%;
-    height: 60px;
-    color: $brown;
-    font-family: Karantina;
-
+	border: none;
+	border-radius: 25px;
+	width: 100%;
+	height: 60px;
+	color: $brown;
+	font-family: Karantina;
 }
 
-input:focus, textarea:focus, select:focus {
-    outline: none; 
-    box-shadow: none; 
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	box-shadow: none;
 }
 
 .textAddCocktails {
-    color: $yellow;
-
-} 
+	color: $yellow;
+}
 .buttonAddAlcohol {
-    width: 30px;
-    height: 30px;
-    background-color: $yellow !important;
-    color: $brown !important;
-    border: none;
-    border-radius: 10px;
+	width: 30px;
+	height: 30px;
+	background-color: $yellow !important;
+	color: $brown !important;
+	border: none;
+	border-radius: 10px;
 }
 
 .addPicture {
-    border: none;
-    border-radius: 25px;
+	border: none;
+	border-radius: 25px;
 }
 
 .inputAlcohol {
-    width: 50%;
-    font-family: Karantina;
-    font-size: 20px;
-    color: $brown;
-
+	width: 50%;
+	font-family: Karantina;
+	font-size: 20px;
+	color: $brown;
+	margin: 0 !important;
 }
 
 .inputDosage {
-    width:30%;
-    font-family: Karantina;
-    font-size: 20px;
-    color: $brown;
+	width: 30%;
+	font-family: Karantina;
+	font-size: 20px;
+	color: $brown;
 }
 
 .inputQuantite {
-    width:45%;
-    font-family: Karantina;
-    font-size: 20px;
-    color: $brown;
+	width: 45%;
+	font-family: Karantina;
+	font-size: 20px;
+	color: $brown;
 }
 
 .closeButton {
-    color: $yellow;
-    background-color: transparent;
-    border: none;
-    font-size: 30px;
-    height: 0px;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    
+	color: $yellow;
+	background-color: transparent;
+	border: none;
+	font-size: 30px;
+	height: 0px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
 }
 
 .ml {
-    color: $yellow;
-    font-size: 20px;
-    font-family: Karantina;
+	color: $yellow;
+	font-size: 20px;
+	font-family: Karantina;
 }
 
-.button-{
-    color: $yellow;
-    font-size: 20px;
-    border: none;
-    font-size: 20px;
-    background-color: transparent   ;
+.button- {
+	color: $yellow;
+	font-size: 20px;
+	border: none;
+	font-size: 20px;
+	background-color: transparent;
 }
 
 .buttonAddCocktail {
-    width: 50%;
-    height: 30px;
-    border : none;
-    border-radius: 25px;
-    background-color: $yellow;
-    color: $brown;
-    font-family: Karantina; 
-    font-size: 20px;
+	width: 50%;
+	height: 30px;
+	border: none;
+	border-radius: 25px;
+	background-color: $yellow;
+	color: $brown;
+	font-family: Karantina;
+	font-size: 20px;
 }

@@ -9,7 +9,7 @@ const DecorationSchema = new mongoose.Schema({
 // Schéma pour les ingrédients
 const IngredientSchema = new mongoose.Schema({
 	name: { type: String, required: true },
-	quantity: { type: [Number], required: true }, // Gère à la fois les nombres et les chaînes
+	quantity: { type: Number, required: true }, // Gère à la fois les nombres et les chaînes
 	unit: { type: String, required: false },
 });
 

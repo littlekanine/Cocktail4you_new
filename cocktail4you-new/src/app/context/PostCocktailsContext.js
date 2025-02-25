@@ -16,6 +16,7 @@ export const PostCocktailsProvider = ({ children }) => {
 		setLoading(true);
 		setError(null);
 		try {
+			console.log('Données envoyées : ', cocktail);
 			const response = await fetch('/api/cocktailsCrea', {
 				method: 'POST',
 				headers: {

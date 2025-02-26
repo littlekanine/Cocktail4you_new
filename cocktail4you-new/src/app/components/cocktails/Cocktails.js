@@ -2,6 +2,7 @@
 
 import { useCocktails } from '@/app/context/CocktailContext';
 import CocktailCard from '../cocktailcard/cocktailCard';
+import CocktailCardCrea from '../cocktailcard/cocktailCardCrea';
 
 const Cocktails = ({ searchTerm, selectedCategory }) => {
 	const {
@@ -46,18 +47,31 @@ const Cocktails = ({ searchTerm, selectedCategory }) => {
 	}
 	return (
 		<div className="flex column gap20">
-			{filteredCocktails.map((cocktail, index) => (
-				<CocktailCard
-					key={cocktail._id} // Utilisez un identifiant unique pour chaque carte
-					cocktail={cocktail}
-					index={index}
-					activeCard={activeCard}
-					clickedStates={clickedStates}
-					handleCardClick={handleCardClick} // Passer handleCardClick pour gérer le clic sur la carte
-					handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)} // Passer handleButtonClick pour les favoris
-					isVisible={isVisible}
-				/>
-			))}
+			{filteredCocktails.map((cocktail, index) =>
+				// Choisissez le bon composant en fonction de la catégorie
+				selectedCategory === 'classique' ? (
+					<CocktailCard
+						key={cocktail._id}
+						cocktail={cocktail}
+						index={index}
+						activeCard={activeCard}
+						clickedStates={clickedStates}
+						handleCardClick={handleCardClick}
+						handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)}
+						isVisible={isVisible}
+					/>
+				) : (
+					<CocktailCardCrea
+						key={cocktail._id}
+						cocktail={cocktail}
+						index={index}
+						activeCard={activeCard}
+						handleCardClick={handleCardClick}
+						handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)}
+						isVisible={isVisible}
+					/>
+				)
+			)}
 		</div>
 	);
 };

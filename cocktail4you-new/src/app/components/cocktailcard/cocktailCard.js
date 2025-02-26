@@ -45,15 +45,7 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 				{activeCard !== index ? (
 					<div className="flex column center design-card">
 						<h1 className="shadow">{cocktail.name}</h1>
-						<h2 className="shadow">
-							{Array.isArray(cocktail.tags) && cocktail.tags.length > 0
-								? cocktail.tags
-										.flat() // Aplatir le tableau de tags
-										.join(' ') // Joindre les tags avec un espace
-								: isFrench
-								? 'Aucun tag disponible'
-								: 'No tag available'}
-						</h2>
+						<h2 className="shadow">{(Array.isArray(cocktail.tags) ? cocktail.tags : []).join(' ') || (isFrench ? 'Aucun tag disponible' : 'No tag available')}</h2>
 					</div>
 				) : (
 					<div className="flex column center design-card-expanded heightFull">
@@ -106,11 +98,13 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 											<div key={index} className="deco flex column width280">
 												<p className="card-indications flex column space-between shadow">
 													{
-														// Vérification si decoration.name est un objet avec les clés 'fr' et 'en'
+														// Vérification si decoration est un objet avec les clés 'fr' et 'en'
 														typeof decoration === 'object' && decoration !== null
-															? decoration[isFrench ? 'fr' : 'en'].join(' - ') || ''
-															: decoration || 'A votre appréciation'
-													}{' '}
+															? Array.isArray(decoration[isFrench ? 'fr' : 'en'])
+																? decoration[isFrench ? 'fr' : 'en'].join(' - ') // Si c'est un tableau, utilise join
+																: decoration[isFrench ? 'fr' : 'en'] || '' // Sinon, afficher le texte de la langue
+															: decoration || 'A votre appréciation' // Si decoration n'est pas un objet valide
+													}
 												</p>
 											</div>
 										))

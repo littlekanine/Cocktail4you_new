@@ -14,6 +14,7 @@ const HomePage = () => {
 	const [isModalVisible, setIsModalVisible] = useState(true);
 	const [isOver18, setIsOver18] = useState(false);
 	const { isFrench } = useLanguage();
+	const [selectedCategory, setSelectedCategory] = useState('classique');
 
 	const handleInputChange = (e) => {
 		setInputValue(e.target.value);
@@ -88,13 +89,21 @@ const HomePage = () => {
 								className={`shadow ${inputValue !== '' ? 'margin0' : ''}`}
 							/>
 							<div className={`flex column cocktails-container ${inputValue === '' ? 'hidden' : ''}`}>
-								<Cocktails searchTerm={inputValue} />
+								<Cocktails searchTerm={inputValue} selectedCategory={selectedCategory} />
 							</div>
 						</div>
 						{inputValue === '' && (
 							<div className={`flex row center align-center gap20 ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
-								{isFrench ? <Button text="Populaire" className="shadow" /> : <Button text="Popular" className="shadow" />}
-								{isFrench ? <Button text="Créations" className="shadow" /> : <Button text="Creations" className="shadow" />}
+								<Button
+									text={isFrench ? 'Classique' : 'Classic'}
+									className={`shadow ${selectedCategory === 'classique' ? 'activeCategory' : ''}`}
+									onClick={() => setSelectedCategory('classique')}
+								/>
+								<Button
+									text={isFrench ? 'Créations' : 'Creations'}
+									className={`shadow ${selectedCategory === 'creations' ? 'activeCategory' : ''}`}
+									onClick={() => setSelectedCategory('creations')}
+								/>
 							</div>
 						)}
 					</div>

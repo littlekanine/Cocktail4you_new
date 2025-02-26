@@ -3,6 +3,7 @@ import './addCocktails.scss';
 import FileUpload from '../fileUpload/fileUpload';
 import { useCocktails } from '@/app/context/CocktailContext';
 import { useCrea } from '@/app/context/PostCocktailsContext';
+import { set } from 'mongoose';
 
 const AddCocktails = ({ onClose }) => {
 	const [form, setForm] = useState({
@@ -19,6 +20,8 @@ const AddCocktails = ({ onClose }) => {
 	const { postCocktail } = useCrea();
 
 	const { isFrench } = useCocktails();
+
+	const [tags, setTags] = useState(['']);
 
 	const categories = ['Classique', 'Tendance', 'Création', 'Sans Alcool'];
 	const cocktailGlasses = [
@@ -39,6 +42,22 @@ const AddCocktails = ({ onClose }) => {
 			...form,
 			[name]: value,
 		});
+	};
+
+	const handleChangeTags = (index, e) => {
+		const newTags = [...tags];
+		newTags[index] = e.target.value;
+		setTags(newTags);
+	};
+
+	const addTag = () => {
+		setTags([...tags, '']);
+	};
+
+	const removeTag = (index) => {
+		if (tags.length > 1) {
+			setTags(tags.filter((_, i) => i !== index));
+		}
 	};
 
 	const handleFileChange = async (e) => {
@@ -71,30 +90,32 @@ const AddCocktails = ({ onClose }) => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const { glassType, ...rest } = form; // 🔥 Exclure glassType de form
+		const { glassType, ...rest } = form;
 
 		const cocktailData = {
-			...rest, // ✅ Prendre les autres données du formulaire
-			ingredients, // ✅ Prendre les ingrédients à jour
-			decoration: decorations, // ✅ Prendre les décorations à jour
-			glass_type: glassType, // ✅ Renommé proprement
-			img: form.photo, // ✅ Stocker la img
+			...rest,
+			ingredients,
+			decoration: decorations,
+			glass_type: glassType,
+			img: form.photo,
+			tags: tags.filter((tag) => tag.trim() !== ''),
 		};
 
 		console.log('Données envoyées :', cocktailData);
 		postCocktail(cocktailData);
 
-		// setForm({
-		// 	name: '',
-		// 	instructions: '',
-		// 	category: '',
-		// 	glassType: '',
-		// 	history: '',
-		// 	photo: '',
-		// });
+		setForm({
+			name: '',
+			instructions: '',
+			category: '',
+			glassType: '',
+			history: '',
+			photo: '',
+		});
 
-		// setIngredients([{ name: '', quantity: '', unit: 'ml' }]);
-		// setDecorations([{ name: '', quantity: '' }]);
+		setIngredients([{ name: '', quantity: '', unit: 'ml' }]);
+		setDecorations([{ name: '', quantity: '' }]);
+		setTags(['']);
 	};
 
 	const [ingredients, setIngredients] = useState([{ name: '', quantity: '', unit: 'ml' }]);
@@ -269,6 +290,23 @@ const AddCocktails = ({ onClose }) => {
 						</div>
 					))}
 					<button className="flex center align-center buttonAddAlcohol" onClick={addDecoration}>
+						+
+					</button>
+				</div>
+
+				<div className="flex column gap5 width90">
+					<label>Tags :</label>
+					{tags.map((tag, index) => (
+						<div key={index} className="flex gap10">
+							<input type="text" value={tag} placeholder="Tag" onChange={(e) => handleChangeTags(index, e)} className="inputTag flex padding10 font20" />
+							{tags.length > 1 && (
+								<button type="button" className="button-" onClick={() => removeTag(index)}>
+									-
+								</button>
+							)}
+						</div>
+					))}
+					<button type="button" className="flex center align-center buttonAddAlcohol" onClick={addTag}>
 						+
 					</button>
 				</div>

@@ -3,9 +3,10 @@
 import { useCocktails } from '@/app/context/CocktailContext';
 import CocktailCard from '../cocktailcard/cocktailCard';
 
-const Cocktails = ({ searchTerm }) => {
+const Cocktails = ({ searchTerm, selectedCategory }) => {
 	const {
 		cocktails,
+		cocktailsCrea,
 		loading,
 		clickedStates,
 		activeCard,
@@ -13,7 +14,9 @@ const Cocktails = ({ searchTerm }) => {
 		isVisible, // Récupérer la fonction pour gérer l'activation des cartes
 	} = useCocktails();
 
-	const filteredCocktails = cocktails.filter((cocktail) => {
+	const displayedCocktails = selectedCategory === 'classique' ? cocktails : cocktailsCrea;
+
+	const filteredCocktails = displayedCocktails.filter((cocktail) => {
 		// Récupérer le nom en fonction de la langue
 		const nameField = cocktail.name;
 

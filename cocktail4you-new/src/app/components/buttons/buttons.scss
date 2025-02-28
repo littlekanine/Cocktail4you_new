@@ -5,19 +5,10 @@
 	height: 49px;
 	border-radius: 10px;
 	border: 1px solid transparent;
-	background-color: $brown;
-	color: $yellow;
-	font-family: Karantina;
+	background-color: rgba(0, 0, 0, 0.294);
+	color: $white;
+	font-family: 'karla', sans-serif;
 	font-size: 24px;
-}
-
-.button-user-svg {
-	width: 20px;
-	height: 20px;
-	background-color: $caramel;
-	border: none;
-	fill: $yellow;
-	filter: none;
 }
 
 .button-star-svg {
@@ -25,6 +16,6 @@
 	height: 20px;
 	// background-color: $brown;
 	border: none;
-	fill: $yellow;
+	fill: $white;
 	filter: none;
 }

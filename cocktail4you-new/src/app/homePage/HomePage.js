@@ -73,21 +73,26 @@ const HomePage = () => {
 				<>
 					<div className="flex column">
 						{inputValue === '' && (
-							<h1 className={`title flex center align-center shadow ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
+							<h1 className={`title flex center align-center ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
 								Cocktails<span className="number">4</span>You
 							</h1>
 						)}
 						<div className={`flex column padding-bottom10 ${inputValue !== '' ? 'slide-up margin0' : 'slide-down'}`}>
 							<label htmlFor="site-search"></label>
-							<input
-								type="search"
-								id="site-search"
-								name="q"
-								value={inputValue}
-								onChange={handleInputChange}
-								autoComplete="off"
-								className={`shadow ${inputValue !== '' ? 'margin0' : ''}`}
-							/>
+							<div className="relative">
+								<input
+									type="search"
+									id="site-search"
+									name="q"
+									value={inputValue}
+									onChange={handleInputChange}
+									autoComplete="off"
+									className={` ${inputValue !== '' ? 'margin0' : ''}`}
+								/>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="loupe">
+									<path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+								</svg>
+							</div>
 							<div className={`flex column cocktails-container ${inputValue === '' ? 'hidden' : ''}`}>
 								<Cocktails searchTerm={inputValue} selectedCategory={selectedCategory} />
 							</div>
@@ -96,12 +101,12 @@ const HomePage = () => {
 							<div className={`flex row center align-center gap20 ${isVisible ? 'fade-up visible' : 'fade-down hidden'}`}>
 								<Button
 									text={isFrench ? 'Classique' : 'Classic'}
-									className={`shadow ${selectedCategory === 'classique' ? 'activeCategory' : ''}`}
+									className={` ${selectedCategory === 'classique' ? 'activeCategory' : ''}`}
 									onClick={() => setSelectedCategory('classique')}
 								/>
 								<Button
 									text={isFrench ? 'Créations' : 'Creations'}
-									className={`shadow ${selectedCategory === 'creations' ? 'activeCategory' : ''}`}
+									className={` ${selectedCategory === 'creations' ? 'activeCategory' : ''}`}
 									onClick={() => setSelectedCategory('creations')}
 								/>
 							</div>

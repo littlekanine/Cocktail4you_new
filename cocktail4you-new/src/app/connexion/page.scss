@@ -1,60 +1,47 @@
-@use "../../vendors/variables.scss" as *;
+@use '../../vendors/variables.scss' as *;
 
 .connexion {
-    margin-top: 20px;
-    width: 343px;
-    height: 60%;
-    background-color: $brown;
-    border-radius: 25px;
+	margin-top: 20px;
+	width: 343px;
+	height: 60%;
+	background-color: $brown;
+	border-radius: 25px;
 
-    @media (min-width: 520px) {
-        height: 60%;
-    }
+	@media (min-width: 520px) {
+		height: 60%;
+	}
 }
 
 .title-connexion {
-    font-size: 28px;
-    color: $yellow;
-    font-weight: 300;
-    padding-top: 10px;
-}
-
-p {
-    font-size: 20px;
-    padding-bottom: 5px;
-    color: $yellow;
-    font-weight: 300;
+	font-size: 28px;
+	color: $yellow;
+	font-weight: 300;
+	padding-top: 10px;
 }
 
 h1 {
-    color: $yellow;
+	color: $yellow;
 }
 
 .nomUtilisateur {
-    width: 80%;
+	width: 80%;
 }
 
-input[type="text"],
-input[type="password"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 0px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    margin-bottom: 10px;
-    font-family: "Roboto", sans-serif;
-    color: $caramel;
-    transform: translateY(0);
-    z-index: 10;
+input[type='text'],
+input[type='password'] {
+	padding: 10px;
+	font-size: 16px;
+	border: 0px solid #ccc;
+	border-radius: 10px;
+	outline: none;
+	margin-bottom: 10px;
+	font-family: 'Roboto', sans-serif;
+	color: $caramel;
+	transform: translateY(0);
+	z-index: 10;
 }
 
 .connexion-button {
-    background-color: $yellow !important;
-    color: $brown !important;
-}
-
-.logo-connexion {
-    position: absolute;
-    top: 0%;
-    left: 5%;
+	background-color: $yellow !important;
+	color: $brown !important;
 }

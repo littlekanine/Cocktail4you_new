@@ -113,6 +113,10 @@ body,
 	gap: 20px;
 }
 
+.absolute {
+	position: absolute;
+}
+
 .hidden {
 	display: none;
 }
@@ -204,6 +208,10 @@ body,
 }
 .shadow-white {
 	filter: drop-shadow(0px 5px 15px $white);
+}
+
+.zIndexPositive {
+	z-index: 10;
 }
 
 .font300 {

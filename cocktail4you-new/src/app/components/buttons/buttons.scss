@@ -14,8 +14,10 @@
 .button-star-svg {
 	width: 20px;
 	height: 20px;
-	// background-color: $brown;
+	background-color: transparent;
 	border: none;
 	fill: $white;
 	filter: none;
+	top: 5px;
+	right: 10px;
 }

@@ -251,6 +251,7 @@ export const CocktailProvider = ({ children }) => {
 
 	// Gérer le clic sur une carte (active ou inactive)
 	const handleCardClick = (cocktailId) => {
+		console.log('Carte cliquée :', cocktailId);
 		// Sauvegarder la position du scroll avant d'ouvrir la carte
 		const scrollPosition = window.scrollY;
 		setActiveCard((prevState) => {

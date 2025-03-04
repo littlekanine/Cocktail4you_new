@@ -53,7 +53,7 @@
 }
 .extra-info.visible {
 	opacity: 1;
-	max-height: 350px;
+	max-height: 400px;
 	border-radius: 0px 0px 10px 10px;
 	padding-top: 20px;
 }
@@ -89,6 +89,7 @@
 	color: $white;
 	font-size: 18px;
 	font-family: 'karla';
+	min-height: 25px;
 }
 
 .svg-bottle {

@@ -66,18 +66,22 @@ export const CocktailProvider = ({ children }) => {
 			const response = await fetch('/api/favorites', { method: 'GET', credentials: 'include' });
 			const data = await response.json();
 
-			// Vérifie que `data.favorites` est un tableau valide
 			if (Array.isArray(data.favorites)) {
-				setFavorites(data.favorites); // Mets à jour les favoris
+				setFavorites(data.favorites);
+				console.log('🔄 Favoris mis à jour :', data.favorites);
+				return data.favorites; // ✅ Retourne les favoris mis à jour
 			} else {
-				setFavorites([]); // Si ce n'est pas un tableau, initialise à []
+				setFavorites([]);
 				console.warn('Les favoris retournés ne sont pas valides.');
+				return [];
 			}
 		} catch (error) {
 			console.error('Erreur lors du chargement des favoris :', error);
-			setFavorites([]); // En cas d'erreur, initialise à []
+			setFavorites([]);
+			return [];
 		}
 	};
+
 	const getLocalizedCocktails = () => {
 		return cocktails.map((cocktail) => {
 			// Fonction pour récupérer la valeur localisée
@@ -142,20 +146,24 @@ export const CocktailProvider = ({ children }) => {
 
 	const deleteFavorites = async (cocktailId) => {
 		try {
+			// Mise à jour optimiste : on enlève le favori localement AVANT l'API
+			setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== cocktailId));
+
 			const response = await fetch('/api/favorites', {
 				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-				},
+				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ cocktailId }),
 				credentials: 'include',
 			});
-			const result = await response.json();
+
 			if (!response.ok) {
-				console.error('Erreur lors de la sauvegarde :', result.error);
+				throw new Error('Erreur lors de la suppression du favori.');
 			}
 		} catch (error) {
 			console.error('Erreur réseau :', error);
+
+			// En cas d'erreur, on remet l'ancien state
+			setFavorites((prevFavorites) => [...prevFavorites, cocktailId]);
 		}
 	};
 
@@ -208,7 +216,6 @@ export const CocktailProvider = ({ children }) => {
 	const handleFavoriteClick = async (event, cocktailIndex) => {
 		event.stopPropagation();
 
-		// Récupère l'objet cocktail à partir de l'index
 		const cocktail = cocktails[cocktailIndex];
 		const cocktailId = cocktail._id;
 
@@ -219,33 +226,32 @@ export const CocktailProvider = ({ children }) => {
 
 		const isFavorited = favorites.includes(cocktailId);
 
-		// Mise à jour optimiste de l'état local pour les favoris
-		const updatedFavorites = isFavorited ? favorites.filter((id) => id !== cocktailId) : [...favorites, cocktailId];
-
-		// Mise à jour de `clickedStates`
-		setClickedStates((prevState) => ({
-			...prevState,
-			[cocktailId]: !prevState[cocktailId], // Inverse l'état du bouton
-		}));
-
-		// Mise à jour de l'état des favoris
-		setFavorites(updatedFavorites);
+		// Met à jour l'état de clickedStates avant la requête
+		setClickedStates((prev) => ({ ...prev, [cocktailId]: !prev[cocktailId] }));
 
 		try {
+			// Si c'est un favori, on le supprime
 			if (isFavorited) {
-				await deleteFavorites(cocktailId); // Si déjà favori, on supprime
+				await deleteFavorites(cocktailId);
+				console.log('Cocktail supprimé des favoris:', cocktailId);
 			} else {
-				await saveFavorite(cocktailId); // Sinon on l'ajoute aux favoris
+				// Sinon, on l'ajoute
+				await saveFavorite(cocktailId);
+				console.log('Cocktail ajouté aux favoris:', cocktailId);
 			}
+
+			// Après modification, on récupère les favoris à jour
+			const updatedFavorites = await fetchFavorites();
+			setFavorites(updatedFavorites);
+
+			// Réinitialiser `clickedStates` pour correspondre à la nouvelle liste des favoris
+			const updatedClickedStates = {};
+			updatedFavorites.forEach((favoriteId) => {
+				updatedClickedStates[favoriteId] = true; // Met tous les favoris à `true`
+			});
+			setClickedStates(updatedClickedStates);
 		} catch (error) {
 			console.error('Erreur lors de la mise à jour des favoris :', error);
-
-			// Rollback en cas d'erreur
-			setFavorites(favorites);
-			setClickedStates((prevState) => ({
-				...prevState,
-				[cocktailId]: prevState[cocktailId], // Annule le changement de l'état du bouton
-			}));
 		}
 	};
 

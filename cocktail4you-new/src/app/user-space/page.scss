@@ -1,12 +1,17 @@
 @use '../../vendors/variables.scss' as *;
 
-.logo {
-	position: absolute;
-	top: 0px;
-	left: 10px;
-	color: $yellow;
+.container {
+	margin-top: 40px;
 }
 
-.choiceContainer {
-	margin-bottom: 60px;
+h2 {
+	color: $white;
+	font-size: 38px;
+	font-family: 'karla';
+	font-weight: 200;
+}
+
+.button-user-space {
+	font-family: 'karla' !important;
+	font-size: 20px !important;
 }

@@ -5,6 +5,7 @@ import CocktailCard from '../components/cocktailcard/cocktailCard';
 import '../components/cocktailcard/cocktailCard.scss';
 import { useAuth } from '../context/AuthContext';
 import { useCocktails } from '../context/CocktailContext';
+import './page.scss';
 
 const Page = () => {
 	const { user } = useAuth();
@@ -32,29 +33,32 @@ const Page = () => {
 
 	// Affichage des cocktails favoris
 	return (
-		<div className="flex column gap20 padding-top-20">
-			<h1 className="flex center title shadow">Mes cocktails favoris</h1>
-
-			<div className="cocktail-list flex center align-center column gap20 padding-left-10 padding-right-10">
-				{loading ? (
-					<div>Chargement des favoris...</div>
-				) : likedCocktails.length > 0 ? (
-					likedCocktails.map((cocktail, index) => (
-						<CocktailCard
-							key={cocktail._id} // Identifiant unique pour chaque carte
-							cocktail={cocktail}
-							index={index}
-							activeCard={activeCard}
-							handleCardClick={handleCardClick} // Passer setActiveCard directement ici
-							handleButtonClick={(event) => handleButtonClick(event, cocktail._id)}
-							isVisible={isVisible}
-						/>
-					))
-				) : (
-					<div>
-						<h2 className="yellow shadow">Pas de favoris trouvés</h2>
-					</div>
-				)}
+		<div className="flex widthFull column gap20 padding-top-20">
+			<h2 className="flex center title-liked ">Mes cocktails favoris</h2>
+			<div className="flex center align-center widthFull">
+				<div className="cocktail-list flex center align-center column">
+					{loading ? (
+						<div>Chargement des favoris...</div>
+					) : likedCocktails.length > 0 ? (
+						likedCocktails.map((cocktail, index) => (
+							<div key={cocktail._id} className="widthFull padding10">
+								<CocktailCard
+									key={cocktail._id} // Identifiant unique pour chaque carte
+									cocktail={cocktail}
+									index={index}
+									activeCard={activeCard}
+									handleCardClick={handleCardClick} // Passer setActiveCard directement ici
+									handleButtonClick={(event) => handleButtonClick(event, cocktail._id)}
+									isVisible={isVisible}
+								/>
+							</div>
+						))
+					) : (
+						<div className="flex center align-center">
+							<h2 className="flex text-center">Pas de favoris trouvés</h2>
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

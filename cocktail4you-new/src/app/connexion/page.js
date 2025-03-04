@@ -76,24 +76,24 @@ const Page = () => {
 		<div className="height100vh flex">
 			<div className="connexion-container flex center align-center widthFull column">
 				{isFrench ? (
-					<h1 className="flex center widthFull title-connexion shadow">Accéder à votre espace personnel</h1>
+					<h1 className="flex center widthFull title-connexion ">Accéder à votre espace personnel</h1>
 				) : (
-					<h1 className="flex center widthFull title-connexion shadow">Access your personal space</h1>
+					<h1 className="flex center widthFull title-connexion ">Access your personal space</h1>
 				)}
 
-				<div className="flex connexion column center align-center">
+				<div className="flex connexion column center align-center relative">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center width80 gap20">
 						<div className="nomUtilisateur flex column center width80">
-							{isFrench ? <p className="flex karantina font26">Nom d&apos;utilisateur</p> : <p className="flex karantina font26">Username</p>}
+							{isFrench ? <p className="flex ">Nom d&apos;utilisateur</p> : <p className="flex karantina font26">Username</p>}
 							<label htmlFor="username"></label>
 							<input type="text" name="username" id="username" autoComplete="username" value={formData.username} onChange={handleChange} required />
-							<div className="flex center">
-								{isFrench ? <p className="karantina font22">Nom d&apos;utilisateur oublié ?</p> : <p className="karantina font22">Forgot username ?</p>}
-							</div>
+							{/* <div className="flex center">
+								{isFrench ? <p className=" font22">Nom d&apos;utilisateur oublié ?</p> : <p className="karantina font22">Forgot username ?</p>}
+							</div> */}
 						</div>
 
 						<div className="flex column center width80 margin10Bottom">
-							{isFrench ? <p className="flex karantina font26">Mot de passe</p> : <p className="flex karantina font26">Password</p>}
+							{isFrench ? <p className="flex ">Mot de passe</p> : <p className="flex karantina font26">Password</p>}
 
 							<label htmlFor="password"></label>
 							<input
@@ -105,9 +105,9 @@ const Page = () => {
 								onChange={handleChange}
 								required
 							/>
-							<div className="flex center">
-								{isFrench ? <p className="karantina font22">Mot de passe oublié ?</p> : <p className="karantina font22">Forgot password ?</p>}
-							</div>
+							{/* <div className="flex center">
+								{isFrench ? <p className=" font22">Mot de passe oublié ?</p> : <p className="karantina font22">Forgot password ?</p>}
+							</div> */}
 						</div>
 
 						<div className="flex center margin10Bottom">
@@ -126,10 +126,11 @@ const Page = () => {
 							{message}
 						</p>
 					)}
-
-					<Link href="/inscription">
-						<div className="">{isFrench ? <p className="font400">S&apos;inscrire</p> : <p className="font400">Sign up</p>}</div>
-					</Link>
+					<div className="inscription-link">
+						<Link href="/inscription">
+							<div className="">{isFrench ? <p className="font400">S&apos;inscrire</p> : <p className="font400">Sign up</p>}</div>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>

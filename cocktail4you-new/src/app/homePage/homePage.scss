@@ -12,9 +12,10 @@
 }
 
 .avertissement {
-	color: $yellow;
+	color: $white;
 	margin-bottom: 20px;
 	text-align: center;
+	font-family: 'karla';
 }
 
 .fade-up {
@@ -103,4 +104,10 @@ input[type='search'] {
 .activeCategory {
 	background-color: rgba(255, 255, 255, 0.35) !important;
 	color: $white !important;
+}
+
+.text-confirmation {
+	color: $white !important;
+	font-family: 'karla' !important;
+	font-size: 18px !important;
 }

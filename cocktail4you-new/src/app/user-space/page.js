@@ -55,19 +55,19 @@ const Page = () => {
 	};
 
 	return (
-		<div className="flex height100vh shadow column">
-			<div className="flex center align-center gap20 heightFull column">
-				<h1 className="flex center">{isFrench ? `Bienvenue, ${user.username}` : `Welcome, ${user.username}`}</h1>
+		<div className="flex height100vh  column">
+			<div className="flex center align-center gap20 heightFull column container">
+				<h2 className="flex center">{isFrench ? `Bienvenue, ${user.username}` : `Welcome, ${user.username}`}</h2>
 				<div className="flex column gap20 scroll choiceContainer hideScroll">
-					<Button className="width250" text={isFrench ? 'Partager ma création' : 'Share My Creation'} onClick={handleAddCocktails} />
+					<Button className="width250 button-user-space " text={isFrench ? 'Partager ma création' : 'Share My Creation'} onClick={handleAddCocktails} />
 					{showAddCocktails && <AddCocktails onClose={handleCloseAddCocktails} />}
-					<Button className="width250" text={isFrench ? 'Mes créations' : 'My Creations'} />
+					<Button className="width250 button-user-space " text={isFrench ? 'Mes créations' : 'My Creations'} />
 					<Link href="./liked">
-						<Button className="width250" text={isFrench ? "Mentions j'aime" : 'Likes'} />
+						<Button className="width250 button-user-space " text={isFrench ? "Mentions j'aime" : 'Likes'} />
 					</Link>
-					<Button className="width250" text={isFrench ? 'Créer ma liste de courses' : 'Create My Shopping List'} />
-					<Button className="width250" text={isFrench ? 'Mes listes' : 'My Lists'} />
-					<Button className="width250" text={isFrench ? 'Déconnexion' : 'Logout'} onClick={handleLogout} />
+					<Button className="width250 button-user-space " text={isFrench ? 'Créer ma liste de courses' : 'Create My Shopping List'} />
+					<Button className="width250 button-user-space " text={isFrench ? 'Mes listes' : 'My Lists'} />
+					<Button className="width250 button-user-space " text={isFrench ? 'Déconnexion' : 'Logout'} onClick={handleLogout} />
 				</div>
 			</div>
 		</div>

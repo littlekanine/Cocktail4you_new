@@ -61,10 +61,10 @@ const HomePage = () => {
 		<div className="flex center align-center height100vh overflow-none">
 			{isModalVisible && (
 				<div className="flex column  align-center age-confirmation-modal">
-					<h2 className=" flex  align-center avertissement shadow">Vous devez avoir plus de 18 ans pour accéder à ce site.</h2>
+					<h2 className=" flex  align-center avertissement ">Vous devez avoir plus de 18 ans pour accéder à ce site.</h2>
 					<div className="flex row center gap20">
-						<Button text="Je confirme" onClick={() => handleAgeConfirmation('yes')} />
-						<Button text="Je suis mineur" onClick={() => handleAgeConfirmation('no')} />
+						<Button text="Je confirme" className="text-confirmation" onClick={() => handleAgeConfirmation('yes')} />
+						<Button text="Je suis mineur" className="text-confirmation" onClick={() => handleAgeConfirmation('no')} />
 					</div>
 				</div>
 			)}

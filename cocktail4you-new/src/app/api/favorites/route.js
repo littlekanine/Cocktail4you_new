@@ -35,8 +35,7 @@ export async function POST(req) {
 		}
 
 		// Assurer que les ObjectId sont correctement convertis en ObjectId
-		user.likedCocktails = user.likedCocktails.map((id) => (mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : id));
-
+		user.likedCocktails = user.likedCocktails.map((id) => (id instanceof mongoose.Types.ObjectId ? id : new mongoose.Types.ObjectId(id)));
 		// Vérifier que l'ID du cocktail est valide
 		if (!mongoose.Types.ObjectId.isValid(cocktailId)) {
 			return NextResponse.json({ error: 'ID de cocktail invalide' }, { status: 400 });

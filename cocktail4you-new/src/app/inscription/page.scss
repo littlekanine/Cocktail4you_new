@@ -3,13 +3,14 @@
 .connexion {
 	margin-top: 20px;
 	width: 343px;
-	background-color: $brown;
-	border-radius: 25px;
+	background-color: rgba(0, 0, 0, 0.2);
+	height: 40%;
+	border-radius: 10px;
 }
 
 .title-connexion {
 	font-size: 28px;
-	color: $yellow;
+	color: $white;
 	font-weight: 300;
 	padding-top: 10px;
 }
@@ -17,12 +18,7 @@
 p {
 	font-size: 20px;
 	padding-bottom: 5px;
-	color: $yellow;
 	font-weight: 300;
-}
-
-h1 {
-	color: $yellow;
 }
 
 .nomUtilisateur {
@@ -38,26 +34,20 @@ input[type='password'] {
 	outline: none;
 	margin-bottom: 10px;
 	font-family: 'Roboto', sans-serif;
-	color: $caramel;
+	color: rgba(0, 0, 0, 0.744);
 	transform: translateY(0);
 	z-index: 10;
 }
 
 .connexion-button {
-	background-color: $yellow !important;
-	color: $brown !important;
-}
-
-.logo-connexion {
-	position: absolute;
-	top: 0%;
-	left: 5%;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: $white !important;
 }
 
 label {
-	color: $yellow;
-	font-size: 20px;
-	font-family: 'Karantina';
+	color: $white;
+	font-size: 18px;
+	font-family: 'karla';
 	font-weight: 300;
 	margin-bottom: 10px;
 }

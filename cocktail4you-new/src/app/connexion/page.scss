@@ -3,18 +3,24 @@
 .connexion {
 	margin-top: 20px;
 	width: 343px;
-	height: 60%;
-	background-color: $brown;
-	border-radius: 25px;
+	height: 40%;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
 
 	@media (min-width: 520px) {
-		height: 60%;
+		height: 40%;
 	}
+}
+
+p {
+	color: $white;
+	font-size: 18px;
+	font-family: 'karla';
 }
 
 .title-connexion {
 	font-size: 28px;
-	color: $yellow;
+	color: $white;
 	font-weight: 300;
 	padding-top: 10px;
 }
@@ -36,12 +42,18 @@ input[type='password'] {
 	outline: none;
 	margin-bottom: 10px;
 	font-family: 'Roboto', sans-serif;
-	color: $caramel;
+	color: rgba(0, 0, 0, 0.696);
 	transform: translateY(0);
 	z-index: 10;
 }
 
 .connexion-button {
-	background-color: $yellow !important;
-	color: $brown !important;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: $white !important;
+}
+
+.inscription-link {
+	position: absolute;
+	top: 80%;
+	right: 130px;
 }

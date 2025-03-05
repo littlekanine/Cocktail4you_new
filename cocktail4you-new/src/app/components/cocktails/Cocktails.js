@@ -66,6 +66,7 @@ const Cocktails = ({ searchTerm, selectedCategory }) => {
 						cocktail={cocktail}
 						index={index}
 						activeCard={activeCard}
+						clickedStates={clickedStates}
 						handleCardClick={handleCardClick}
 						handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)}
 						isVisible={isVisible}

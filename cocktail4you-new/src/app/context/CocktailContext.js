@@ -213,47 +213,44 @@ export const CocktailProvider = ({ children }) => {
 		}
 	}, [activeCard]);
 
-	const handleFavoriteClick = async (event, cocktailIndex) => {
+	const handleFavoriteClick = async (event, cocktailId) => {
 		event.stopPropagation();
-
-		const cocktail = cocktails[cocktailIndex];
-		const cocktailId = cocktail._id;
-
-		if (!cocktailId) {
-			console.error('ID de cocktail manquant.');
+	  
+		// On récupère le cocktail à partir de l'ID (pas d'index ici)
+		const cocktail = cocktails.find(c => c._id === cocktailId);
+	
+		// Vérification de l'existence du cocktail
+		if (!cocktail || !cocktailId) {
+			console.error("ID de cocktail manquant.");
 			return;
 		}
-
+	
+		console.log('Cocktail sélectionné:', cocktail);
+		console.log('ID du cocktail:', cocktailId);
+	  
 		const isFavorited = favorites.includes(cocktailId);
-
-		// Met à jour l'état de clickedStates avant la requête
-		setClickedStates((prev) => ({ ...prev, [cocktailId]: !prev[cocktailId] }));
-
+		const previousClickedStates = { ...clickedStates }; // Sauvegarde l'état précédent
+	  
+		// Optimisme : mise à jour immédiate de l'UI
+		setClickedStates((prev) => ({ ...prev, [cocktailId]: !isFavorited }));
+	
 		try {
-			// Si c'est un favori, on le supprime
 			if (isFavorited) {
+				// Si déjà favori, on le supprime
 				await deleteFavorites(cocktailId);
-				console.log('Cocktail supprimé des favoris:', cocktailId);
+				setFavorites((prev) => prev.filter((id) => id !== cocktailId));
 			} else {
-				// Sinon, on l'ajoute
+				// Sinon, on l'ajoute aux favoris
 				await saveFavorite(cocktailId);
-				console.log('Cocktail ajouté aux favoris:', cocktailId);
+				setFavorites((prev) => [...prev, cocktailId]);
 			}
-
-			// Après modification, on récupère les favoris à jour
-			const updatedFavorites = await fetchFavorites();
-			setFavorites(updatedFavorites);
-
-			// Réinitialiser `clickedStates` pour correspondre à la nouvelle liste des favoris
-			const updatedClickedStates = {};
-			updatedFavorites.forEach((favoriteId) => {
-				updatedClickedStates[favoriteId] = true; // Met tous les favoris à `true`
-			});
-			setClickedStates(updatedClickedStates);
 		} catch (error) {
-			console.error('Erreur lors de la mise à jour des favoris :', error);
+			console.error("Erreur lors de la mise à jour des favoris :", error);
+			setClickedStates(previousClickedStates); // Revenir à l'état précédent en cas d'erreur
 		}
 	};
+	
+	
 
 	// Gérer le clic sur une carte (active ou inactive)
 	const handleCardClick = (cocktailId) => {

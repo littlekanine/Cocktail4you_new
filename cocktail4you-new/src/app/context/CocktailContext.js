@@ -215,25 +215,24 @@ export const CocktailProvider = ({ children }) => {
 
 	const handleFavoriteClick = async (event, cocktailId) => {
 		event.stopPropagation();
-	  
+
 		// On récupère le cocktail à partir de l'ID (pas d'index ici)
-		const cocktail = cocktails.find(c => c._id === cocktailId);
-	
+		const cocktail = cocktails.find((c) => c._id === cocktailId) || cocktailsCrea.find((c) => c._id === cocktailId);
 		// Vérification de l'existence du cocktail
 		if (!cocktail || !cocktailId) {
-			console.error("ID de cocktail manquant.");
+			console.error('ID de cocktail manquant.');
 			return;
 		}
-	
+
 		console.log('Cocktail sélectionné:', cocktail);
 		console.log('ID du cocktail:', cocktailId);
-	  
+
 		const isFavorited = favorites.includes(cocktailId);
 		const previousClickedStates = { ...clickedStates }; // Sauvegarde l'état précédent
-	  
+
 		// Optimisme : mise à jour immédiate de l'UI
 		setClickedStates((prev) => ({ ...prev, [cocktailId]: !isFavorited }));
-	
+
 		try {
 			if (isFavorited) {
 				// Si déjà favori, on le supprime
@@ -245,16 +244,14 @@ export const CocktailProvider = ({ children }) => {
 				setFavorites((prev) => [...prev, cocktailId]);
 			}
 		} catch (error) {
-			console.error("Erreur lors de la mise à jour des favoris :", error);
+			console.error('Erreur lors de la mise à jour des favoris :', error);
 			setClickedStates(previousClickedStates); // Revenir à l'état précédent en cas d'erreur
 		}
 	};
-	
-	
 
 	// Gérer le clic sur une carte (active ou inactive)
 	const handleCardClick = (cocktailId) => {
-		console.log('Carte cliquée :', cocktailId);
+		console.log('Carte cliquée :', cocktailId, typeof cocktailId);
 		// Sauvegarder la position du scroll avant d'ouvrir la carte
 		const scrollPosition = window.scrollY;
 		setActiveCard((prevState) => {

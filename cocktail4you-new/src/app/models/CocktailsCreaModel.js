@@ -25,6 +25,8 @@ const CocktailCreaSchema = new mongoose.Schema({
 	img: { type: String, required: false }, // Image optionnelle
 	notes: { type: String, required: false }, // Notes optionnelles
 	history: { type: String, required: false }, // Histoire optionnelle
+	userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+	createdAt: { type: Date, default: Date.now },
 });
 
 // Création ou récupération du modèle Mongoose

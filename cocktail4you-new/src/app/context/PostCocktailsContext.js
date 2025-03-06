@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import axios from 'axios';
+import { useAuth } from './AuthContext';
 
 export const PostCocktailsContext = createContext();
 
@@ -11,16 +11,25 @@ export const PostCocktailsProvider = ({ children }) => {
 	const [cocktails, setCocktails] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
+	const { user } = useAuth();
+
+	const userId = user?._id;
+	console.log('User ID:', userId);
 
 	const postCocktail = async (cocktail) => {
 		setLoading(true);
 		setError(null);
 		try {
 			console.log('Données envoyées : ', cocktail);
+			console.log('En-têtes de la requête:', {
+				'Content-Type': 'application/json',
+				'user-id': userId,
+			});
 			const response = await fetch('/api/cocktailsCrea', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
+					'user-id': userId,
 				},
 				body: JSON.stringify(cocktail),
 			});

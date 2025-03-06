@@ -9,9 +9,9 @@ import './page.scss';
 
 const Page = () => {
 	const { user } = useAuth();
-	const { cocktails, loading, favorites, activeCard, handleCardClick, isVisible, setIsVisible, fetchFavorites } = useCocktails();
+	const { cocktails, cocktailsCrea, loading, favorites, activeCard, handleCardClick, isVisible, setIsVisible, fetchFavorites } = useCocktails();
 
-	const likedCocktails = cocktails.filter((cocktail) => favorites.includes(cocktail._id));
+	const likedCocktails = [...cocktails, ...cocktailsCrea].filter((cocktail) => favorites.includes(cocktail._id));
 
 	// Gérer l'affichage détaillé avec délai
 	useEffect(() => {

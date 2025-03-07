@@ -8,6 +8,7 @@ import Button from '../components/buttons/Button';
 import Link from 'next/link';
 import AddCocktails from '../components/addCocktails/addCoktails';
 import MyCocktails from '../components/myCocktails.js/myCocktails';
+import Liked from '../liked/liked';
 import { set } from 'mongoose';
 import './page.scss';
 
@@ -18,6 +19,7 @@ const Page = () => {
 	const { isFrench } = useLanguage(); // Langue actuelle (français ou non)
 	const [showAddCocktails, setShowAddCocktails] = useState(false);
 	const [showMyCocktails, setShowMyCocktails] = useState(false);
+	const [showMyLiked, setShowMyliked] = useState(false);
 
 	useEffect(() => {
 		setIsClient(true); // Lorsque le composant est monté côté client
@@ -64,21 +66,31 @@ const Page = () => {
 		setShowMyCocktails(false);
 	};
 
+	const handleLiked = () => {
+		setShowMyliked(!showMyLiked);
+	};
+
+	const handleCloseLiked = () => {
+		setShowMyliked(false);
+	};
+
 	return (
 		<div className="flex height100vh  column">
 			<div className="flex center align-center gap20 heightFull column container">
-				<h2 className="flex center">{isFrench ? `Bienvenue, ${user.username}` : `Welcome, ${user.username}`}</h2>
+				<h2 className="flex center">{loading ? (isFrench ? 'Chargement...' : 'Loading...') : isFrench ? `Bienvenue, ${user.username}` : `Welcome, ${user.username}`}</h2>
+
 				<div className="flex column gap20 scroll choicecontainer hideScroll">
 					<Button className=" button-user-space widthFull " text={isFrench ? 'Partager ma création' : 'Share My Creation'} onClick={handleAddCocktails} />
 					{showAddCocktails && <AddCocktails onClose={handleCloseAddCocktails} />}
 					<Button className=" button-user-space widthFull" text={isFrench ? 'Mes créations' : 'My Creations'} onClick={handleMyCocktails} />
 					{showMyCocktails && <MyCocktails onClose={handleCloseMyCocktaisl} />}
-					<Link href="./liked">
-						<Button className=" button-user-space widthFull" text={isFrench ? "Mentions j'aime" : 'Likes'} />
-					</Link>
-					<Button className=" button-user-space widthFull" text={isFrench ? 'Créer ma liste de courses' : 'Create My Shopping List'} />
-					<Button className=" button-user-space widthFull" text={isFrench ? 'Mes listes' : 'My Lists'} />
-					<Button className=" button-user-space widthFull" text={isFrench ? 'Déconnexion' : 'Logout'} onClick={handleLogout} />
+					{/* <Link href="./liked"> */}
+					<Button className=" button-user-space widthFull" text={isFrench ? "Mentions j'aime" : 'Likes'} onClick={handleLiked} />
+					{showMyLiked && <Liked onClose={handleCloseLiked} />}
+					{/* </Link> */}
+					{/* <Button className=" button-user-space widthFull" text={isFrench ? 'Créer ma liste de courses' : 'Create My Shopping List'} /> */}
+					{/* <Button className=" button-user-space widthFull" text={isFrench ? 'Mes listes' : 'My Lists'} /> */}
+					<Button className=" button-user-space widthFull margin-botom20" text={isFrench ? 'Déconnexion' : 'Logout'} onClick={handleLogout} />
 				</div>
 			</div>
 		</div>

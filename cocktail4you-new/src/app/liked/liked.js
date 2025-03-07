@@ -5,9 +5,9 @@ import CocktailCard from '../components/cocktailcard/cocktailCard';
 import '../components/cocktailcard/cocktailCard.scss';
 import { useAuth } from '../context/AuthContext';
 import { useCocktails } from '../context/CocktailContext';
-import './page.scss';
+import './liked.scss';
 
-const Page = () => {
+const Liked = () => {
 	const { user } = useAuth();
 	const { cocktails, cocktailsCrea, loading, favorites, activeCard, handleCardClick, isVisible, setIsVisible, fetchFavorites } = useCocktails();
 
@@ -33,8 +33,7 @@ const Page = () => {
 
 	// Affichage des cocktails favoris
 	return (
-		<div className="flex widthFull column gap20 padding-top-20">
-			<h2 className="flex center title-liked ">Mes cocktails favoris</h2>
+		<div className="flex widthFull column gap20">
 			<div className="flex center align-center widthFull">
 				<div className="cocktail-list flex center align-center column">
 					{loading ? (
@@ -64,4 +63,4 @@ const Page = () => {
 	);
 };
 
-export default Page;
+export default Liked;

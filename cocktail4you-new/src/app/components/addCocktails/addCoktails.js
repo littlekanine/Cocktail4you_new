@@ -170,7 +170,7 @@ const AddCocktails = ({ onClose }) => {
 	};
 
 	return (
-		<div className="flex center align center column gap20 containerAdd relative">
+		<div className="flex center align center column gap20 containerAdd relative widthFull">
 			<button className="closeButton" onClick={onClose}>
 				×
 			</button>

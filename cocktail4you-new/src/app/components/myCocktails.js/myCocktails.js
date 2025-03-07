@@ -15,7 +15,6 @@ const MyCocktails = ({ userId }) => {
 
 	return (
 		<div className="flex center align-center widthFull column">
-			<h2 className="title-my-cocktails">Mes Cocktails Créés</h2>
 			<div className="flex center align-center cocktailsCrea widthFull">
 				<div className="widthFull">
 					{userCocktails.length > 0 ? (

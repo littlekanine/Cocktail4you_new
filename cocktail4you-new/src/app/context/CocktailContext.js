@@ -22,6 +22,7 @@ export const CocktailProvider = ({ children }) => {
 	const [activeCard, setActiveCard] = useState(null); // Carte active
 	const [isVisible, setIsVisible] = useState(false); // Visibilité de l'élément
 	const { isFrench } = useLanguage();
+	const [userCocktails, setUserCocktails] = useState([]);
 
 	// Fonction pour charger les cocktails et les favoris
 	const fetchCocktails = async () => {
@@ -167,6 +168,22 @@ export const CocktailProvider = ({ children }) => {
 		}
 	};
 
+	async function fetchUserCocktails(userId) {
+		try {
+			const url = userId ? `/api/cocktailsCreaGet?userId=${userId}` : '/api/cocktailsCreaGet';
+			const res = await fetch(url);
+			const data = await res.json();
+
+			if (data.success) {
+				setUserCocktails(data.data);
+			} else {
+				console.error('Erreur:', data.error);
+			}
+		} catch (error) {
+			console.error('Erreur de récupération des cocktails:', error);
+		}
+	}
+
 	const toggleClickedState = (cocktailId) => {
 		setClickedStates((prevStates) => ({
 			...prevStates,
@@ -285,6 +302,8 @@ export const CocktailProvider = ({ children }) => {
 				cocktailsCrea,
 				setCocktailsCrea,
 				getLocalizedCocktails,
+				fetchUserCocktails,
+				userCocktails,
 			}}
 		>
 			{children}

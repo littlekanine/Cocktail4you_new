@@ -1,36 +1,43 @@
-import { useEffect, useState } from "react";
-import CocktailCardCrea from "../cocktailcard/cocktailCardCrea";
-import "./myCocktails.scss";
+import { useEffect } from 'react';
+import CocktailCardCrea from '../cocktailcard/cocktailCardCrea';
+import './myCocktails.scss';
+import { useCocktails } from '@/app/context/CocktailContext';
+import { useAuth } from '@/app/context/AuthContext';
 
-export const MyCocktails = ({ userId }) => {
-    const [cocktails, setCocktails] = useState([]);
+const MyCocktails = ({ userId }) => {
+	const { userCocktails, fetchUserCocktails, cocktails, cocktailsCrea, loading, clickedStates, activeCard, handleCardClick, isVisible } = useCocktails();
+	const { user } = useAuth();
 
-    useEffect(() => {
-        if (!userId) return;
-        console.log(userId);
+	useEffect(() => {
+		fetchUserCocktails(userId);
+		console.log(userId); // 🔄 Charge les cocktails de l'utilisateur
+	}, [userId]);
 
-        const fetchUserCocktails = async () => {
-            try {
-                const res = await fetch(`/api/cocktails?userId=${userId}`);
-                const data = await res.json();
-
-                if (!res.ok) throw new Error(data.message || "Erreur de récupération");
-
-                setCocktails(data);
-            } catch (error) {
-                console.error("Erreur :", error);
-            }
-        };
-
-        fetchUserCocktails();
-    }, [userId]);
-
-    return (
-        <div className="flex center align-center width250 column">
-            <h2 className="title-my-cocktails">Mes Cocktails Créés</h2>
-            <div className="flex center align-center cocktailsCrea">{cocktails.length > 0 ? cocktails.map((cocktail) => <CocktailCardCrea key={cocktail._id} cocktail={cocktail} userId={userId} />) : <p className="paragraphe">Pas de cocktails créés</p>}</div>
-        </div>
-    );
+	return (
+		<div className="flex center align-center widthFull column">
+			<h2 className="title-my-cocktails">Mes Cocktails Créés</h2>
+			<div className="flex center align-center cocktailsCrea widthFull">
+				<div className="widthFull">
+					{userCocktails.length > 0 ? (
+						userCocktails.map((cocktail) => (
+							<CocktailCardCrea
+								key={cocktail._id}
+								cocktail={cocktail}
+								userId={userId}
+								activeCard={activeCard}
+								clickedStates={clickedStates}
+								handleCardClick={handleCardClick}
+								handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)}
+								isVisible={isVisible}
+							/>
+						))
+					) : (
+						<p className="paragraphe">Pas de cocktails créés</p>
+					)}
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default MyCocktails;

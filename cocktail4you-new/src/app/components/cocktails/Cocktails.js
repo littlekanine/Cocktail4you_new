@@ -41,9 +41,12 @@ const Cocktails = ({ searchTerm, selectedCategory }) => {
 		return <div className="deco flex center">Chargement des cocktails...</div>;
 	}
 
-	// Afficher un message si aucun cocktail n'est disponible après le filtrage
 	if (!filteredCocktails || filteredCocktails.length === 0) {
-		return <div className="deco flex center">Aucun cocktail disponible.</div>;
+		return (
+			<div className="deco flex center">
+				<h3>Aucun cocktail disponible.</h3>
+			</div>
+		);
 	}
 	return (
 		<div className="flex column gap20">

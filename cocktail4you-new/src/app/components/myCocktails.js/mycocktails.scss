@@ -1,0 +1,16 @@
+@use "../../../vendors/variables.scss" as *;
+
+.title-my-cocktails {
+    font-size: 22px;
+}
+
+.paragraphe {
+    font-size: 18px;
+    color: $white;
+    font-family: "karla";
+    font-weight: 200;
+}
+
+.cocktailsCrea {
+    margin-top: 20px;
+}

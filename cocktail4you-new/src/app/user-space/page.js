@@ -7,6 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import Button from '../components/buttons/Button';
 import Link from 'next/link';
 import AddCocktails from '../components/addCocktails/addCoktails';
+import MyCocktails from '../components/myCocktails.js/myCocktails';
 import { set } from 'mongoose';
 import './page.scss';
 
@@ -16,6 +17,7 @@ const Page = () => {
 	const router = useRouter();
 	const { isFrench } = useLanguage(); // Langue actuelle (français ou non)
 	const [showAddCocktails, setShowAddCocktails] = useState(false);
+	const [showMyCocktails, setShowMyCocktails] = useState(false)
 
 	useEffect(() => {
 		setIsClient(true); // Lorsque le composant est monté côté client
@@ -54,6 +56,14 @@ const Page = () => {
 		setShowAddCocktails(false);
 	};
 
+	const handleMyCocktails = () => {
+		setShowMyCocktails(!showMyCocktails)
+	}
+
+	const handleCloseMyCocktaisl = () => {
+		setShowMyCocktails(false)
+	}
+
 	return (
 		<div className="flex height100vh  column">
 			<div className="flex center align-center gap20 heightFull column container">
@@ -61,7 +71,8 @@ const Page = () => {
 				<div className="flex column gap20 scroll choiceContainer hideScroll">
 					<Button className="width250 button-user-space " text={isFrench ? 'Partager ma création' : 'Share My Creation'} onClick={handleAddCocktails} />
 					{showAddCocktails && <AddCocktails onClose={handleCloseAddCocktails} />}
-					<Button className="width250 button-user-space " text={isFrench ? 'Mes créations' : 'My Creations'} />
+					<Button className="width250 button-user-space " text={isFrench ? 'Mes créations' : 'My Creations'} onClick={handleMyCocktails} />
+					{showMyCocktails && <MyCocktails onClose = {handleCloseMyCocktaisl} />}
 					<Link href="./liked">
 						<Button className="width250 button-user-space " text={isFrench ? "Mentions j'aime" : 'Likes'} />
 					</Link>

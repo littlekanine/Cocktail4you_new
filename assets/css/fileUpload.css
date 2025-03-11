@@ -1,0 +1,14 @@
+.imageUpload {
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+}
+
+.cross {
+  top: 10px;
+  right: -10px;
+  position: absolute;
+  background: transparent;
+  border: none;
+  height: 10px;
+}

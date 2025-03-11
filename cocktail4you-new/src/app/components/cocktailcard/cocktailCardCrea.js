@@ -5,6 +5,7 @@ import { useCocktails } from '@/app/context/CocktailContext';
 import { useAuth } from '@/app/context/AuthContext';
 import { useLanguage } from '@/app/context/LanguageContext';
 
+
 const CocktailCardCrea = ({ cocktail, index, activeCard, handleCardClick, handleButtonClick, isVisible }) => {
 	const { clickedStates, handleFavoriteClick } = useCocktails();
 	const { isFrench } = useLanguage();

@@ -4,7 +4,7 @@ import Button from "../buttons/Button";
 import { useCocktails } from "@/app/context/CocktailContext";
 import { useAuth } from "@/app/context/AuthContext";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButtonClick, isVisible }) => {
     const { clickedStates, handleFavoriteClick } = useCocktails();
@@ -32,7 +32,7 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
                 }}
                 onClick={() => handleCardClick(cocktailId)}
             >
-                <div className="flex center align-center column">
+                <motion.div whileHover={{ scale: 1.1 }} className="flex center align-center column">
                     <h2 className="cocktail-name">{cocktail.name}</h2>
                     <h3 className="cocktail-category">{cocktail.category}</h3>
                     <div className="flex">
@@ -56,87 +56,89 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
                             <div></div>
                         )}
                     </div>
-                </div>
+                </motion.div>
             </div>
-            <div className="flex info-container heightFull text-center scroll">
-                {activeCard === cocktailId && (
-                    <div className={`extra-info flex align-center widthFull padding10 column scroll ${isVisible ? "visible" : ""}`}>
-                        <div className="flex heightFull widthFull column text-center center align-center relative padding10">
-                            {cocktail.ingredients.map((ingredient, index) => (
-                                <div className="flex widthFull column " key={index}>
-                                    <p className="flex widthFull center align-center">
-                                        {/* Utilisation de la langue active pour récupérer le bon texte */}
-                                        <span className="flex cocktails-ingredients">
-                                            {
-                                                // Vérification si ingredient.name est un objet avec les clés 'fr' et 'en'
-                                                typeof ingredient.name === "object" && ingredient.name !== null ? ingredient.name[isFrench ? "fr" : "en"] || "Inconnu" : ingredient.name || "Inconnu"
-                                            }
-                                        </span>
-                                        <span className="ingredient-separator"> - </span>
-                                        <span className="flex card-indications">
-                                            {ingredient.quantity || ""}
-                                            {
-                                                // Vérification si ingredient.unit est un objet avec les clés 'fr' et 'en'
-                                                ingredient.unit ? (typeof ingredient.unit === "object" && ingredient.unit !== null ? ingredient.unit[isFrench ? "fr" : "en"] : ingredient.unit) : ""
-                                            }
-                                        </span>
+            <AnimatePresence>
+                <div className="flex info-container heightFull text-center scroll">
+                    {activeCard === cocktailId && (
+                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }} className={`extra-info flex align-center widthFull padding10 column scroll ${isVisible ? "visible" : ""}`}>
+                            <div className="flex heightFull widthFull column text-center center align-center relative padding10">
+                                {cocktail.ingredients.map((ingredient, index) => (
+                                    <div className="flex widthFull column " key={index}>
+                                        <p className="flex widthFull center align-center">
+                                            {/* Utilisation de la langue active pour récupérer le bon texte */}
+                                            <span className="flex cocktails-ingredients">
+                                                {
+                                                    // Vérification si ingredient.name est un objet avec les clés 'fr' et 'en'
+                                                    typeof ingredient.name === "object" && ingredient.name !== null ? ingredient.name[isFrench ? "fr" : "en"] || "Inconnu" : ingredient.name || "Inconnu"
+                                                }
+                                            </span>
+                                            <span className="ingredient-separator"> - </span>
+                                            <span className="flex card-indications">
+                                                {ingredient.quantity || ""}
+                                                {
+                                                    // Vérification si ingredient.unit est un objet avec les clés 'fr' et 'en'
+                                                    ingredient.unit ? (typeof ingredient.unit === "object" && ingredient.unit !== null ? ingredient.unit[isFrench ? "fr" : "en"] : ingredient.unit) : ""
+                                                }
+                                            </span>
+                                        </p>
+                                    </div>
+                                ))}
+                                <svg xmlns="http://www.w3.org/2000/svg" className="svg-bottle" viewBox="0 0 512 512">
+                                    <path d="M393.4 9.4c12.5-12.5 32.8-12.5 45.3 0l64 64c12.5 12.5 12.5 32.8 0 45.3c-11.8 11.8-30.7 12.5-43.2 1.9l-9.5 9.5-48.8 48.8c-9.2 9.2-11.5 22.9-8.6 35.6c9.4 40.9-1.9 85.6-33.8 117.5L197.3 493.3c-25 25-65.5 25-90.5 0l-88-88c-25-25-25-65.5 0-90.5L180.2 153.3c31.9-31.9 76.6-43.1 117.5-33.8c12.6 2.9 26.4 .5 35.5-8.6l48.8-48.8 9.5-9.5c-10.6-12.6-10-31.4 1.9-43.2zM99.3 347.3l65.4 65.4c6.2 6.2 16.4 6.2 22.6 0l97.4-97.4c6.2-6.2 6.2-16.4 0-22.6l-65.4-65.4c-6.2-6.2-16.4-6.2-22.6 0L99.3 324.7c-6.2 6.2-6.2 16.4 0 22.6z" />
+                                </svg>
+                            </div>
+                            <hr className="separator"></hr>
+                            <div className="widthFull flex center align-center relative">
+                                <div className="flex center align-center width80">
+                                    <p className="flex column center align-center gap10">
+                                        <span className="card-indications text-center">{cocktail.instructions}</span>{" "}
                                     </p>
                                 </div>
-                            ))}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="svg-bottle" viewBox="0 0 512 512">
-                                <path d="M393.4 9.4c12.5-12.5 32.8-12.5 45.3 0l64 64c12.5 12.5 12.5 32.8 0 45.3c-11.8 11.8-30.7 12.5-43.2 1.9l-9.5 9.5-48.8 48.8c-9.2 9.2-11.5 22.9-8.6 35.6c9.4 40.9-1.9 85.6-33.8 117.5L197.3 493.3c-25 25-65.5 25-90.5 0l-88-88c-25-25-25-65.5 0-90.5L180.2 153.3c31.9-31.9 76.6-43.1 117.5-33.8c12.6 2.9 26.4 .5 35.5-8.6l48.8-48.8 9.5-9.5c-10.6-12.6-10-31.4 1.9-43.2zM99.3 347.3l65.4 65.4c6.2 6.2 16.4 6.2 22.6 0l97.4-97.4c6.2-6.2 6.2-16.4 0-22.6l-65.4-65.4c-6.2-6.2-16.4-6.2-22.6 0L99.3 324.7c-6.2 6.2-6.2 16.4 0 22.6z" />
-                            </svg>
-                        </div>
-                        <hr className="separator"></hr>
-                        <div className="widthFull flex center align-center relative">
-                            <div className="flex center align-center width80">
-                                <p className="flex column center align-center gap10">
-                                    <span className="card-indications text-center">{cocktail.instructions}</span>{" "}
+                                <svg xmlns="http://www.w3.org/2000/svg" className="svg-task" viewBox="0 0 512 512">
+                                    <path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32l224 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32l224 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32l288 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-288 0c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                                </svg>
+                            </div>
+                            <hr className="separator"></hr>
+                            <div className="relative widthFull flex center ">
+                                <p className="flex center align-center width80">
+                                    <span className="card-indications">{cocktail.glass_type}</span>
                                 </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="svg-task" viewBox="0 0 512 512">
+                                    <path d="M32 0C19.1 0 7.4 7.8 2.4 19.8s-2.2 25.7 6.9 34.9L224 269.3 224 448l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0 96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0 0-178.7L502.6 54.6c9.2-9.2 11.9-22.9 6.9-34.9S492.9 0 480 0L32 0zM256 210.7L109.3 64l293.5 0L256 210.7z" />
+                                </svg>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="svg-task" viewBox="0 0 512 512">
-                                <path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32l224 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32l224 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32l288 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-288 0c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                            </svg>
-                        </div>
-                        <hr className="separator"></hr>
-                        <div className="relative widthFull ">
-                            <p>
-                                <span className="card-indications">{cocktail.glass_type}</span>
-                            </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="svg-task" viewBox="0 0 512 512">
-                                <path d="M32 0C19.1 0 7.4 7.8 2.4 19.8s-2.2 25.7 6.9 34.9L224 269.3 224 448l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0 96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0 0-178.7L502.6 54.6c9.2-9.2 11.9-22.9 6.9-34.9S492.9 0 480 0L32 0zM256 210.7L109.3 64l293.5 0L256 210.7z" />
-                            </svg>
-                        </div>
-                        <hr className="separator"></hr>
-                        <div className="relative widthFull flex center align-center">
-                            <div className="width80 flex center align-center">
-                                <span className="card-indications">
-                                    {Array.isArray(cocktail.decoration) && cocktail.decoration.length > 0 ? (
-                                        cocktail.decoration.map((decoration, index) => (
-                                            <div key={index} className="deco flex column width280">
-                                                <p className="card-indications flex column space-between">
-                                                    {
-                                                        typeof decoration === "object" && decoration !== null
-                                                            ? Array.isArray(decoration[isFrench ? "fr" : "en"])
-                                                                ? decoration[isFrench ? "fr" : "en"].join(" - ") // Si c'est un tableau, utilise join
-                                                                : decoration[isFrench ? "fr" : "en"] || "" // Sinon, afficher le texte de la langue
-                                                            : decoration || "Aucune décoration disponible" // Si decoration n'est pas un objet valide
-                                                    }
-                                                </p>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <p className="flex">Aucune décoration disponible</p> // Message alternatif si pas de déco
-                                    )}
-                                </span>
+                            <hr className="separator"></hr>
+                            <div className="relative widthFull flex center align-center">
+                                <div className="width80 flex center align-center">
+                                    <span className="card-indications">
+                                        {Array.isArray(cocktail.decoration) && cocktail.decoration.length > 0 ? (
+                                            cocktail.decoration.map((decoration, index) => (
+                                                <div key={index} className="deco flex column width280">
+                                                    <p className="card-indications flex column space-between">
+                                                        {
+                                                            typeof decoration === "object" && decoration !== null
+                                                                ? Array.isArray(decoration[isFrench ? "fr" : "en"])
+                                                                    ? decoration[isFrench ? "fr" : "en"].join(" - ") // Si c'est un tableau, utilise join
+                                                                    : decoration[isFrench ? "fr" : "en"] || "" // Sinon, afficher le texte de la langue
+                                                                : decoration || "Aucune décoration disponible" // Si decoration n'est pas un objet valide
+                                                        }
+                                                    </p>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <p className="flex">Aucune décoration disponible</p> // Message alternatif si pas de déco
+                                        )}
+                                    </span>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="svg-task" viewBox="0 0 448 512">
+                                    <path d="M448 96c0-35.3-28.7-64-64-64c-6.6 0-13 1-19 2.9c-22.5 7-48.1 14.9-71 9c-75.2-19.1-156.4 11-213.7 68.3S-7.2 250.8 11.9 326c5.8 22.9-2 48.4-9 71C1 403 0 409.4 0 416c0 35.3 28.7 64 64 64c6.6 0 13-1 19.1-2.9c22.5-7 48.1-14.9 71-9c75.2 19.1 156.4-11 213.7-68.3s87.5-138.5 68.3-213.7c-5.8-22.9 2-48.4 9-71c1.9-6 2.9-12.4 2.9-19.1zM212.5 127.4c-54.6 16-101.1 62.5-117.1 117.1C92.9 253 84 257.8 75.5 255.4S62.2 244 64.6 235.5c19.1-65.1 73.7-119.8 138.9-138.9c8.5-2.5 17.4 2.4 19.9 10.9s-2.4 17.4-10.9 19.9z" />
+                                </svg>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="svg-task" viewBox="0 0 448 512">
-                                <path d="M448 96c0-35.3-28.7-64-64-64c-6.6 0-13 1-19 2.9c-22.5 7-48.1 14.9-71 9c-75.2-19.1-156.4 11-213.7 68.3S-7.2 250.8 11.9 326c5.8 22.9-2 48.4-9 71C1 403 0 409.4 0 416c0 35.3 28.7 64 64 64c6.6 0 13-1 19.1-2.9c22.5-7 48.1-14.9 71-9c75.2 19.1 156.4-11 213.7-68.3s87.5-138.5 68.3-213.7c-5.8-22.9 2-48.4 9-71c1.9-6 2.9-12.4 2.9-19.1zM212.5 127.4c-54.6 16-101.1 62.5-117.1 117.1C92.9 253 84 257.8 75.5 255.4S62.2 244 64.6 235.5c19.1-65.1 73.7-119.8 138.9-138.9c8.5-2.5 17.4 2.4 19.9 10.9s-2.4 17.4-10.9 19.9z" />
-                            </svg>
-                        </div>
-                    </div>
-                )}
-            </div>
+                        </motion.div>
+                    )}
+                </div>
+            </AnimatePresence>
         </div>
     );
 };

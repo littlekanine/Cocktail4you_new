@@ -76,9 +76,9 @@ const Page = () => {
 		<div className="height100vh flex">
 			<div className="connexion-container flex center align-center widthFull column">
 				{isFrench ? (
-					<h1 className="flex center widthFull title-connexion ">Accéder à votre espace personnel</h1>
+					<h1 className="flex center align-center widthFull title-connexion ">Accéder à votre espace personnel</h1>
 				) : (
-					<h1 className="flex center widthFull title-connexion ">Access your personal space</h1>
+					<h1 className="flex center align-center widthFull title-connexion ">Access your personal space</h1>
 				)}
 
 				<div className="flex connexion column center align-center relative">

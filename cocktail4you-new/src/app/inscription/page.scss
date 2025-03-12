@@ -6,6 +6,10 @@
 	background-color: rgba(0, 0, 0, 0.2);
 	height: 40%;
 	border-radius: 10px;
+
+	@media screen and (max-height: 700px) {
+		height: 60%;
+	}
 }
 
 .title-connexion {

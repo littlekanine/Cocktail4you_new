@@ -1,16 +1,20 @@
-@use "../../../vendors/variables.scss" as *;
+@use '../../../vendors/variables.scss' as *;
 
 .title-my-cocktails {
-    font-size: 22px;
+	font-size: 22px;
 }
 
 .paragraphe {
-    font-size: 18px;
-    color: $white;
-    font-family: "karla";
-    font-weight: 200;
+	font-size: 18px;
+	color: $white;
+	font-family: 'karla';
+	font-weight: 200;
 }
 
 .cocktailsCrea {
-    margin-top: 20px;
+	margin-top: 20px;
+
+	@media screen and (max-width: '400px') {
+		margin-top: 0;
+	}
 }

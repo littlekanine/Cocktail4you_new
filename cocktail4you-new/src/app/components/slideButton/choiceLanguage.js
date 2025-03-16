@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useLanguage } from '@/app/context/LanguageContext';
+import { useLanguage } from '../../context/LanguageContext';
 import './choiceLanguage.scss';
 
 const ChoiceLanguage = () => {

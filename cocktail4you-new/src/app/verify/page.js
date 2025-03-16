@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function VerifyPage() {
 	const router = useRouter();
@@ -41,7 +42,7 @@ export default function VerifyPage() {
 		<div>
 			<h1>{isValidating ? 'Validation en cours...' : 'Résultat de la validation'}</h1>
 			{error && <p style={{ color: 'red' }}>{error}</p>}
-			{isValidating && <p>Veuillez patienter pendant que nous validons votre compte.</p>}
+			{isValidating && (isFrench ? <p>Veuillez patienter pendant que nous validons votre compte.</p> : <p>Please wait while we validate your account.</p>)}
 		</div>
 	);
 }

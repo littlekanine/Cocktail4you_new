@@ -1,6 +1,6 @@
 import dbConnect from '../../../../lib/mongodb';
-import { verifyToken } from '@/app/utils/verifyToken';
-import User from '@/app/models/UserModel';
+import { verifyToken } from '../../utils/verifyToken';
+import User from '../../../app/models/UserModel';
 import { NextResponse } from 'next/server';
 
 export async function GET(req) {

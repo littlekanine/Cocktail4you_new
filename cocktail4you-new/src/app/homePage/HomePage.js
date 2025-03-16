@@ -6,6 +6,7 @@ import Cocktails from '../components/cocktails/Cocktails';
 import { useCocktails } from '../context/CocktailContext';
 import { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { motion, activeAnimations } from 'framer-motion';
 
 const HomePage = () => {
 	const { activeCard, setActiveCard } = useCocktails();

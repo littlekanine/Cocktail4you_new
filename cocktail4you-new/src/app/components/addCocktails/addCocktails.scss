@@ -13,12 +13,18 @@ label {
 	color: $white;
 }
 
+.form {
+	max-height: 100%;
+}
+
 .containerAdd {
 	background-color: rgba(0, 0, 0, 0.2);
 	border-radius: 25px;
 	width: 250px;
 	padding-top: 20px;
+	margin-top: 20px;
 	padding-bottom: 20px;
+	overflow-y: auto;
 }
 
 input {

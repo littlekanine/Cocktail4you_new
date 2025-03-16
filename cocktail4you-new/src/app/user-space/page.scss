@@ -14,12 +14,24 @@ h2 {
 .button-user-space {
 	font-family: 'karla' !important;
 	font-size: 20px !important;
+	// width: 90% !important;
 }
 
 .choicecontainer {
-	width: 343px;
+	width: 60%;
+	overflow: auto;
+	@media (max-width: 400px) {
+		overflow: auto;
+		width: 100%;
+	}
 }
 
 .container {
 	overflow-y: auto;
+}
+
+.modal-container {
+	max-height: 80vh; // Empêche la div d'être plus grande que l'écran
+	overflow-y: auto; // Active le scroll interne si besoin
+	border-radius: 10px; // Un petit arrondi pour le style
 }

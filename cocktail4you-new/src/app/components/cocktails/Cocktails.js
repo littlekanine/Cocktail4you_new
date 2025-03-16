@@ -1,6 +1,6 @@
 'use client';
 
-import { useCocktails } from '@/app/context/CocktailContext';
+import { useCocktails } from '../../context/CocktailContext';
 import CocktailCard from '../cocktailcard/cocktailCard';
 import CocktailCardCrea from '../cocktailcard/cocktailCardCrea';
 
@@ -49,7 +49,7 @@ const Cocktails = ({ searchTerm, selectedCategory }) => {
 		);
 	}
 	return (
-		<div className="flex column gap20">
+		<div className="flex column gap20 margin20Bottom">
 			{filteredCocktails.map((cocktail, index) =>
 				// Choisissez le bon composant en fonction de la catégorie
 				selectedCategory === 'classique' ? (

@@ -83,11 +83,7 @@ const SignupForm = () => {
 	return (
 		<div className="height100vh flex">
 			<div className="connexion-container flex center align-center widthFull column">
-				{isFrench ? (
-					<h1 className="flex center widthFull title-connexion shadow">Rejoignez-nous !</h1>
-				) : (
-					<h1 className="flex center widthFull title-connexion shadow">Join us !</h1>
-				)}
+				{isFrench ? <h1 className="flex center widthFull title-connexion ">Rejoignez-nous !</h1> : <h1 className="flex center widthFull title-connexion ">Join us !</h1>}
 
 				<div className="flex connexion column">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center gap10">

@@ -1,113 +1,128 @@
-@use '../../../vendors/variables.scss' as *;
+@use "../../../vendors/variables.scss" as *;
 
-.cocktails-container {
-	padding-left: 10px;
-	padding-right: 10px;
+.cocktail-card {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.5));
 }
 
-.card-info {
-	position: relative;
-	width: 225px;
-	height: 100px;
-	background-color: $brown;
-	border-radius: 25px;
-	color: $yellow;
-	padding-left: 10px;
-	padding: 10px;
-	transition: all 0.5s ease-in-out;
-	scrollbar-width: none;
-	h1 {
-		font-family: 'Didact Gothic', serif;
-		font-size: 22px;
-		font-weight: 600;
-		color: $yellow;
-	}
-	h2 {
-		font-family: 'Didact Gothic', serif;
-		font-size: 14px;
-		font-weight: 100;
-	}
-
-	&.expanded {
-		width: 100%;
-		height: 400px;
-		align-items: center;
-		justify-content: center;
-
-		@media (min-width: 768px) {
-			height: 500px;
-		}
-	}
-
-	&.card-info.collapsed {
-		width: 225px;
-		height: 100px;
-		transition: none;
-	}
+.cocktail-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Ajuste l’opacité ici */
+    border-radius: 10px 10px 0px 0px !important;
 }
 
-.card-image {
-	width: 94px;
-	height: 94px;
-	object-fit: cover;
-	border-radius: 25px;
-	transition: all 0.5s ease-in-out;
-	transform-origin: left;
-
-	&.expanded {
-		width: 100%;
-		transform-origin: left;
-		align-items: center !important;
-		justify-content: center !important;
-	}
-
-	&.card-image.collapsed {
-		width: 94px;
-	}
+.cocktail-card::before.active {
+    border-radius: 10px 10px 0px 0px !important;
 }
 
-.design-card-expanded {
-	opacity: 1;
-	max-height: 100%;
-	transition: opacity 2s ease;
-	font-size: 26px;
-	font-weight: 500;
-	overflow: auto;
-	& p {
-		font-family: 'Didact Gothic', serif;
-	}
+.cocktail-name {
+    position: relative;
+    font-family: "karla";
+    font-size: 24px;
+    color: $white;
+    font-weight: 300;
+    filter: brightness(1);
+    z-index: 10;
 }
-.deco {
-	font-size: 26px;
-	color: $yellow;
-	font-family: 'Karantina';
+
+.cocktail-category {
+    font-family: "karla";
+    font-size: 20px;
+    color: $white;
+    font-weight: 200;
+    z-index: 10;
+}
+
+.extra-info {
+    max-height: 400px;
+    opacity: 0;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Animation sur la hauteur et l'opacité */
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+.extra-info.visible {
+    opacity: 1;
+    max-height: 400px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.bordernone {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.info-container {
+    background-color: transparent;
+}
+
+.cocktails-ingredients {
+    color: $white;
+    font-size: 18px;
+    font-family: "karla";
+}
+
+.ingredient-separator {
+    margin: 0 8px; /* Ajustez la valeur de '8px' selon l'espacement souhaité */
+    color: $white;
+}
+
+.separator {
+    color: $white;
+    width: 65%;
+    height: 2px;
+    background-color: $white;
+    margin: 15px !important;
 }
 
 .card-indications {
-	color: $white;
-	font-size: 22px;
+    color: $white;
+    font-size: 18px;
+    font-family: "karla";
+    min-height: 25px;
 }
 
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+.svg-bottle {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 20px;
+    height: 20px;
+    fill: $white;
 }
 
-.title-card-cocktail {
-	position: absolute;
-	top: 30%; /* Centrer verticalement */
-	left: 25%; /* Centrer horizontalement */
-	transform: translate(0%, 0%);
-	opacity: 0; // Caché par défaut
-	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+.svg-task {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 20px;
+    height: 20px;
+    fill: $white;
 }
 
-.expanded .title-card-cocktail {
-	animation: fadeIn 0.5s ease-in-out 0.3s forwards;
+::-webkit-scrollbar {
+    width: 5px; /* Largeur de la barre de défilement */
+    margin-left: 5px;
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Couleur de la piste (l'arrière-plan de la scrollbar) */
+    border-radius: 10px; /* Arrondir les coins de la piste */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.429); /* Couleur de la barre de défilement */
+    border-radius: 10px; /* Arrondir les coins de la barre de défilement */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

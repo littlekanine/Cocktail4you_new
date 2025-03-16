@@ -46,10 +46,12 @@ function WaitingConfirmPage() {
 	}, [name, email]);
 
 	return (
-		<div className="flex text-center center align-center column height100vh gap10">
-			<h1 className="shadow">Validation en cours...</h1>
-			<p className="text-center center align-center shadow">{message}</p>
-			<p className="shadow">Une fois votre email confirmé, vous pourrez continuer.</p>
+		<div className=" flex height100vh center align-center gap10">
+			<div className="flex center align-center column gap10 container text-center padding10">
+				<h2 className="">Validation en cours...</h2>
+				<p className="text-center center align-center ">{message}</p>
+				<p className="">Une fois votre email confirmé, vous pourrez continuer.</p>
+			</div>
 		</div>
 	);
 }

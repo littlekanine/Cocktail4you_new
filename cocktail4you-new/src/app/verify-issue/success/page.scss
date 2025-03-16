@@ -1,17 +1,21 @@
 @use '../../../vendors/variables.scss' as *;
 
 .success {
-    background-color: $caramel;
-}
-
-h1 {
-    color: $yellow;
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 h2 {
-    color: $yellow;
+	color: $white;
+	font-family: 'karla';
 }
 
-.number {
-    color: $brown;
+h3 {
+	color: $white;
+	font-family: 'karla';
+	font-weight: 200;
+}
+
+.button-text {
+	font-family: 'karla';
+	font-size: 18px;
 }

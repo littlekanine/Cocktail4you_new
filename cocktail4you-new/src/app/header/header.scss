@@ -1,0 +1,19 @@
+@use '../../vendors/variables.scss' as *;
+
+.header {
+	color: $white;
+	font-family: 'karla', sans-serif;
+	font-weight: 300;
+	width: 100%;
+	border-radius: 50px;
+	position: absolute;
+	top: 10px;
+	left: 0;
+	transform: translateX(0%);
+}
+
+// .header-hover {
+// 	width: 70%;
+// 	background-color: rgba(0, 0, 0, 0.25);
+// 	border-radius: 50px;
+// }

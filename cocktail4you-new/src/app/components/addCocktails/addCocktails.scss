@@ -1,0 +1,134 @@
+@use '../../../vendors/variables.scss' as *;
+
+.titleAddCocktail {
+	font-size: 30px;
+	font-weight: 300;
+	font-family: 'karla';
+	color: $white;
+}
+
+label {
+	font-family: 'karla';
+	font-size: 18px;
+	color: $white;
+}
+
+.containerAdd {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 25px;
+	width: 250px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+input {
+	border: none;
+	border-radius: 25px;
+	width: 100%;
+	height: 30px;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-family: 'karla';
+	color: $white !important;
+}
+
+select {
+	border: none;
+	border-radius: 10px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-family: 'karla';
+	font-size: 18px;
+	color: $white;
+}
+
+textarea {
+	border: none;
+	border-radius: 25px;
+	width: 100%;
+	height: 60px;
+	color: $white;
+	font-family: 'karla';
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.textAddCocktails {
+	color: $white;
+}
+.buttonAddAlcohol {
+	width: 30px;
+	height: 30px;
+	background-color: rgba(0, 0, 0, 0.5) !important;
+	color: $white !important;
+	border: none;
+	border-radius: 10px;
+}
+
+.addPicture {
+	border: none;
+	border-radius: 25px;
+}
+
+.inputAlcohol {
+	width: 50%;
+	font-family: 'karla';
+	font-size: 20px;
+	color: $white;
+	margin: 0 !important;
+}
+
+.inputDosage {
+	width: 30%;
+	font-family: Karantina;
+	font-size: 20px;
+	color: $white;
+}
+
+.inputQuantite {
+	width: 45%;
+	font-family: 'karla';
+	font-size: 20px;
+	color: $white;
+}
+
+.closeButton {
+	color: $white;
+	background-color: transparent;
+	border: none;
+	font-size: 30px;
+	height: 0px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+
+.ml {
+	color: $white;
+	font-size: 20px;
+	font-family: Karantina;
+}
+
+.button- {
+	color: $white;
+	font-size: 20px;
+	border: none;
+	font-size: 20px;
+	background-color: transparent;
+}
+
+.buttonAddCocktail {
+	width: 50%;
+	height: 30px;
+	border: none;
+	border-radius: 25px;
+	background-color: $white;
+	color: rgba(0, 0, 0, 0.7);
+	font-family: 'karla';
+	font-size: 20px;
+}

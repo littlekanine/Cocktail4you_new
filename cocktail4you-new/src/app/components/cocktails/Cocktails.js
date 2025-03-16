@@ -1,13 +1,13 @@
 'use client';
 
 import { useCocktails } from '@/app/context/CocktailContext';
-import { useAuth } from '@/app/context/AuthContext';
 import CocktailCard from '../cocktailcard/cocktailCard';
+import CocktailCardCrea from '../cocktailcard/cocktailCardCrea';
 
-const Cocktails = ({ searchTerm }) => {
-	const { user } = useAuth();
+const Cocktails = ({ searchTerm, selectedCategory }) => {
 	const {
 		cocktails,
+		cocktailsCrea,
 		loading,
 		clickedStates,
 		activeCard,
@@ -15,7 +15,9 @@ const Cocktails = ({ searchTerm }) => {
 		isVisible, // Récupérer la fonction pour gérer l'activation des cartes
 	} = useCocktails();
 
-	const filteredCocktails = cocktails.filter((cocktail) => {
+	const displayedCocktails = selectedCategory === 'classique' ? cocktails : cocktailsCrea;
+
+	const filteredCocktails = displayedCocktails.filter((cocktail) => {
 		// Récupérer le nom en fonction de la langue
 		const nameField = cocktail.name;
 
@@ -39,24 +41,41 @@ const Cocktails = ({ searchTerm }) => {
 		return <div className="deco flex center">Chargement des cocktails...</div>;
 	}
 
-	// Afficher un message si aucun cocktail n'est disponible après le filtrage
 	if (!filteredCocktails || filteredCocktails.length === 0) {
-		return <div className="deco flex center">Aucun cocktail disponible.</div>;
+		return (
+			<div className="deco flex center">
+				<h3>Aucun cocktail disponible.</h3>
+			</div>
+		);
 	}
 	return (
 		<div className="flex column gap20">
-			{filteredCocktails.map((cocktail, index) => (
-				<CocktailCard
-					key={cocktail._id} // Utilisez un identifiant unique pour chaque carte
-					cocktail={cocktail}
-					index={index}
-					activeCard={activeCard}
-					clickedStates={clickedStates}
-					handleCardClick={handleCardClick} // Passer handleCardClick pour gérer le clic sur la carte
-					handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)} // Passer handleButtonClick pour les favoris
-					isVisible={isVisible}
-				/>
-			))}
+			{filteredCocktails.map((cocktail, index) =>
+				// Choisissez le bon composant en fonction de la catégorie
+				selectedCategory === 'classique' ? (
+					<CocktailCard
+						key={cocktail._id}
+						cocktail={cocktail}
+						index={index}
+						activeCard={activeCard}
+						clickedStates={clickedStates}
+						handleCardClick={handleCardClick}
+						handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)}
+						isVisible={isVisible}
+					/>
+				) : (
+					<CocktailCardCrea
+						key={cocktail._id}
+						cocktail={cocktail}
+						index={index}
+						activeCard={activeCard}
+						clickedStates={clickedStates}
+						handleCardClick={handleCardClick}
+						handleButtonClick={(event) => handleButtonClick(event, index, cocktail._id)}
+						isVisible={isVisible}
+					/>
+				)
+			)}
 		</div>
 	);
 };

@@ -15,12 +15,14 @@ export const useCocktails = () => {
 export const CocktailProvider = ({ children }) => {
 	// Déclarer tous les états à un niveau supérieur
 	const [cocktails, setCocktails] = useState([]);
+	const [cocktailsCrea, setCocktailsCrea] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [favorites, setFavorites] = useState([]);
 	const [clickedStates, setClickedStates] = useState({}); // Gestion des clics sur les favoris
 	const [activeCard, setActiveCard] = useState(null); // Carte active
 	const [isVisible, setIsVisible] = useState(false); // Visibilité de l'élément
 	const { isFrench } = useLanguage();
+	const [userCocktails, setUserCocktails] = useState([]);
 
 	// Fonction pour charger les cocktails et les favoris
 	const fetchCocktails = async () => {
@@ -41,23 +43,46 @@ export const CocktailProvider = ({ children }) => {
 		}
 	};
 
+	const fetchCocktailsCrea = async () => {
+		try {
+			const response = await fetch('/api/cocktailsCreaGet');
+			const data = await response.json();
+			if (data.success) {
+				setCocktailsCrea(data.data);
+				console.log(data.data);
+				return data.data;
+			} else {
+				return [];
+			}
+		} catch (error) {
+			console.error('Erreur lors du chargement des cocktails :', error);
+			return [];
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	const fetchFavorites = async () => {
 		try {
 			const response = await fetch('/api/favorites', { method: 'GET', credentials: 'include' });
 			const data = await response.json();
 
-			// Vérifie que `data.favorites` est un tableau valide
 			if (Array.isArray(data.favorites)) {
-				setFavorites(data.favorites); // Mets à jour les favoris
+				setFavorites(data.favorites);
+				console.log('🔄 Favoris mis à jour :', data.favorites);
+				return data.favorites; // ✅ Retourne les favoris mis à jour
 			} else {
-				setFavorites([]); // Si ce n'est pas un tableau, initialise à []
+				setFavorites([]);
 				console.warn('Les favoris retournés ne sont pas valides.');
+				return [];
 			}
 		} catch (error) {
 			console.error('Erreur lors du chargement des favoris :', error);
-			setFavorites([]); // En cas d'erreur, initialise à []
+			setFavorites([]);
+			return [];
 		}
 	};
+
 	const getLocalizedCocktails = () => {
 		return cocktails.map((cocktail) => {
 			// Fonction pour récupérer la valeur localisée
@@ -122,22 +147,42 @@ export const CocktailProvider = ({ children }) => {
 
 	const deleteFavorites = async (cocktailId) => {
 		try {
+			// Mise à jour optimiste : on enlève le favori localement AVANT l'API
+			setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== cocktailId));
+
 			const response = await fetch('/api/favorites', {
 				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-				},
+				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ cocktailId }),
 				credentials: 'include',
 			});
-			const result = await response.json();
+
 			if (!response.ok) {
-				console.error('Erreur lors de la sauvegarde :', result.error);
+				throw new Error('Erreur lors de la suppression du favori.');
 			}
 		} catch (error) {
 			console.error('Erreur réseau :', error);
+
+			// En cas d'erreur, on remet l'ancien state
+			setFavorites((prevFavorites) => [...prevFavorites, cocktailId]);
 		}
 	};
+
+	async function fetchUserCocktails(userId) {
+		try {
+			const url = userId ? `/api/cocktailsCreaGet?userId=${userId}` : '/api/cocktailsCreaGet';
+			const res = await fetch(url);
+			const data = await res.json();
+
+			if (data.success) {
+				setUserCocktails(data.data);
+			} else {
+				console.error('Erreur:', data.error);
+			}
+		} catch (error) {
+			console.error('Erreur de récupération des cocktails:', error);
+		}
+	}
 
 	const toggleClickedState = (cocktailId) => {
 		setClickedStates((prevStates) => ({
@@ -161,6 +206,10 @@ export const CocktailProvider = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
+		fetchCocktailsCrea();
+	}, []);
+
+	useEffect(() => {
 		const initialClickedStates = {};
 		favorites.forEach((cocktailId) => {
 			initialClickedStates[cocktailId] = true; // Active le bouton pour les favoris
@@ -181,52 +230,45 @@ export const CocktailProvider = ({ children }) => {
 		}
 	}, [activeCard]);
 
-	const handleFavoriteClick = async (event, cocktailIndex) => {
+	const handleFavoriteClick = async (event, cocktailId) => {
 		event.stopPropagation();
 
-		// Récupère l'objet cocktail à partir de l'index
-		const cocktail = cocktails[cocktailIndex];
-		const cocktailId = cocktail._id;
-
-		if (!cocktailId) {
+		// On récupère le cocktail à partir de l'ID (pas d'index ici)
+		const cocktail = cocktails.find((c) => c._id === cocktailId) || cocktailsCrea.find((c) => c._id === cocktailId);
+		// Vérification de l'existence du cocktail
+		if (!cocktail || !cocktailId) {
 			console.error('ID de cocktail manquant.');
 			return;
 		}
 
+		console.log('Cocktail sélectionné:', cocktail);
+		console.log('ID du cocktail:', cocktailId);
+
 		const isFavorited = favorites.includes(cocktailId);
+		const previousClickedStates = { ...clickedStates }; // Sauvegarde l'état précédent
 
-		// Mise à jour optimiste de l'état local pour les favoris
-		const updatedFavorites = isFavorited ? favorites.filter((id) => id !== cocktailId) : [...favorites, cocktailId];
-
-		// Mise à jour de `clickedStates`
-		setClickedStates((prevState) => ({
-			...prevState,
-			[cocktailId]: !prevState[cocktailId], // Inverse l'état du bouton
-		}));
-
-		// Mise à jour de l'état des favoris
-		setFavorites(updatedFavorites);
+		// Optimisme : mise à jour immédiate de l'UI
+		setClickedStates((prev) => ({ ...prev, [cocktailId]: !isFavorited }));
 
 		try {
 			if (isFavorited) {
-				await deleteFavorites(cocktailId); // Si déjà favori, on supprime
+				// Si déjà favori, on le supprime
+				await deleteFavorites(cocktailId);
+				setFavorites((prev) => prev.filter((id) => id !== cocktailId));
 			} else {
-				await saveFavorite(cocktailId); // Sinon on l'ajoute aux favoris
+				// Sinon, on l'ajoute aux favoris
+				await saveFavorite(cocktailId);
+				setFavorites((prev) => [...prev, cocktailId]);
 			}
 		} catch (error) {
 			console.error('Erreur lors de la mise à jour des favoris :', error);
-
-			// Rollback en cas d'erreur
-			setFavorites(favorites);
-			setClickedStates((prevState) => ({
-				...prevState,
-				[cocktailId]: prevState[cocktailId], // Annule le changement de l'état du bouton
-			}));
+			setClickedStates(previousClickedStates); // Revenir à l'état précédent en cas d'erreur
 		}
 	};
 
 	// Gérer le clic sur une carte (active ou inactive)
 	const handleCardClick = (cocktailId) => {
+		console.log('Carte cliquée :', cocktailId, typeof cocktailId);
 		// Sauvegarder la position du scroll avant d'ouvrir la carte
 		const scrollPosition = window.scrollY;
 		setActiveCard((prevState) => {
@@ -256,7 +298,12 @@ export const CocktailProvider = ({ children }) => {
 				handleButtonClick,
 				handleFavoriteClick,
 				fetchFavorites,
+				fetchCocktailsCrea,
+				cocktailsCrea,
+				setCocktailsCrea,
 				getLocalizedCocktails,
+				fetchUserCocktails,
+				userCocktails,
 			}}
 		>
 			{children}

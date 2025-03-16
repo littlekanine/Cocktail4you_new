@@ -1,0 +1,12 @@
+@use '../../vendors/variables.scss' as *;
+
+.title-liked {
+	font-size: 26px;
+	font-weight: 200;
+	font-family: 'karla';
+	color: $white;
+}
+
+.cocktail-list {
+	width: 323px;
+}

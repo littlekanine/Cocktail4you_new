@@ -1,8 +1,10 @@
+'use client';
+
 import { useEffect } from 'react';
 import CocktailCardCrea from '../cocktailcard/cocktailCardCrea';
 import './myCocktails.scss';
-import { useCocktails } from '@/app/context/CocktailContext';
-import { useAuth } from '@/app/context/AuthContext';
+import { useCocktails } from '../../context/CocktailContext';
+import { useAuth } from '../../context/AuthContext';
 
 const MyCocktails = ({ userId }) => {
 	const { userCocktails, fetchUserCocktails, cocktails, cocktailsCrea, loading, clickedStates, activeCard, handleCardClick, isVisible } = useCocktails();

@@ -1,7 +1,10 @@
 .imageUpload {
-	width: 90%;
-	height: 90%;
+	width: 100%;
+	max-width: 200px; /* Limite la largeur maximale */
+	max-height: 200px; /* Limite la hauteur maximale */
+	object-fit: cover; /* Garder les proportions sans déformation */
 	border-radius: 10px;
+	padding-bottom: 20px;
 }
 
 .cross {

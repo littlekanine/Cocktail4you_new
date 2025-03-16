@@ -1,128 +1,131 @@
-@use "../../../vendors/variables.scss" as *;
+@use '../../../vendors/variables.scss' as *;
+
+.cocktail-card-container {
+	padding: 10px;
+}
 
 .cocktail-card {
-    position: relative;
-    width: 100%;
-    height: 90px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.5));
+	position: relative;
+	width: 100%;
+	height: 90px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.5));
 }
 
 .cocktail-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Ajuste l’opacité ici */
-    border-radius: 10px 10px 0px 0px !important;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4); /* Ajuste l’opacité ici */
+	border-radius: 10px 10px 0px 0px !important;
 }
 
 .cocktail-card::before.active {
-    border-radius: 10px 10px 0px 0px !important;
+	border-radius: 10px 10px 0px 0px !important;
 }
 
 .cocktail-name {
-    position: relative;
-    font-family: "karla";
-    font-size: 24px;
-    color: $white;
-    font-weight: 300;
-    filter: brightness(1);
-    z-index: 10;
+	position: relative;
+	font-family: 'karla';
+	font-size: 24px;
+	color: $white;
+	font-weight: 300;
+	filter: brightness(1);
+	z-index: 10;
 }
 
 .cocktail-category {
-    font-family: "karla";
-    font-size: 20px;
-    color: $white;
-    font-weight: 200;
-    z-index: 10;
+	font-family: 'karla';
+	font-size: 20px;
+	color: $white;
+	font-weight: 200;
+	z-index: 10;
 }
 
 .extra-info {
-    max-height: 400px;
-    opacity: 0;
-    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Animation sur la hauteur et l'opacité */
-    background-color: rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
+	max-height: 400px;
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	overflow-y: auto;
 }
 .extra-info.visible {
-    opacity: 1;
-    max-height: 400px;
-    border-radius: 0px 0px 10px 10px;
+	opacity: 1;
+	max-height: 400px;
+	border-radius: 0px 0px 10px 10px;
 }
 
 .bordernone {
-    border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
 }
 
 .info-container {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 .cocktails-ingredients {
-    color: $white;
-    font-size: 18px;
-    font-family: "karla";
+	color: $white;
+	font-size: 18px;
+	font-family: 'karla';
 }
 
 .ingredient-separator {
-    margin: 0 8px; /* Ajustez la valeur de '8px' selon l'espacement souhaité */
-    color: $white;
+	margin: 0 8px; /* Ajustez la valeur de '8px' selon l'espacement souhaité */
+	color: $white;
 }
 
 .separator {
-    color: $white;
-    width: 65%;
-    height: 2px;
-    background-color: $white;
-    margin: 15px !important;
+	color: $white;
+	width: 65%;
+	height: 2px;
+	background-color: $white;
+	margin: 15px !important;
 }
 
 .card-indications {
-    color: $white;
-    font-size: 18px;
-    font-family: "karla";
-    min-height: 25px;
+	color: $white;
+	font-size: 18px;
+	font-family: 'karla';
+	min-height: 25px;
 }
 
 .svg-bottle {
-    position: absolute;
-    top: 10px;
-    left: 0px;
-    width: 20px;
-    height: 20px;
-    fill: $white;
+	position: absolute;
+	top: 10px;
+	left: 0px;
+	width: 20px;
+	height: 20px;
+	fill: $white;
 }
 
 .svg-task {
-    position: absolute;
-    top: 0;
-    left: 0px;
-    width: 20px;
-    height: 20px;
-    fill: $white;
+	position: absolute;
+	top: 0;
+	left: 0px;
+	width: 20px;
+	height: 20px;
+	fill: $white;
 }
 
 ::-webkit-scrollbar {
-    width: 5px; /* Largeur de la barre de défilement */
-    margin-left: 5px;
-    width: 0px;
+	width: 5px; /* Largeur de la barre de défilement */
+	margin-left: 5px;
+	width: 0px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: transparent; /* Couleur de la piste (l'arrière-plan de la scrollbar) */
-    border-radius: 10px; /* Arrondir les coins de la piste */
+	background-color: transparent; /* Couleur de la piste (l'arrière-plan de la scrollbar) */
+	border-radius: 10px; /* Arrondir les coins de la piste */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.429); /* Couleur de la barre de défilement */
-    border-radius: 10px; /* Arrondir les coins de la barre de défilement */
-    margin-top: 10px;
-    margin-bottom: 10px;
+	background-color: rgba(255, 255, 255, 0.429); /* Couleur de la barre de défilement */
+	border-radius: 10px; /* Arrondir les coins de la barre de défilement */
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

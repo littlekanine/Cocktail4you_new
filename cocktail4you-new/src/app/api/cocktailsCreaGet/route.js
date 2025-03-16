@@ -1,5 +1,5 @@
 import dbConnect from '../../../../lib/mongodb';
-import CocktailsCreaModel from '@/app/models/CocktailsCreaModel';
+import CocktailsCreaModel from '../../models/CocktailsCreaModel';
 import { NextResponse } from 'next/server';
 
 export async function GET(req) {

@@ -1,8 +1,10 @@
+'use client';
+
 import React, { useState } from 'react';
 import './addCocktails.scss';
 import FileUpload from '../fileUpload/fileUpload';
-import { useCocktails } from '@/app/context/CocktailContext';
-import { useCrea } from '@/app/context/PostCocktailsContext';
+import { useCocktails } from '../../context/CocktailContext';
+import { useCrea } from '../../context/PostCocktailsContext';
 import { set } from 'mongoose';
 
 const AddCocktails = ({ onClose }) => {
@@ -170,7 +172,7 @@ const AddCocktails = ({ onClose }) => {
 	};
 
 	return (
-		<div className="flex center align center column gap20 containerAdd relative widthFull">
+		<div className="flex center align center column gap20 containerAdd relative widthFull overflow-y ">
 			<button className="closeButton" onClick={onClose}>
 				×
 			</button>
@@ -180,7 +182,7 @@ const AddCocktails = ({ onClose }) => {
 				<h2 className="titleAddCocktail flex center align-center ">Add a Cocktail</h2>
 			)}
 
-			<form className="flex center align-center column gap10" onSubmit={handleSubmit}>
+			<form className="flex center align-center column gap10 scroll-y" onSubmit={handleSubmit}>
 				<div className=" flex column gap5 width90">
 					<label className="textAddCocktails">Nom du Cocktail :</label>
 					<input className="flex padding10  font20" type="text" name="name" value={form.name} onChange={handleChange} required />

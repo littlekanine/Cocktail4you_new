@@ -35,7 +35,7 @@ const Liked = () => {
 	return (
 		<div className="flex widthFull column gap20">
 			<div className="flex center align-center widthFull">
-				<div className="cocktail-list flex center align-center column">
+				<div className="cocktail-list flex center align-center column ">
 					{loading ? (
 						<div>Chargement des favoris...</div>
 					) : likedCocktails.length > 0 ? (

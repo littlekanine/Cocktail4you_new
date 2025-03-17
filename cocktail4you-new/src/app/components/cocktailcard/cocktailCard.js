@@ -14,9 +14,9 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 	const { user } = useAuth();
 	if (!cocktail || !cocktail._id) {
 		console.error('Cocktail manquant ou invalide :', cocktail);
-		return null; // Ne pas rendre de carte si le cocktail est invalide
+		return null;
 	}
-	const cocktailId = cocktail._id; // Utilisez _id comme clé unique
+	const cocktailId = cocktail._id;
 	const connectUser = user;
 
 	return (
@@ -66,7 +66,7 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 				<AnimatePresence>
 					{activeCard === cocktailId && (
 						<motion.div
-							key={cocktailId} // Ajout d'une clé unique
+							key={cocktailId}
 							initial={{ height: 0, opacity: 0 }}
 							animate={{ height: 'auto', opacity: 1 }}
 							exit={{ height: 0, opacity: 0 }}
@@ -77,26 +77,19 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 								{cocktail.ingredients.map((ingredient, index) => (
 									<div className="flex widthFull column " key={index}>
 										<p className="flex widthFull center align-center">
-											{/* Utilisation de la langue active pour récupérer le bon texte */}
 											<span className="flex cocktails-ingredients">
-												{
-													// Vérification si ingredient.name est un objet avec les clés 'fr' et 'en'
-													typeof ingredient.name === 'object' && ingredient.name !== null
-														? ingredient.name[isFrench ? 'fr' : 'en'] || 'Inconnu'
-														: ingredient.name || 'Inconnu'
-												}
+												{typeof ingredient.name === 'object' && ingredient.name !== null
+													? ingredient.name[isFrench ? 'fr' : 'en'] || 'Inconnu'
+													: ingredient.name || 'Inconnu'}
 											</span>
 											<span className="ingredient-separator"> - </span>
 											<span className="flex card-indications">
 												{ingredient.quantity || ''}
-												{
-													// Vérification si ingredient.unit est un objet avec les clés 'fr' et 'en'
-													ingredient.unit
-														? typeof ingredient.unit === 'object' && ingredient.unit !== null
-															? ingredient.unit[isFrench ? 'fr' : 'en']
-															: ingredient.unit
-														: ''
-												}
+												{ingredient.unit
+													? typeof ingredient.unit === 'object' && ingredient.unit !== null
+														? ingredient.unit[isFrench ? 'fr' : 'en']
+														: ingredient.unit
+													: ''}
 											</span>
 										</p>
 									</div>
@@ -133,18 +126,20 @@ const CocktailCard = ({ cocktail, index, activeCard, handleCardClick, handleButt
 											cocktail.decoration.map((decoration, index) => (
 												<div key={index} className="deco flex column width280">
 													<p className="card-indications flex column space-between">
-														{
-															typeof decoration === 'object' && decoration !== null
-																? Array.isArray(decoration[isFrench ? 'fr' : 'en'])
-																	? decoration[isFrench ? 'fr' : 'en'].join(' - ') // Si c'est un tableau, utilise join
-																	: decoration[isFrench ? 'fr' : 'en'] || '' // Sinon, afficher le texte de la langue
-																: decoration || 'Aucune décoration disponible' // Si decoration n'est pas un objet valide
-														}
+														{typeof decoration === 'object' && decoration !== null
+															? Array.isArray(decoration[isFrench ? 'fr' : 'en'])
+																? decoration[isFrench ? 'fr' : 'en'].join(' - ')
+																: decoration[isFrench ? 'fr' : 'en'] ||
+																  (isFrench
+																		? 'Aucune décoration disponible'
+																		: 'No decoration available')
+															: decoration ||
+															  (isFrench ? 'Aucune décoration disponible' : 'No decoration available')}
 													</p>
 												</div>
 											))
 										) : (
-											<p className="flex">Aucune décoration disponible</p> // Message alternatif si pas de déco
+											<p className="flex">{isFrench ? 'Aucune décoration disponible' : 'No decoration available'}</p>
 										)}
 									</span>
 								</div>

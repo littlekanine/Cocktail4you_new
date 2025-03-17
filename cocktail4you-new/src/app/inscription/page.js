@@ -45,7 +45,6 @@ const SignupForm = () => {
 		setIsLoading(true);
 
 		try {
-			// Vérifier si reCAPTCHA est bien chargé
 			if (!executeRecaptcha) {
 				setError('reCAPTCHA non chargé, essayez de recharger la page.');
 				setIsLoading(false);
@@ -54,7 +53,6 @@ const SignupForm = () => {
 
 			const gRecaptchaToken = await executeRecaptcha('signup');
 
-			// Envoyer les données + token reCAPTCHA au serveur
 			const response = await fetch('/api/user', {
 				method: 'POST',
 				headers: {
@@ -67,7 +65,6 @@ const SignupForm = () => {
 
 			if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
 
-			// Redirection si l'inscription est réussie
 			if (data.redirectTo) {
 				router.push(data.redirectTo);
 			} else {

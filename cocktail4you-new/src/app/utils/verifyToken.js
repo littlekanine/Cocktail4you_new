@@ -6,10 +6,8 @@ export const verifyToken = (token) => {
 	}
 
 	try {
-		// Vérifie et décode le token avec le secret
 		return jwt.verify(token, process.env.JWT_SECRET);
 	} catch (error) {
-		// Gestion des erreurs de vérification du token
 		if (error instanceof jwt.JsonWebTokenError) {
 			throw new Error('Token invalide ou malformé');
 		} else if (error instanceof jwt.TokenExpiredError) {

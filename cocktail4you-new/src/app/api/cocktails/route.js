@@ -1,16 +1,15 @@
+export const runtime = 'nodejs';
+
 import dbConnect from '../../../../lib/mongodb';
 import CocktailsModels from '../../models/CocktailsModels';
-import { NextResponse } from 'next/server'; // Importation de NextResponse
+import { NextResponse } from 'next/server';
 
 export async function GET(req) {
 	try {
-		// Connexion à la base de données
 		await dbConnect();
 
-		// Récupérer tous les cocktails depuis la base de données
 		const cocktails = await CocktailsModels.find({});
 
-		// Retourner les cocktails en réponse JSON
 		return NextResponse.json({ success: true, data: cocktails });
 	} catch (error) {
 		console.error('Erreur de connexion à la base de données:', error);

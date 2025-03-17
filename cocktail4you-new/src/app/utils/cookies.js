@@ -1,4 +1,3 @@
-// utils/cookies.js
 export function getCookie(name) {
 	if (typeof window !== 'undefined') {
 		const value = `; ${document.cookie}`;

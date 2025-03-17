@@ -6,16 +6,15 @@ import { useLanguage } from '../context/LanguageContext';
 
 export default function VerifyPage() {
 	const router = useRouter();
-	const [isValidating, setIsValidating] = useState(true); // État pour gérer l'attente
+	const [isValidating, setIsValidating] = useState(true);
 	const [error, setError] = useState(null);
+	const { isFrench } = useLanguage();
 
 	useEffect(() => {
-		// Vérifiez si les paramètres sont disponibles
 		const searchParams = new URLSearchParams(window.location.search);
 		const token = searchParams.get('token');
 
 		if (token) {
-			// Appeler l'API backend pour valider le token
 			fetch(`/api/user/verify?token=${token}`, {
 				method: 'GET',
 			})

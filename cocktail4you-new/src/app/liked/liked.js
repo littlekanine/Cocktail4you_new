@@ -13,7 +13,6 @@ const Liked = () => {
 
 	const likedCocktails = [...cocktails, ...cocktailsCrea].filter((cocktail) => favorites.includes(cocktail._id));
 
-	// Gérer l'affichage détaillé avec délai
 	useEffect(() => {
 		if (activeCard !== null) {
 			const timer = setTimeout(() => {
@@ -24,14 +23,12 @@ const Liked = () => {
 		fetchFavorites();
 	}, [activeCard]);
 
-	// Assurer la visibilité correcte après désactivation
 	useEffect(() => {
 		if (activeCard === null) {
 			setIsVisible(false);
 		}
 	}, [activeCard]);
 
-	// Affichage des cocktails favoris
 	return (
 		<div className="flex widthFull column gap20">
 			<div className="flex center align-center widthFull">
@@ -42,11 +39,11 @@ const Liked = () => {
 						likedCocktails.map((cocktail, index) => (
 							<div key={cocktail._id} className="widthFull padding10">
 								<CocktailCard
-									key={cocktail._id} // Identifiant unique pour chaque carte
+									key={cocktail._id}
 									cocktail={cocktail}
 									index={index}
 									activeCard={activeCard}
-									handleCardClick={handleCardClick} // Passer setActiveCard directement ici
+									handleCardClick={handleCardClick}
 									handleButtonClick={(event) => handleButtonClick(event, cocktail._id)}
 									isVisible={isVisible}
 								/>

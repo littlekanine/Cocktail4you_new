@@ -11,7 +11,6 @@ export const useLanguage = () => {
 export const LanguageProvider = ({ children }) => {
 	const [isFrench, setFrench] = useState(true);
 
-	// Charger la langue enregistrée dans localStorage au montage
 	useEffect(() => {
 		const storedLang = localStorage.getItem('language');
 		if (storedLang) {
@@ -19,7 +18,6 @@ export const LanguageProvider = ({ children }) => {
 		}
 	}, []);
 
-	// Fonction pour basculer entre les langues et enregistrer dans localStorage
 	const toggleLanguage = () => {
 		setFrench((prev) => {
 			const newLang = !prev ? 'fr' : 'en';

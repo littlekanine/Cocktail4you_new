@@ -1,10 +1,11 @@
+export const runtime = 'nodejs';
+
 import dbConnect from '../../../../lib/mongodb';
 import { verifyToken } from '../../utils/verifyToken';
 import User from '../../../app/models/UserModel';
 import { NextResponse } from 'next/server';
 
 export async function GET(req) {
-	// Récupérer le token du cookie
 	const token = req.cookies.get('access_token');
 	const tokenValue = token ? token.value : null;
 
@@ -13,20 +14,16 @@ export async function GET(req) {
 	}
 
 	try {
-		// Vérifie et décode le token
 		const decoded = verifyToken(tokenValue);
 
-		// Connexion à la base de données
 		await dbConnect();
 
-		// Récupère l'utilisateur à partir de l'ID
-		const user = await User.findById(decoded.id).select('-password'); // Exclure le mot de passe des résultats
+		const user = await User.findById(decoded.id).select('-password');
 
 		if (!user) {
 			return NextResponse.json({ error: 'Utilisateur non trouvé' }, { status: 404 });
 		}
 
-		// Renvoie les données de l'utilisateur
 		return NextResponse.json({ user });
 	} catch (err) {
 		console.error('Erreur lors de la vérification du token :', err);

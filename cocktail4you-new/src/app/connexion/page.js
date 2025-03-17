@@ -55,7 +55,6 @@ const Page = () => {
 
 			if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
 
-			// Stockage du token dans le localStorage
 			if (data.token) {
 				// localStorage.setItem('auth_token', data.token);
 			}

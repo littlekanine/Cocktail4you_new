@@ -12,7 +12,7 @@ const ChoiceLanguage = () => {
 		if ((lang === 'fr' && !isFrench) || (lang === 'en' && isFrench)) {
 			toggleLanguage();
 		}
-		setOpen(false); // Fermer le menu après sélection
+		setOpen(false);
 	};
 
 	return (

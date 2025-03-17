@@ -1,5 +1,3 @@
-// waiting-confirm/page.js
-
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
@@ -56,7 +54,6 @@ function WaitingConfirmPage() {
 	);
 }
 
-// Enrouler votre composant avec Suspense pour gérer l'exécution côté client
 export default function WaitingPageWithSuspense() {
 	return (
 		<Suspense fallback={<div>Chargement...</div>}>

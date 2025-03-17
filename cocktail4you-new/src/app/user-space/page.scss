@@ -14,7 +14,6 @@ h2 {
 .button-user-space {
 	font-family: 'karla' !important;
 	font-size: 20px !important;
-	// width: 90% !important;
 }
 
 .choicecontainer {
@@ -31,7 +30,7 @@ h2 {
 }
 
 .modal-container {
-	max-height: 80vh; // Empêche la div d'être plus grande que l'écran
-	overflow-y: auto; // Active le scroll interne si besoin
-	border-radius: 10px; // Un petit arrondi pour le style
+	max-height: 80vh;
+	overflow-y: auto;
+	border-radius: 10px;
 }

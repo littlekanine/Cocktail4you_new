@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
@@ -20,10 +22,8 @@ export async function POST(request) {
 		const { success, score } = res.data;
 
 		if (success && score > 0.5) {
-			console.log('reCAPTCHA passed with score:', score);
 			return NextResponse.json({ success: true, score });
 		} else {
-			console.warn('reCAPTCHA failed with score:', score);
 			return NextResponse.json({ success: false, error: 'reCAPTCHA verification failed', score }, { status: 403 });
 		}
 	} catch (error) {

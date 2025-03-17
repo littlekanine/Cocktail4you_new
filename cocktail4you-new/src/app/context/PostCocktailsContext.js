@@ -14,17 +14,17 @@ export const PostCocktailsProvider = ({ children }) => {
 	const { user } = useAuth();
 
 	const userId = user?._id;
-	console.log('User ID:', userId);
 
 	const postCocktail = async (cocktail) => {
+		if (!userId) {
+			setError('User not authenticated');
+			return;
+		}
+
 		setLoading(true);
 		setError(null);
+
 		try {
-			console.log('Données envoyées : ', cocktail);
-			console.log('En-têtes de la requête:', {
-				'Content-Type': 'application/json',
-				'user-id': userId,
-			});
 			const response = await fetch('/api/cocktailsCrea', {
 				method: 'POST',
 				headers: {
@@ -33,14 +33,15 @@ export const PostCocktailsProvider = ({ children }) => {
 				},
 				body: JSON.stringify(cocktail),
 			});
+
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
+
 			const data = await response.json();
 			setCocktails((prevCocktails) => [...prevCocktails, data.data]);
-			console.log(data);
 		} catch (err) {
-			setError(err.message);
+			setError(err.message || 'Something went wrong');
 			console.error("Erreur lors de l'ajout du cocktail", err);
 		} finally {
 			setLoading(false);

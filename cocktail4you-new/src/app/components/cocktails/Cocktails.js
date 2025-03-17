@@ -5,27 +5,16 @@ import CocktailCard from '../cocktailcard/cocktailCard';
 import CocktailCardCrea from '../cocktailcard/cocktailCardCrea';
 
 const Cocktails = ({ searchTerm, selectedCategory }) => {
-	const {
-		cocktails,
-		cocktailsCrea,
-		loading,
-		clickedStates,
-		activeCard,
-		handleCardClick,
-		isVisible, // Récupérer la fonction pour gérer l'activation des cartes
-	} = useCocktails();
+	const { cocktails, cocktailsCrea, loading, clickedStates, activeCard, handleCardClick, isVisible } = useCocktails();
 
 	const displayedCocktails = selectedCategory === 'classique' ? cocktails : cocktailsCrea;
 
 	const filteredCocktails = displayedCocktails.filter((cocktail) => {
-		// Récupérer le nom en fonction de la langue
 		const nameField = cocktail.name;
 
-		// Vérifier si searchTerm est une string et appliquer le filtre
 		const searchQuery = typeof searchTerm === 'string' ? searchTerm.toLowerCase() : '';
 		const nameMatch = nameField ? nameField.toLowerCase().includes(searchQuery) : false;
 
-		// Filtrer par ingrédients, en vérifiant la langue de chaque nom d'ingrédient
 		const ingredientMatch =
 			cocktail.ingredients &&
 			cocktail.ingredients.some((ingredient) => {
@@ -36,7 +25,6 @@ const Cocktails = ({ searchTerm, selectedCategory }) => {
 		return nameMatch || ingredientMatch;
 	});
 
-	// Afficher un message pendant le chargement
 	if (loading) {
 		return <div className="deco flex center">Chargement des cocktails...</div>;
 	}
@@ -51,7 +39,6 @@ const Cocktails = ({ searchTerm, selectedCategory }) => {
 	return (
 		<div className="flex column gap20 margin20Bottom">
 			{filteredCocktails.map((cocktail, index) =>
-				// Choisissez le bon composant en fonction de la catégorie
 				selectedCategory === 'classique' ? (
 					<CocktailCard
 						key={cocktail._id}

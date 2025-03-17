@@ -12,7 +12,6 @@ const MyCocktails = ({ userId }) => {
 
 	useEffect(() => {
 		fetchUserCocktails(userId);
-		console.log(userId); // 🔄 Charge les cocktails de l'utilisateur
 	}, [userId]);
 
 	return (

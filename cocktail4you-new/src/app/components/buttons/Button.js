@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import './buttons.scss';
 import { motion } from 'framer-motion';

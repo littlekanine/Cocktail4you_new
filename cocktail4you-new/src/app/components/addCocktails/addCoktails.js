@@ -10,11 +10,11 @@ import { set } from 'mongoose';
 const AddCocktails = ({ onClose }) => {
 	const [form, setForm] = useState({
 		name: '',
-		ingredients: [{ name: '', quantity: '', unit: 'ml' }], // ✅ Tableau par défaut
+		ingredients: [{ name: '', quantity: '', unit: 'ml' }],
 		instructions: '',
 		category: '',
 		glassType: '',
-		decoration: [{ name: '', quantity: '' }], // ✅ Tableau par défaut
+		decoration: [{ name: '', quantity: '' }],
 		history: '',
 		photo: '',
 	});
@@ -24,6 +24,8 @@ const AddCocktails = ({ onClose }) => {
 	const { isFrench } = useCocktails();
 
 	const [tags, setTags] = useState(['']);
+
+	const [message, setMessage] = useState('');
 
 	const categories = ['Classique', 'Tendance', 'Création', 'Sans Alcool'];
 	const cocktailGlasses = [
@@ -81,7 +83,7 @@ const AddCocktails = ({ onClose }) => {
 			if (data.success) {
 				setForm({
 					...form,
-					photo: data.url, // Stocker l'URL de l'image S3
+					photo: data.url,
 				});
 			} else {
 				console.error("Erreur lors de l'upload :", data.error);
@@ -103,34 +105,39 @@ const AddCocktails = ({ onClose }) => {
 			tags: tags.filter((tag) => tag.trim() !== ''),
 		};
 
-		console.log('Données envoyées :', cocktailData);
-		postCocktail(cocktailData);
+		postCocktail(cocktailData)
+			.then(() => {
+				setMessage('Cocktail ajouté avec succès ! ✅');
 
-		setForm({
-			name: '',
-			instructions: '',
-			category: '',
-			glassType: '',
-			history: '',
-			photo: '',
-		});
+				setForm({
+					name: '',
+					instructions: '',
+					category: '',
+					glassType: '',
+					history: '',
+					photo: '',
+					img: '',
+				});
 
-		setIngredients([{ name: '', quantity: '', unit: 'ml' }]);
-		setDecorations([{ name: '', quantity: '' }]);
-		setTags(['']);
+				setIngredients([{ name: '', quantity: '', unit: 'ml' }]);
+				setDecorations([{ name: '', quantity: '' }]);
+				setTags(['']);
+			})
+			.catch(() => {
+				setMessage('Erreur lors de l’ajout du cocktail ❌');
+			});
 	};
 
 	const [ingredients, setIngredients] = useState([{ name: '', quantity: '', unit: 'ml' }]);
 	const [decorations, setDecorations] = useState([{ name: '', quantity: '' }]);
 
-	// 🔄 Mettre à jour un input en fonction de son index
 	const handleChangeIngredient = (index, event) => {
 		const { name, value } = event.target;
 		const newIngredients = [...ingredients];
 
 		newIngredients[index] = {
 			...newIngredients[index],
-			[name]: value, // Met à jour soit "name", soit "quantity"
+			[name]: value,
 		};
 
 		setIngredients(newIngredients);
@@ -142,13 +149,12 @@ const AddCocktails = ({ onClose }) => {
 
 		newDecorations[index] = {
 			...newDecorations[index],
-			[name]: value, // Met à jour soit "name", soit "quantity"
+			[name]: value,
 		};
 
 		setDecorations(newDecorations);
 	};
 
-	// ➕ Ajouter un nouvel input vide
 	const addAlcohol = () => {
 		setIngredients([...ingredients, { name: '', quantity: '', unit: 'ml' }]);
 	};
@@ -192,7 +198,6 @@ const AddCocktails = ({ onClose }) => {
 					{ingredients.map((ingredient, index) => (
 						<div key={index} className="flex  gap10">
 							<div className="flex center row align-center gap10">
-								{/* Input pour le nom de l'alcool */}
 								<input
 									type="text"
 									name="name"
@@ -203,7 +208,6 @@ const AddCocktails = ({ onClose }) => {
 									className="inputAlcohol flex padding10  font20"
 								/>
 
-								{/* Input pour le dosage */}
 								<input
 									type="number"
 									name="quantity"
@@ -262,7 +266,6 @@ const AddCocktails = ({ onClose }) => {
 					{decorations.map((decoration, index) => (
 						<div key={index} className="flex gap10">
 							<div className="flex row align-center gap10">
-								{/* Input pour le nom de la décoration */}
 								<input
 									type="text"
 									name="name"
@@ -273,7 +276,6 @@ const AddCocktails = ({ onClose }) => {
 									className="inputAlcohol flex padding10 font20"
 								/>
 
-								{/* Input pour la quantité */}
 								<input
 									type="number"
 									name="quantity"
@@ -323,6 +325,7 @@ const AddCocktails = ({ onClose }) => {
 				<button type="submit" className="buttonAddCocktail">
 					Ajouter
 				</button>
+				{message && <p className="message">{message}</p>}
 			</form>
 		</div>
 	);

@@ -1,4 +1,6 @@
-import dbConnect from '../../../../lib/mongodb'; // Connexion à la DB
+export const runtime = 'nodejs';
+
+import dbConnect from '../../../../lib/mongodb';
 import User from '../../models/UserModel';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
@@ -43,12 +45,10 @@ export async function POST(req) {
 	try {
 		const { email, username, password, gRecaptchaToken } = await req.json();
 
-		// ✅ Vérifier que tous les champs sont remplis
 		if (!email || !username || !password || !gRecaptchaToken) {
 			return new Response(JSON.stringify({ error: 'Tous les champs sont requis' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		// ✅ Vérifier le token reCAPTCHA
 		const recaptchaResponse = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
 			params: {
 				secret: process.env.RECAPTCHAT_SECRET_KEY,
@@ -60,37 +60,29 @@ export async function POST(req) {
 			return new Response(JSON.stringify({ error: 'Vérification reCAPTCHA échouée' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		// ✅ Connexion à MongoDB
 		await dbConnect();
 
-		// ✅ Vérifier si l'utilisateur existe déjà
 		const existingUser = await User.findOne({ $or: [{ email }, { username }] });
 		if (existingUser) {
 			return new Response(JSON.stringify({ error: "Email ou nom d'utilisateur déjà utilisé" }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		// ✅ Hachage du mot de passe avant sauvegarde
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		// ✅ Création d'un nouvel utilisateur
 		const newUser = new User({
 			email,
 			username,
-			password: hashedPassword, // Stocker le mot de passe haché
+			password: hashedPassword,
 		});
 
-		// ✅ Générer un token de vérification
 		const token = crypto.randomBytes(32).toString('hex');
 		newUser.emailVerificationToken = token;
-		newUser.emailVerificationExpires = Date.now() + 3600000; // Expire dans 1 heure
+		newUser.emailVerificationExpires = Date.now() + 3600000;
 
-		// ✅ Sauvegarder l'utilisateur
 		await newUser.save();
 
-		// ✅ Envoyer l'email de confirmation avec l'ID de l'utilisateur
 		await sendVerificationEmail(email, token, newUser._id);
 
-		// ✅ Répondre au client
 		return new Response(
 			JSON.stringify({
 				message: 'Utilisateur créé avec succès. Vérifiez votre e-mail.',

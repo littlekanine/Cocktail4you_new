@@ -1,4 +1,3 @@
-// Pas de 'use client' ici, pour éviter l'erreur metadata
 import Providers from './providers';
 import './globals.css';
 import Header from './header/header';

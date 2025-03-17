@@ -1,10 +1,12 @@
+export const runtime = 'nodejs';
+
 import dbConnect from '../../../../lib/mongodb';
-import User from '@/app/models/UserModel';
+import User from '../../models/UserModel';
 
 export async function GET(req) {
 	const { searchParams } = new URL(req.url);
-	const token = searchParams.get('token'); // Récupérer le token depuis les paramètres de l'URL
-	const id = searchParams.get('id'); // Récupérer l'ID
+	const token = searchParams.get('token');
+	const id = searchParams.get('id');
 
 	if (!token || !id) {
 		return new Response(JSON.stringify({ error: 'Token ou ID manquant' }), {
@@ -14,13 +16,11 @@ export async function GET(req) {
 	}
 
 	try {
-		// Connexion à MongoDB
 		await dbConnect();
 
-		// Rechercher un utilisateur avec le token et vérifier qu'il n'est pas expiré
 		const user = await User.findOne({
 			emailVerificationToken: token,
-			emailVerificationExpires: { $gt: Date.now() }, // Vérifie que le token n'a pas expiré
+			emailVerificationExpires: { $gt: Date.now() },
 		});
 
 		if (!user) {
@@ -30,16 +30,15 @@ export async function GET(req) {
 			});
 		}
 
-		// Activer le compte
-		user.isEmailVerified = true; // Vous devez avoir ce champ dans votre modèle utilisateur
-		user.emailVerificationToken = undefined; // Supprime le token
-		user.emailVerificationExpires = undefined; // Supprime l'expiration
+		user.isEmailVerified = true;
+		user.emailVerificationToken = undefined;
+		user.emailVerificationExpires = undefined;
 		await user.save();
 
 		return new Response(null, {
 			status: 302,
 			headers: {
-				Location: '/verify-issue/success', // Redirection vers la page de succès
+				Location: '/verify-issue/success',
 			},
 		});
 	} catch (err) {

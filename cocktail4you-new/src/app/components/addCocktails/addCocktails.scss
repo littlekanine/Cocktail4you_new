@@ -138,3 +138,15 @@ select:focus {
 	font-family: 'karla';
 	font-size: 20px;
 }
+
+.message {
+	text-align: center;
+	font-size: 1.2rem;
+	margin-top: 10px;
+	color: white;
+	font-family: 'Karla';
+}
+
+.message.error {
+	color: red;
+}

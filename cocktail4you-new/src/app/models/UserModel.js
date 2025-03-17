@@ -40,14 +40,13 @@ const userSchema = new mongoose.Schema(
 		likedCocktails: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Cocktail', // Référence au modèle Cocktail
+				ref: 'Cocktail',
 			},
 		],
 	},
 	{ timestamps: true }
 );
 
-// Middleware pour hacher le mot de passe
 userSchema.pre('save', async function (next) {
 	if (!this.isModified('password')) return next();
 	const bcrypt = require('bcryptjs');

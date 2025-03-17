@@ -2,21 +2,17 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
-// Créer un contexte pour l'utilisateur
 const AuthContext = createContext();
 
-// Hook personnalisé pour utiliser le contexte
 export const useAuth = () => {
 	return useContext(AuthContext);
 };
 
-// Composant fournisseur du contexte
 export const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState(null); // Stocke l'utilisateur (null s'il est déconnecté)
-	const [loading, setLoading] = useState(true); // Gère l'état de chargement
-	const [token, setToken] = useState(null); // Ajout de l'état pour le token
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [token, setToken] = useState(null);
 
-	// Fonction de vérification de l'authentification
 	async function checkAuth() {
 		try {
 			const response = await fetch('/api/auth', {
@@ -25,22 +21,22 @@ export const AuthProvider = ({ children }) => {
 			});
 
 			if (!response.ok) {
-				setUser(null); // Si la réponse n'est pas OK, l'utilisateur n'est pas authentifié
+				setUser(null);
 				throw new Error('Utilisateur non authentifié');
 			}
 
 			const data = await response.json();
 
 			if (data.user) {
-				setUser(data.user); // Si utilisateur trouvé, on met à jour l'état
+				setUser(data.user);
 			} else {
-				setUser(null); // Sinon, on le définit comme null
+				setUser(null);
 			}
 		} catch (error) {
 			console.error('Erreur de vérification de l’authentification :', error);
-			setUser(null); // En cas d'erreur, on considère l'utilisateur comme déconnecté
+			setUser(null);
 		}
-		setLoading(false); // Fin du chargement
+		setLoading(false);
 	}
 
 	async function refreshAuth() {
@@ -57,7 +53,6 @@ export const AuthProvider = ({ children }) => {
 			const data = await response.json();
 
 			if (data.token) {
-				// Option : stocker dans un cookie plutôt que dans localStorage
 				document.cookie = `auth_token=${data.token}; Path=/; HttpOnly; Secure`;
 				setToken(data.token);
 			}
@@ -71,62 +66,51 @@ export const AuthProvider = ({ children }) => {
 
 	async function logout() {
 		try {
-			// Appelle l'API de déconnexion pour supprimer les cookies côté serveur
 			const response = await fetch('/api/logout', {
 				method: 'POST',
-				credentials: 'include', // Inclure les cookies dans la requête
+				credentials: 'include',
 			});
 
 			if (!response.ok) {
 				throw new Error('Erreur lors de la déconnexion côté serveur');
 			}
 
-			// Réinitialise l'état côté client
 			setUser(null);
 			setToken(null);
 
-			// Supprime également le token localement si utilisé
 			localStorage.removeItem('auth_token');
 		} catch (error) {
 			console.error('Erreur lors de la déconnexion :', error);
 		} finally {
-			// Nettoyer l'état même en cas d'erreur
 			setUser(null);
 			setToken(null);
 		}
 	}
 
-	// Utilisation de useEffect pour récupérer le token depuis localStorage uniquement côté client
 	useEffect(() => {
-		// Vérifier si le code est exécuté côté client avant d'utiliser localStorage
 		if (typeof window !== 'undefined') {
 			const storedToken = localStorage.getItem('auth_token');
-			setToken(storedToken); // Récupérer le token depuis le localStorage
+			setToken(storedToken);
 		}
-	}, []); // Ce useEffect se déclenche uniquement au montage du composant
+	}, []);
 
-	// Vérification de l'authentification après que le token soit récupéré
 	useEffect(() => {
 		if (token) {
-			// Vérifier l'authentification initiale si le token est présent
 			checkAuth();
 
-			// Rafraîchir le token automatiquement avant son expiration
 			const interval = setInterval(() => {
 				refreshAuth().catch(() => {
-					setLoading(false); // Si le rafraîchissement échoue, arrêter le chargement
+					setLoading(false);
 				});
-			}, 10 * 60 * 1000); // Rafraîchir toutes les 10 minutes
+			}, 10 * 60 * 1000);
 
-			// Nettoyer l'intervalle au démontage ou lors d'un changement de token
 			return () => clearInterval(interval);
 		} else {
-			// Si le token est absent, essayer de rafraîchir l'authentification
 			refreshAuth().catch(() => {
 				logout();
 			});
 		}
-	}, [token]); // Dépendance au token pour détecter les changements
+	}, [token]);
 
 	return <AuthContext.Provider value={{ user, setUser, loading, checkAuth, logout }}>{children}</AuthContext.Provider>;
 };

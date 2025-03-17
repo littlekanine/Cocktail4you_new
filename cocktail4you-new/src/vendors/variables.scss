@@ -28,7 +28,6 @@ html,
 body,
 #root {
 	height: 100%;
-	// background-color: $caramel;
 }
 
 .bg-custom {
@@ -37,13 +36,13 @@ body,
 	background-position: center;
 	background-repeat: no-repeat;
 
-	position: absolute; /* Permet de placer l'image derrière */
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
 
-	z-index: -10; /* Assure que l'image est derrière le contenu */
+	z-index: -10;
 	filter: blur(8px);
 	transform: scale(1.1);
 }

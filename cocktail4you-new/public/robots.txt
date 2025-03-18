@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://cocktail4you.vercel.app/
+
+# Sitemaps
+Sitemap: https://cocktail4you.vercel.app/sitemap.xml

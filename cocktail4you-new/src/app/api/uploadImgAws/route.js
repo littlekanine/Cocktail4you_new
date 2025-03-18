@@ -55,11 +55,3 @@ export async function POST(req) {
 		return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
 	}
 }
-
-export const config = {
-	api: {
-		bodyParser: {
-			sizeLimit: '10mb',
-		},
-	},
-};

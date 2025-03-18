@@ -7,7 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import Button from '../components/buttons/Button';
 import Link from 'next/link';
 import AddCocktails from '../components/addCocktails/addCoktails';
-import MyCocktails from '../components/myCocktails.js/myCocktails';
+import MyCocktails from '../components/myCocktails/myCocktails';
 import Liked from '../liked/liked';
 import { motion, AnimatePresence } from 'framer-motion';
 import './page.scss';

@@ -4,6 +4,10 @@ footer {
 	background-color: #22222241;
 	color: white;
 	text-align: center;
+
+	@media screen and (max-width: 500px) {
+		// padding: 20px 0;
+	}
 }
 
 footer a {
@@ -20,6 +24,10 @@ footer a:hover {
 	font-family: 'Karla', sans-serif;
 	font-size: 14px;
 	color: $white;
+
+	@media screen and (max-width: 500px) {
+		font-size: 8px;
+	}
 }
 
 .modalMention {
@@ -28,4 +36,8 @@ footer a:hover {
 	color: $white;
 	border: none;
 	background-color: transparent;
+
+	@media screen and (max-width: 500px) {
+		font-size: 8px;
+	}
 }

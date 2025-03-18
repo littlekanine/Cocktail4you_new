@@ -1,20 +1,18 @@
 @use '../../vendors/variables.scss' as *;
 
-.mentions-legales {
+.politiques-confidentialite {
 	background-color: rgba(0, 0, 0, 0.2);
 	width: 70%;
-	height: 70%;
+	height: auto;
 	border-radius: 10px;
 	overflow: auto;
+
+	@media screen and (max-width: 500px) {
+		height: 90%;
+	}
 }
 
 p {
 	font-family: 'karla';
 	color: $white;
-}
-
-h1 {
-	font-family: 'karla';
-	color: $white;
-	font-size: 25px;
 }

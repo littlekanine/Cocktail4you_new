@@ -121,6 +121,10 @@ body,
 	display: none;
 }
 
+.scroll {
+	overflow: auto;
+}
+
 .scroll-y {
 	overflow-y: auto;
 }

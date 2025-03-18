@@ -1,0 +1,44 @@
+@use '../../vendors/variables.scss' as *;
+
+.contact {
+	background-color: rgba(0, 0, 0, 0.2);
+	width: auto;
+	height: auto;
+	border-radius: 10px;
+	overflow: auto;
+}
+
+p {
+	font-family: 'karla';
+	color: $white;
+}
+
+h1 {
+	font-family: 'karla';
+	color: $white;
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+
+input,
+textarea {
+	font-family: 'karla';
+	width: 90%;
+	color: $white;
+	border-radius: 10px;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	resize: none;
+
+	&:focus {
+		outline: none;
+		border: none;
+	}
+}
+
+label {
+	padding-right: 5px;
+	color: $white;
+	font-family: 'Karla';
+}

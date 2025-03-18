@@ -5,7 +5,7 @@ export default function MentionsLegales() {
 		<div className=" flex center align-center column height100vh">
 			<div className="mentions-legales flex center align-center column">
 				<h1>Mentions Légales</h1>
-				<div class="container text-center padding10 gap10">
+				<div class="container text-center padding10 gap10 scroll ">
 					<h2>Conditions d'utilisation de Cocktail4You</h2>
 
 					<h3>1. Acceptation des Conditions</h3>

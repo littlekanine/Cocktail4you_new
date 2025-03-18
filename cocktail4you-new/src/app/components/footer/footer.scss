@@ -1,0 +1,31 @@
+@use '../../../vendors/variables.scss' as *;
+
+footer {
+	background-color: #22222241;
+	color: white;
+	text-align: center;
+}
+
+footer a {
+	color: #ddd;
+	margin: 0 10px;
+	text-decoration: none;
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
+
+.text-sm {
+	font-family: 'Karla', sans-serif;
+	font-size: 14px;
+	color: $white;
+}
+
+.modalMention {
+	font-family: 'Karla', sans-serif;
+	font-size: 14px;
+	color: $white;
+	border: none;
+	background-color: transparent;
+}

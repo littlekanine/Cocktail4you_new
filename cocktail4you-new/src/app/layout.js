@@ -2,6 +2,7 @@ import Providers from './providers';
 import './globals.css';
 import Header from './header/header';
 import { Analytics } from '@vercel/analytics/react';
+import Footer from '../app/components/footer/footer';
 
 export const metadata = {
 	title: 'Cocktails4You - Cocktails pour barmans amateurs et professionnels',
@@ -23,6 +24,9 @@ export default function RootLayout({ children }) {
 						</header>
 						<Analytics />
 						<main className="layout-content">{children}</main>
+						<footer className="layout-footer">
+							<Footer />
+						</footer>
 					</div>
 				</Providers>
 			</body>

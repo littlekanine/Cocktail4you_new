@@ -19,9 +19,13 @@ h2 {
 .choicecontainer {
 	width: 60%;
 	overflow: auto;
-	@media (max-width: 400px) {
+	@media (max-width: 500px) {
 		overflow: auto;
 		width: 100%;
+	}
+
+	@media screen and (min-width: 500px) {
+		width: 90%;
 	}
 }
 

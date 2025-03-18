@@ -86,9 +86,6 @@ const Page = () => {
 							{isFrench ? <p className="flex ">Nom d&apos;utilisateur</p> : <p className="flex karantina font26">Username</p>}
 							<label htmlFor="username"></label>
 							<input type="text" name="username" id="username" autoComplete="username" value={formData.username} onChange={handleChange} required />
-							{/* <div className="flex center">
-								{isFrench ? <p className=" font22">Nom d&apos;utilisateur oublié ?</p> : <p className="karantina font22">Forgot username ?</p>}
-							</div> */}
 						</div>
 
 						<div className="flex column center width80 margin10Bottom">
@@ -104,9 +101,6 @@ const Page = () => {
 								onChange={handleChange}
 								required
 							/>
-							{/* <div className="flex center">
-								{isFrench ? <p className=" font22">Mot de passe oublié ?</p> : <p className="karantina font22">Forgot password ?</p>}
-							</div> */}
 						</div>
 
 						<div className="flex center margin10Bottom">
@@ -114,7 +108,6 @@ const Page = () => {
 						</div>
 					</form>
 
-					{/* Affichage des messages d'erreur ou de succès */}
 					{error && (
 						<p aria-live="polite" className="flex center align-center error-message">
 							{error}

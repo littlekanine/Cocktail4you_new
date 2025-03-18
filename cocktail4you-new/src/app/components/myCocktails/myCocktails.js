@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import CocktailCardCrea from '../cocktailcard/cocktailCardCrea';
-import './myCocktails.scss';
+import './mycocktails.scss';
 import { useCocktails } from '../../context/CocktailContext';
 import { useAuth } from '../../context/AuthContext';
 

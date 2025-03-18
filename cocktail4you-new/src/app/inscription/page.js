@@ -82,7 +82,7 @@ const SignupForm = () => {
 			<div className="connexion-container flex center align-center widthFull column">
 				{isFrench ? <h1 className="flex center widthFull title-connexion ">Rejoignez-nous !</h1> : <h1 className="flex center widthFull title-connexion ">Join us !</h1>}
 
-				<div className="flex connexion column">
+				<div className="flex connexion column center align-center">
 					<form onSubmit={handleSubmit} className="flex height100vh column center align-center gap10">
 						<div className="flex column center width80">
 							<label className="Karantina" htmlFor="email">

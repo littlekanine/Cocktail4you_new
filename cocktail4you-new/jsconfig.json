@@ -1,7 +1,22 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+	"compilerOptions": {
+		"target": "ES2017",
+		"moduleResolution": "node",
+		"baseUrl": ".", // Ajouté pour garantir que la racine du projet est bien définie
+		"paths": {
+			"@/*": ["./src/*"] // Ceci permet à '@' d’être un alias pour le dossier 'src'
+		},
+		"jsx": "react", // Ajouté si tu utilises JSX, sinon tu peux l'omettre
+		"esModuleInterop": true, // Permet l'interopérabilité des modules
+		"skipLibCheck": true, // Pour ignorer les vérifications des types des bibliothèques
+		"strict": false // Option pour désactiver la vérification stricte des types
+	},
+	"include": [
+		"src/**/*", // Assure-toi que tous les fichiers du dossier src sont inclus
+		"next-env.d.ts", // Si tu utilises Next.js, assure-toi que le fichier d'environnement est inclus
+		"src/types/**/*.d.ts" // Inclus également les types personnalisés
+	],
+	"exclude": [
+		"node_modules" // Exclut le dossier node_modules
+	]
 }

@@ -67,12 +67,12 @@ export async function POST(req) {
 			return new Response(JSON.stringify({ error: "Email ou nom d'utilisateur déjà utilisé" }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 		}
 
-		const hashedPassword = await bcrypt.hash(password, 10);
+		// const hashedPassword = await bcrypt.hash(password, 10);
 
 		const newUser = new User({
 			email,
 			username,
-			password: hashedPassword,
+			password,
 		});
 
 		const token = crypto.randomBytes(32).toString('hex');
